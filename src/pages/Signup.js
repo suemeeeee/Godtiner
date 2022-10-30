@@ -9,7 +9,7 @@ const Signup = () => {
         함께해요
       </h2>
 
-      <img src="img/Signup_image1.png" alt="Signup_img" />
+      <img className="mainImg" src="img/Signup_image1.png" alt="Signup_img" />
 
       <p className="button1">
         <button className="w-btn w-btn-brown" type="button">
