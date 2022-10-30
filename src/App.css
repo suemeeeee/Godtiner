@@ -35,3 +35,42 @@ body {
   padding-left: 20px;
   padding-right: 20px;
 }
+
+/* MySearchAlarm */
+.MySearchAlarm {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #0f3ee4;
+}
+
+.MySearchAlarm > div {
+  display: flex;
+}
+
+.MySearchAlarm .Search {
+  background-color: #e9e9e9;
+  width: 400px;
+  border-radius: 15px;
+  border: none;
+  justify-content: center;
+}
+
+.MySearchAlarm .SearchBar {
+  background-color: #e9e9e9;
+  width: 400px;
+  border: none;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.MySearchAlarm .SearchImg {
+  background-color: #e9e9e9;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 10px;
+}
