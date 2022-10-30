@@ -1,0 +1,37 @@
+body {
+  background-color: #f6f6f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Nanum Pen Script";
+  /*vh : viewfalut height의 줄임말. 현재 웹스크린의 실제 크기의 100퍼센트를 최소 높이로 갖겠다.*/
+  min-height: 100vh;
+  margin: 0px;
+}
+
+/* min-width : {}안에 있는 모든 css 규칙들은 min-width이상일 때만 적용됨
+  반응형 웹을 적용할 때 사용됨
+  화면이 650px이상으로 넓을 때 적용되는 규칙들*/
+@media (min-width: 650px) {
+  .App {
+    width: 650px;
+  }
+}
+/*웹브라우저 화면이 650px 이하 일때, 화면의 90%를 차지하게 하겠다*/
+@media (max-width: 650px) {
+  .App {
+    width: 90vh;
+  }
+}
+
+#root {
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.App {
+  /*기본적으로 화면의 100퍼센트를 차지하게 됨*/
+  min-height: 100vh;
+  padding-left: 20px;
+  padding-right: 20px;
+}
