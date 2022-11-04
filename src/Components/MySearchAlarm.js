@@ -18,13 +18,21 @@ const MySearchAlarm = () => {
           sx={{ ml: 3, flex: 1 }}
         />
         <div>
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              alert("hi");
+            }}
+          >
             <SearchIcon />
           </IconButton>
         </div>
       </div>
       <div className="Notifications">
-        <IconButton>
+        <IconButton
+          onClick={() => {
+            alert("message");
+          }}
+        >
           <Notifications />
         </IconButton>
       </div>
