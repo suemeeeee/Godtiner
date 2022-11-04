@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MySearchAlarm from "../Components/MySearchAlarm";
+import "./Home.css";
 
 const Home = () => {
   //newDate객체는 바로 날짜로 변환해주지 않는다.
@@ -26,7 +27,18 @@ const Home = () => {
           onChange={(e) => setCurDate(e.target.value)}
         />
       </div>
-      <div className="date_btn"></div>
+      <div className="date_btn">
+        <button>
+          {curDate.slice(-2)}
+          <br />
+        </button>
+        <button>{curDate.slice(-2)}</button>
+        <button>{curDate.slice(-2)}</button>
+        <button>{curDate.slice(-2)}</button>
+        <button>{curDate.slice(-2)}</button>
+        <button>{curDate.slice(-2)}</button>
+        <button>{curDate.slice(-2)}</button>
+      </div>
       <div className="routinSection"></div>
       <div>
         <button className="addRoutine" onClick={() => navigate("/new")}>

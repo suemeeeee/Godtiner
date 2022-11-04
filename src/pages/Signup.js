@@ -1,8 +1,10 @@
-import React from "react";
+import React, { BrowserRouter, Route, Routes, Link } from "react";
 import "./Signup.css";
+// import Login from "./pages/Login"; //왜 import가 안되지? ㅜㅜㅜㅜㅜ
 
 const Signup = () => {
   return (
+    // <BrowserRouter>
     <div className="Signup">
       <h2>
         일상을 굴리는 톱니바퀴, <br /> <h className="godtiner">GODTINER</h>와
@@ -25,11 +27,19 @@ const Signup = () => {
 
       <p className="button3">
         <h1>이미 계정이 있으신가요?</h1>
+        {/* <Link to="Login"> */}
         <button className="w-btn w-btn-blue" type="button">
           로그인
         </button>
+        {/* </Link> */}
       </p>
+      {/* <switch>
+          <Routes>
+            <Route path="/Login" element={<Login />}></Route>
+          </Routes>
+        </switch> */}
     </div>
+    // {/* </BrowserRouter> */}
   );
 };
 
