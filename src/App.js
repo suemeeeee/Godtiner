@@ -1,6 +1,11 @@
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import "./App.css";
+
+//페이지 라우팅
 import Home from "./pages/Home";
+import New from "./pages/New";
+import Recommend from "./pages/Recommend";
+import Routine from "./pages/Routine";
 import Signup from "./pages/Signup";
 
 function App() {
@@ -15,6 +20,9 @@ function App() {
         <switch>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/new" element={<New />} />
+            <Route path="/routine/:id" element={<Routine />} />
+            <Route path="/recommend" element={<Recommend />} />
           </Routes>
           <Routes>
             <Route path="/Signup" element={<Signup />}></Route>

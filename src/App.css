@@ -3,7 +3,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Nanum Pen Script";
   /*vh : viewfalut height의 줄임말. 현재 웹스크린의 실제 크기의 100퍼센트를 최소 높이로 갖겠다.*/
   min-height: 100vh;
   margin: 0px;
@@ -36,12 +35,29 @@ body {
   padding-right: 20px;
 }
 
+/* Home */
+.Home .input_date {
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+
+  padding-top: 15px;
+  padding-left: 10px;
+}
+
+.Home .addRoutine {
+  border: none;
+  color: black;
+  border-radius: 100px;
+  cursor: pointer;
+  background-color: #ececec;
+  font-size: 50px;
+}
+
 /* MySearchAlarm */
+
 .MySearchAlarm {
-  padding-top: 20px;
-  padding-bottom: 20px;
   display: flex;
-  align-items: center;
   border-bottom: 1px solid #0f3ee4;
 }
 
@@ -49,28 +65,37 @@ body {
   display: flex;
 }
 
-.MySearchAlarm .Search {
-  background-color: #e9e9e9;
-  width: 400px;
-  border-radius: 15px;
-  border: none;
-  justify-content: center;
-}
-
 .MySearchAlarm .SearchBar {
-  background-color: #e9e9e9;
-  width: 400px;
-  border: none;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
+  background-color: #ececec;
+  border-radius: 18px;
+  width: 70%;
+  margin-top: 10px;
+  /* 배치를 잘 못하겠다 */
+  margin-left: 70px;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
-.MySearchAlarm .SearchImg {
-  background-color: #e9e9e9;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-left: 5px;
+.MySearchAlarm .Notifications {
+  background-color: #ececec;
+  border-radius: 50px;
+  margin-top: 10px;
+  margin-left: 10px;
   margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+/* MyUpper */
+.MyUpper {
+  background-color: white;
+}
+.MyUpper .backButton {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.MyUpper .pageDescript {
+  font-size: 15px;
 }

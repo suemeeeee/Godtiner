@@ -1,64 +1,37 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import MySearchAlarm from "../Components/MySearchAlarm";
 
 const Home = () => {
+  //newDate객체는 바로 날짜로 변환해주지 않는다.
+  // 따라서, toISOString메서드를 사용한다. 이 메서드는 Date객체를 받아 yyyy-mm-dd-블라블라 형태로 반환
+  // 이에 인덱싱을 통하여
+  const getStringDate = (date) => {
+    return date.toISOString().slice(0, 10);
+  };
+
+  const navigate = useNavigate();
+
   //날짜를 저장하는 state
-  const [curDate, setCurDate] = useState(new Date());
+  const [curDate, setCurDate] = useState(getStringDate(new Date()));
 
-  //오늘 기준 날짜를 계산하는 함수
-  const getAlldate = (today, lastday) => {
-    let dates = [];
-    dates[0] = today;
-    for (let i = 1; i <= 7; i++) {
-      today += 1;
-      if (today > lastday) {
-        today = 1;
-        dates[i] = today;
-      } else {
-        dates[i] = today;
-      }
-    }
-    return dates;
-  };
-
-  const getAllweak = (todayWeak) => {
-    let strWeak = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    let weaklist = [];
-    weaklist[0] = strWeak[todayWeak];
-    for (let i = 1; i <= 6; i++) {
-      todayWeak += 1;
-      if (todayWeak > 6) {
-        todayWeak = 0;
-        weaklist[i] = strWeak[todayWeak];
-      } else {
-        weaklist[i] = strWeak[todayWeak];
-      }
-    }
-
-    return weaklist;
-  };
-
-  //요일
-  let strWeak = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  let weaklist = [];
-  const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
   return (
-    <div>
+    <div className="Home">
       <MySearchAlarm />
       <div className="current_date">
-        <header>{headText}</header>
+        <input
+          className="input_date"
+          type="date"
+          value={curDate}
+          onChange={(e) => setCurDate(e.target.value)}
+        />
       </div>
-      <div className="date_btn">
-        <button>{`${curDate.getDay()}요일\n${curDate.getDate()}`}</button>
-        <button>{`${curDate.getFullYear()}`}</button>
-        <button>{`${curDate.getFullYear()}`}</button>
-        <button>{`${curDate.getFullYear()}`}</button>
-        <button>{`${curDate.getFullYear()}`}</button>
-        <button>{`${curDate.getFullYear()}`}</button>
-        <button>{`${curDate.getFullYear()}`}</button>
-      </div>
-      <div className="routinSection">
-        <input />
+      <div className="date_btn"></div>
+      <div className="routinSection"></div>
+      <div>
+        <button className="addRoutine" onClick={() => navigate("/new")}>
+          +
+        </button>
       </div>
     </div>
   );

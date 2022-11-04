@@ -1,23 +1,32 @@
 import { useState } from "react";
-import { VscSearch, VscBellDot } from "react-icons/vsc";
+import InputBase from "@mui/material/InputBase";
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
+import Notifications from "@mui/icons-material/Notifications";
 
 const MySearchAlarm = () => {
   const [search, setSearch] = useState("");
+  console.log(search);
   return (
     <div className="MySearchAlarm">
-      <div className="Search">
-        <input
-          className="SearchBar"
-          name="search"
+      <div className="SearchBar">
+        <InputBase
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+          sx={{ ml: 3, flex: 1 }}
         />
-        <VscSearch size={20} className="SearchImg" />
+        <div>
+          <IconButton>
+            <SearchIcon />
+          </IconButton>
+        </div>
       </div>
-      <div className="Alarm">
-        <button>
-          <VscBellDot size={20} />
-        </button>
+      <div className="Notifications">
+        <IconButton>
+          <Notifications />
+        </IconButton>
       </div>
     </div>
   );
