@@ -16,6 +16,7 @@ const Home = () => {
   //날짜를 저장하는 state
   const [curDate, setCurDate] = useState(getStringDate(new Date()));
 
+  //왜 +만 텍스트로 더해지지?
   return (
     <div className="Home">
       <MySearchAlarm />
@@ -28,16 +29,13 @@ const Home = () => {
         />
       </div>
       <div className="date_btn">
-        <button>
-          {curDate.slice(-2)}
-          <br />
-        </button>
-        <button>{curDate.slice(-2)}</button>
-        <button>{curDate.slice(-2)}</button>
-        <button>{curDate.slice(-2)}</button>
-        <button>{curDate.slice(-2)}</button>
-        <button>{curDate.slice(-2)}</button>
-        <button>{curDate.slice(-2)}</button>
+        <button>{curDate.slice(-2) - 3}</button>
+        <button>{curDate.slice(-2) - 2}</button>
+        <button>{curDate.slice(-2) - 1}</button>
+        <button>{curDate.slice(-2) - 0}</button>
+        <button>{curDate.slice(-2) + 1}</button>
+        <button>{curDate.slice(-2) + 2}</button>
+        <button>{curDate.slice(-2) + 3}</button>
       </div>
       <div className="routinSection"></div>
       <div>
