@@ -88,14 +88,32 @@ body {
 /* MyUpper */
 .MyUpper {
   background-color: white;
+  padding: 20px;
 }
+
 .MyUpper .backButton {
   background-color: white;
   border: none;
   cursor: pointer;
   font-size: 25px;
+  margin-right: 5px;
 }
 
 .MyUpper .pageDescript {
   font-size: 15px;
+}
+
+/* RoutineEditor */
+
+.RoutineEditor .NameBox {
+  width: 60%;
+  height: 40px;
+  text-align: center;
+  border: none;
+  background-color: #ececec;
+  border-radius: 10px;
+}
+
+.RoutineEditor .Notification {
+  justify-content: space-between;
 }

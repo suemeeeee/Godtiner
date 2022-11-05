@@ -7,6 +7,7 @@ import New from "./pages/New";
 import Recommend from "./pages/Recommend";
 import Routine from "./pages/Routine";
 import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           </Routes>
           <Routes>
             <Route path="/Signup" element={<Signup />}></Route>
+            <Route path="/login" element={<Login />} />
           </Routes>
         </switch>
       </div>

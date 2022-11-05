@@ -11,7 +11,11 @@ const RoutineEditor = () => {
     <div className="RoutineEditor">
       <section>
         <div className="RoutinName">
-          <input value={name} onChange={(e) => setName(e.target.value)} />
+          <input
+            className="NameBox"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
         </div>
       </section>
       <section>
@@ -22,7 +26,7 @@ const RoutineEditor = () => {
       </section>
       <section>
         <div className="timeDay">
-          <div>시간 설정 </div>
+          <span>시간 설정 </span>
           <input type="time" />
           <input type="time" />
         </div>
