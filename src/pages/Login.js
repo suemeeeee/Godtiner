@@ -1,5 +1,7 @@
 // 로그인 버튼 클릭 시
-import { useState, useNavigate } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import MyUpper from "../Components/MyUpper";
 import "./Login.css";
 
