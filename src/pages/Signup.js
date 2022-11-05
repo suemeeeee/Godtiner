@@ -1,6 +1,5 @@
-import React, { BrowserRouter, Route, Routes, Link } from "react";
+import React from "react";
 import "./Signup.css";
-//import Login from "./pages/Login"; //왜 import가 안되지? ㅜㅜㅜㅜㅜ
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
@@ -29,7 +28,6 @@ const Signup = () => {
 
       <p className="button3">
         <h1>이미 계정이 있으신가요?</h1>
-        {/* <Link to="Login"> */}
         <button
           className="w-btn w-btn-blue"
           type="button"
@@ -37,15 +35,8 @@ const Signup = () => {
         >
           로그인
         </button>
-        {/* </Link> */}
       </p>
-      {/* <switch>
-          <Routes>
-            <Route path="/Login" element={<Login />}></Route>
-          </Routes>
-        </switch> */}
     </div>
-    // {/* </BrowserRouter> */}
   );
 };
 
