@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MySearchAlarm from "../Components/MySearchAlarm";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
 import "./Home.css";
 
 const Home = () => {
@@ -42,6 +44,9 @@ const Home = () => {
         <button className="addRoutine" onClick={() => navigate("/new")}>
           +
         </button>
+        <Fab color="primary" aria-label="add">
+          <AddIcon onClick={() => navigate("/new")} />
+        </Fab>
       </div>
     </div>
   );
