@@ -15,7 +15,7 @@ const Login = () => {
 
   function changeButton() {
     id.includes("@") && pw.length >= 5 ? setButton(false) : setButton(true);
-  }
+  } //ID 조건은 @포함하고 5자 이상으로 설정
 
   const goToMain = () => {
     navigate("/Home");
