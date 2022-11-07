@@ -4,6 +4,7 @@ import MySearchAlarm from "../Components/MySearchAlarm";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import "./Home.css";
+import Calendar from "../Components/Calendar";
 
 const Home = () => {
   //newDate객체는 바로 날짜로 변환해주지 않는다.
@@ -30,6 +31,7 @@ const Home = () => {
           onChange={(e) => setCurDate(e.target.value)}
         />
       </div>
+      <Calendar />
       <div className="date_btn">
         <button>{curDate.slice(-2) - 3}</button>
         <button>{curDate.slice(-2) - 2}</button>
