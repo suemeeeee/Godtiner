@@ -5,7 +5,7 @@ body {
   align-items: center;
   /*vh : viewfalut height의 줄임말. 현재 웹스크린의 실제 크기의 100퍼센트를 최소 높이로 갖겠다.*/
   min-height: 100vh;
-  margin: 0px;
+  margin: 0;
 }
 
 /* min-width : {}안에 있는 모든 css 규칙들은 min-width이상일 때만 적용됨
@@ -116,4 +116,30 @@ body {
 
 .RoutineEditor .Notification {
   justify-content: space-between;
+}
+
+/* FOOTER */
+
+footer {
+  margin-top: 25px;
+
+  display: flex;
+  justify-content: center;
+}
+
+footer > div {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+footer button {
+  width: 130px;
+  height: 100px;
+  background-color: #eeeeee;
+  border: none;
+  font-size: 35px;
+}
+
+footer button:hover {
+  background-color: #bfbfbf;
 }
