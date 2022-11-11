@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import React, { useReducer, useRef, useState } from "react";
 import "./App.css";
+import MoveTab from "./Components/MoveTab";
 
 //페이지 라우팅
 import Home from "./pages/Home";
@@ -181,6 +182,7 @@ function App() {
                     <Route path="/login" element={<Login />} />
                   </Routes>
                 </switch>
+                <MoveTab />
               </div>
             </BrowserRouter>
           </ShareStateContext.Provider>
