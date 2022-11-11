@@ -1,3 +1,31 @@
-.button .img {
-  width: 30px;
+.calendarHeader {
+  padding-top: 25px;
+  padding-left: 20px;
+  font-size: 40px;
+  display: flex;
+  justify-content: left;
+}
+.calendarHeader button {
+  margin-left: 10px;
+  width: 50px;
+  height: 50px;
+}
+
+.week_btn {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+.week_btn button {
+  margin: 10px;
+  width: 60px;
+  height: 100px;
+  border-radius: 30px;
+  border: 0;
+  font-size: 15px;
+}
+
+.selectedDay_btn {
+  background-color: blue;
+  color: aliceblue;
 }

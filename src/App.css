@@ -58,7 +58,7 @@ body {
 
 .MySearchAlarm {
   display: flex;
-  border-bottom: 1px solid #0f3ee4;
+  border-bottom: 2px solid #0f3ee4;
 }
 
 .MySearchAlarm > div {

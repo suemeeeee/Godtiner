@@ -9,6 +9,7 @@ import "./Calendar.css";
 const Calendar = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [visible, setVisible] = useState(false);
+  const week = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   function addDays(date, days) {
     const clone = new Date(date);
@@ -18,33 +19,67 @@ const Calendar = () => {
 
   return (
     <div>
-      {format(startDate, "yyyy년 MM월 ")}
-      <button
-        onClick={() => {
-          setVisible(!visible); //버튼 클릭 시 달력 visible
-        }}
-      >
-        <img style={{ width: "10px", heigth: "10px" }} src="calendar.png"></img>
-      </button>
+      <div className="calendarHeader">
+        {format(startDate, "yyyy년 MM월 ")}
+        <button
+          onClick={() => {
+            setVisible(!visible); //버튼 클릭 시 달력 visible
+          }}
+        >
+          달력
+        </button>
+      </div>
       {visible && (
         <DatePicker
           selected={startDate}
           onChange={(date) => {
             setStartDate(date);
-            setVisible(!visible); //날짜 선택 시 달력 안 보이게
+            setVisible(!visible); //모달 팝업창으로 바꿔야 할 듯.. 날짜 선택 시 달력 안 보이게
           }}
           inline
         />
       )}
-      <br />
-      <button>{format(addDays(startDate, -3), "dd")}</button>
-      <button>{format(addDays(startDate, -2), "dd")}</button>
-      <button>{format(addDays(startDate, -1), "dd")}</button>
-      <button>{format(startDate, "dd")}</button>
-      {/* 선택 날짜 */}
-      <button>{format(addDays(startDate, +1), "dd")}</button>
-      <button>{format(addDays(startDate, +2), "dd")}</button>
-      <button>{format(addDays(startDate, +3), "dd")}</button>
+
+      <div className="week_btn">
+        {" "}
+        <button>
+          {week[startDate.getDay() - 3]}
+          <br />
+          {format(addDays(startDate, -3), "dd")}
+          <br />
+        </button>
+        <button>
+          {week[startDate.getDay() - 2]}
+          <br />
+          {format(addDays(startDate, -2), "dd")}
+        </button>
+        <button>
+          {week[startDate.getDay() - 1]}
+          <br />
+          {format(addDays(startDate, -1), "dd")}
+        </button>
+        <button className="selectedDay_btn">
+          {week[startDate.getDay()]}
+          <br />
+          {format(startDate, "dd")}
+        </button>
+        {/* 선택 날짜 */}
+        <button>
+          {week[addDays(startDate, 1).getDay()]}
+          <br />
+          {format(addDays(startDate, 1), "dd")}
+        </button>
+        <button>
+          {week[addDays(startDate, 2).getDay()]}
+          <br />
+          {format(addDays(startDate, 2), "dd")}
+        </button>
+        <button>
+          {week[addDays(startDate, 3).getDay()]}
+          <br />
+          {format(addDays(startDate, 3), "dd")}
+        </button>
+      </div>
     </div>
   );
 };
