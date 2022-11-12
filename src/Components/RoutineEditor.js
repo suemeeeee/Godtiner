@@ -5,6 +5,9 @@ import Switch from "@mui/material/Switch";
 import { RoutineDispatchContext } from "../App";
 import { useNavigate } from "react-router-dom";
 
+import "./RoutineEditor.css";
+import MyUpper from "./MyUpper";
+
 const RoutineEditor = () => {
   const contentRef = useRef();
   const navigate = useNavigate();
@@ -31,6 +34,7 @@ const RoutineEditor = () => {
 
   return (
     <div className="RoutineEditor">
+      <MyUpper text={"루틴 추가하기"} />
       <section>
         <div className="RoutinName">
           <input
@@ -39,8 +43,6 @@ const RoutineEditor = () => {
             onChange={(e) => setContent(e.target.value)}
           />
         </div>
-      </section>
-      <section>
         <div className="Notification">
           <span>알림 설정</span>
           <Switch
@@ -50,8 +52,7 @@ const RoutineEditor = () => {
             }}
           />
         </div>
-      </section>
-      <section>
+
         <div className="timeDay">
           <span>시간 설정 </span>
           <input

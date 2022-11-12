@@ -12,3 +12,12 @@
 .date_btn {
   text-align: center;
 }
+
+.routinSection {
+  display: block;
+  padding: 30px;
+}
+
+.add_btn {
+  size: 100;
+}

@@ -8,8 +8,33 @@ import Calendar from "../Components/Calendar";
 import { RoutineStateContext } from "../App";
 import RoutineItem from "../Components/RoutineItem";
 import ShareIcon from "@mui/icons-material/Share";
+import {
+  IoIosAddCircle,
+  IoIosShare,
+  IoMdReorder,
+  IoIosCalendar,
+  IoMdArrowBack,
+} from "react-icons/io";
 
 const Home = () => {
+  //   const MyRoutine = {
+  //     routine_name: "건강루틴",
+
+  //     mon: {},
+
+  //     tue: {},
+
+  //     wed: {},
+
+  //     thu: {},
+
+  //     fri: {},
+
+  //     sat: {},
+
+  //     sun: {},
+  //   };
+
   const routineList = useContext(RoutineStateContext);
   const navigate = useNavigate();
 
@@ -19,19 +44,29 @@ const Home = () => {
     <div className="Home">
       <MySearchAlarm />
       <Calendar />
-      <ShareIcon onClick={() => navigate("/shareroutine")} />
+      <IoMdReorder size="50" />
+      <IoIosShare
+        size="50"
+        color=""
+        onClick={() => navigate("/shareroutine")}
+      />
       <div className="routinSection">
         {data.map((it) => (
           <RoutineItem key={it.id} {...it} />
         ))}
       </div>
       <div>
-        {/* <button className="addRoutine" onClick={() => navigate("/new")}>
-          +
-        </button> */}
-        <Fab color="primary" aria-label="add">
+        {/* <Fab color="primary" aria-label="add">
           <AddIcon onClick={() => navigate("/new")} />
-        </Fab>
+        </Fab> */}
+        <IoIosAddCircle
+          size="80"
+          color="blue"
+          position="fixed"
+          right="50px"
+          botton="300px"
+          onClick={() => navigate("/new")}
+        />
       </div>
     </div>
   );
