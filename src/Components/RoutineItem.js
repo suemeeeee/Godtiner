@@ -16,6 +16,7 @@ const RoutineItem = ({ id, content, startTime, endTime }) => {
         className="RoutineContent"
         onClick={() => navigate("/routineeditor")}
         //왜 이동 안해~!~!!
+        //이동하지 못하는 이유는 라우터를 해주지 않았기 때문
       >
         {content}
       </button>

@@ -37,8 +37,11 @@ const Home = () => {
 
   const routineList = useContext(RoutineStateContext);
   const navigate = useNavigate();
-
   const [data, setData] = useState(routineList);
+
+  const [name, setName] = useState("내 루틴");
+  const [curDate, setCurDate] = useState(new Date());
+  const [visible, setVisible] = useState(false);
 
   return (
     <div className="Home">
@@ -50,15 +53,19 @@ const Home = () => {
         color=""
         onClick={() => navigate("/shareroutine")}
       />
+      <div className="routinename">
+        <input
+          className="routine_name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </div>
       <div className="routinSection">
         {data.map((it) => (
           <RoutineItem key={it.id} {...it} />
         ))}
       </div>
       <div>
-        {/* <Fab color="primary" aria-label="add">
-          <AddIcon onClick={() => navigate("/new")} />
-        </Fab> */}
         <IoIosAddCircle
           size="80"
           color="blue"

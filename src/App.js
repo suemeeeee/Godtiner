@@ -141,20 +141,7 @@ function App() {
   };
 
   //개인 루틴 공유하기. 구현하기 어려운 점 1번으로 인해 다시 만들어야 함
-  const onShare = (name, content, id, startTime, endTime, s_name) => {
-    let newShareRoutine = {
-      name,
-      content,
-      routine: {
-        id,
-        startTime,
-        endTime,
-        s_name,
-      },
-    };
-    let newShare = [newShareRoutine, ...shareData];
-    setShareDate(newShare);
-  };
+  const onShare = () => {};
 
   return (
     <RoutineStateContext.Provider value={data}>
