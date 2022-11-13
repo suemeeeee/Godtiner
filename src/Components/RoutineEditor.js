@@ -6,7 +6,6 @@ import { RoutineDispatchContext } from "../App";
 import { useNavigate } from "react-router-dom";
 
 import "./RoutineEditor.css";
-import MyUpper from "./MyUpper";
 
 const RoutineEditor = () => {
   const contentRef = useRef();
@@ -34,11 +33,11 @@ const RoutineEditor = () => {
 
   return (
     <div className="RoutineEditor">
-      <MyUpper text={"루틴 추가하기"} />
       <section>
         <div className="RoutinName">
           <input
             className="NameBox"
+            ref={contentRef}
             value={content}
             onChange={(e) => setContent(e.target.value)}
           />
@@ -66,8 +65,9 @@ const RoutineEditor = () => {
             onChange={(e) => setEndTime(e.target.value)}
           />
         </div>
-        {/* 요일반복 체크박수 구현해야함 */}
-        <div>요일 반복</div>
+        <div>
+          <span>요일 반복</span>
+        </div>
       </section>
       <button onClick={handleSubmit}>추가하기</button>
     </div>
