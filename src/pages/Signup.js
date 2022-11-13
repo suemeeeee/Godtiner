@@ -1,6 +1,7 @@
 import React from "react";
 import "./Signup.css";
 import { useNavigate } from "react-router-dom";
+import GoogleButton from "../Components/GoogleButton";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -14,11 +15,12 @@ const Signup = () => {
 
       <img className="mainImg" src="img/Signup_image1.png" alt="Signup_img" />
 
-      <p className="button1">
-        <button className="w-btn w-btn-brown" type="button">
+      <div className="button1">
+        {/* <googleLogin className="w-btn w-btn-brown" type="button">
           구글로 시작 및 로그인
-        </button>
-      </p>
+        </googleLogin> */}
+        <GoogleButton />
+      </div>
 
       <p className="button2">
         <button className="w-btn w-btn-indigo" type="button">
