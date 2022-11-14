@@ -12,6 +12,8 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import ShareRoutine from "./pages/ShareRoutine";
 
+import LoginGoogle from "./Components/LoginGoogle";
+
 const reducer = (state, action) => {
   let newRoutine = [];
   switch (action.type) {

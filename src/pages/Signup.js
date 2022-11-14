@@ -1,7 +1,7 @@
 import React from "react";
 import "./Signup.css";
 import { useNavigate } from "react-router-dom";
-import GoogleButton from "../Components/GoogleButton";
+import LoginGoogle from "../Components/LoginGoogle";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const Signup = () => {
         {/* <googleLogin className="w-btn w-btn-brown" type="button">
           구글로 시작 및 로그인
         </googleLogin> */}
-        <GoogleButton />
+        <LoginGoogle />
       </div>
 
       <p className="button2">
