@@ -21,3 +21,16 @@
 .add_btn {
   size: 100;
 }
+
+.routine_name {
+  width: 200px;
+  height: 50px;
+  border: 0;
+  font-size: 40px;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+.routine_name:focus {
+  outline: none;
+}

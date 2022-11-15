@@ -31,3 +31,8 @@
   background-color: blue;
   color: aliceblue;
 }
+
+.calendar_btn {
+  border: 0;
+  border-radius: 15px;
+}

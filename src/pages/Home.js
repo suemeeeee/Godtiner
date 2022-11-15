@@ -14,24 +14,6 @@ import {
 } from "react-icons/io";
 
 const Home = () => {
-  //   const MyRoutine = {
-  //     routine_name: "건강루틴",
-
-  //     mon: {},
-
-  //     tue: {},
-
-  //     wed: {},
-
-  //     thu: {},
-
-  //     fri: {},
-
-  //     sat: {},
-
-  //     sun: {},
-  //   };
-
   const routineList = useContext(RoutineStateContext);
   const navigate = useNavigate();
   const [data, setData] = useState(routineList);

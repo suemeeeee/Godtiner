@@ -33,7 +33,9 @@ const Calendar = () => {
     <div>
       <div className="calendarHeader">
         {format(startDate, "yyyy년 MM월 ")}
-        <button onClick={handleClick}>달력</button>
+        <button className="calendar_btn" onClick={handleClick}>
+          달력
+        </button>
       </div>
       {isOpen && (
         <DatePicker selected={startDate} onChange={handleChange} inline />
