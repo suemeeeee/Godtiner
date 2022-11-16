@@ -6,7 +6,6 @@ import LoginGoogle from "../Components/LoginGoogle";
 const Signup = () => {
   const navigate = useNavigate();
   return (
-    // <BrowserRouter>
     <div className="Signup">
       <h2>
         일상을 굴리는 톱니바퀴, <br /> <h className="godtiner">GODTINER</h>와
