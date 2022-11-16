@@ -1,38 +1,35 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { GoogleLogin } from "react-google-login";
-import { gapi } from "gapi-script";
+import Axios from "axios";
 
-const clientId =
-  "1031066264934-g58khhhkkf5hbqtbh5e4l3n2ovbrir0r.apps.googleusercontent.com";
-const LoginGoogle = ({ onSocial }) => {
-  useEffect(() => {
-    function start() {
-      gapi.client.init({
-        clientId,
-        scope: "email",
-      });
-    }
+const config = {
+  headers: {
+    "Content-Type": "application/json; charset=utf-8",
+  },
+};
 
-    gapi.load("client:auth2", start);
-  }, []);
+const responseGoogle = async (response) => {
+  console.log(1, response);
+  let jwtToken = await Axios.post(
+    "http://localhost:8080/oauth/jwt/google",
+    JSON.stringify(response),
+    config
+  );
+  if (jwtToken.status === 200) {
+    console.log(2, jwtToken.data);
+    localStorage.setItem("jwtToken", jwtToken.data);
+  }
+};
 
-  const onSuccess = (res) => {
-    console.log(res);
-  };
-
-  const onFailure = (res) => {
-    console.log(res);
-  };
-
+const LoginGoogle = () => {
   return (
-    <div>
-      <GoogleLogin
-        clientId={clientId}
-        buttonText="Google로 로그인"
-        onSuccess={onSuccess}
-        onFailure={onFailure}
-      />
-    </div>
+    <GoogleLogin
+      clientId="1031066264934-g58khhhkkf5hbqtbh5e4l3n2ovbrir0r.apps.googleusercontent.com"
+      buttonText="Login"
+      onSuccess={responseGoogle}
+      onFailure={responseGoogle}
+      cookiePolicy={"single_host_origin"}
+    />
   );
 };
 
