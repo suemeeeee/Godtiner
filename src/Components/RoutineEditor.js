@@ -1,5 +1,6 @@
-import { useContext, useRef, useState } from "react";
+//상세루틴 편집하는 컴포넌트
 
+import { useContext, useRef, useState } from "react";
 //import mui
 import Switch from "@mui/material/Switch";
 import { RoutineDispatchContext } from "../App";

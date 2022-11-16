@@ -11,6 +11,7 @@ import Routine from "./pages/Routine";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import ShareRoutine from "./pages/ShareRoutine";
+import MyRoutineEditor from "./pages/MyRoutineEditor";
 
 import LoginGoogle from "./Components/LoginGoogle";
 
@@ -165,6 +166,10 @@ function App() {
                     <Route path="/routine/:id" element={<Routine />} />
                     <Route path="/recommend" element={<Recommend />} />
                     <Route path="/shareroutine" element={<ShareRoutine />} />
+                    <Route
+                      path="/myroutineeditor"
+                      element={<MyRoutineEditor />}
+                    />
                   </Routes>
                   <Routes>
                     <Route path="/Signup" element={<Signup />}></Route>
