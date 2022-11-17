@@ -27,14 +27,18 @@ function Signup() {
 
       <img className="mainImg" src="img/Signup_image1.png" alt="Signup_img" />
 
-      {/* <div className="button1"> */}
-      <LoginGoogle />
-      <h1>/user : {user}</h1>
-      <button onClick={getUser}>유저정보 가져오기</button>
-      {/* </div> */}
+      <div className="button1">
+        <LoginGoogle />
+        <h1>/user : {user}</h1>
+        <button onClick={getUser}>유저정보 가져오기</button>
+      </div>
 
       <div className="button2">
-        <button className="w-btn w-btn-indigo" type="button">
+        <button
+          className="w-btn w-btn-indigo"
+          type="button"
+          onClick={() => navigate("/emailsignup")}
+        >
           이메일로 계정 만들기
         </button>
       </div>

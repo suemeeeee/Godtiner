@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import React, { useReducer, useRef, useState } from "react";
 import "./App.css";
-import MoveTab from "./Components/MoveTab";
+import MoveTab from "./Components/MoveTab"; //화면 하단의 탭이동 footer
 
 //페이지 라우팅
 import Home from "./pages/Home";
@@ -12,6 +12,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import ShareRoutine from "./pages/ShareRoutine";
 import MyRoutineEditor from "./pages/MyRoutineEditor";
+import EmailSignup from "./pages/EmailSignup";
 
 import LoginGoogle from "./Components/LoginGoogle";
 
@@ -174,6 +175,7 @@ function App() {
                   <Routes>
                     <Route path="/Signup" element={<Signup />}></Route>
                     <Route path="/login" element={<Login />} />
+                    <Route path="/emailsignup" element={<EmailSignup />} />
                   </Routes>
                 </switch>
                 <MoveTab />

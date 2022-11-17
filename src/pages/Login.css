@@ -72,3 +72,18 @@
 /* &:disabled {
     background-color: rgba(0, 149, 246, 0.3);
   } */
+
+.userNameDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.userName {
+  font-size: 25px;
+  width: 500px;
+  height: 60px;
+  border-radius: 25px;
+  text-align: center;
+}
