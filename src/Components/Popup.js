@@ -10,17 +10,19 @@ function Popup({ open, setPopup, message, title, callback }) {
   };
 
   return (
-    <Modal show={open} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>{title}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>{message}</Modal.Body>
-      <Modal.Footer>
-        <Button variant="primary" onClick={handleClose}>
-          OK
-        </Button>
-      </Modal.Footer>
-    </Modal>
+    <>
+      <Modal show={open} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{message}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose}>
+            OK
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 }
 

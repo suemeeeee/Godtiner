@@ -65,7 +65,7 @@ const EmailSignup = () => {
 
   Axios.post("http://localhost:8080/join", {
     password: password,
-    username: userName,
+    userName: userName,
     email: email,
   })
     .then(function (response) {
@@ -75,7 +75,7 @@ const EmailSignup = () => {
           title: "Confirm",
           message: "Join Success!",
           callback: function () {
-            navigate("/login"); //회원가입 허가 후 바로 로그인 창으로 이동
+            navigate("/Login"); //회원가입 허가 후 바로 로그인 창으로 이동
           },
         });
       } else {
