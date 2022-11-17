@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import ShareRoutine from "./pages/ShareRoutine";
 import MyRoutineEditor from "./pages/MyRoutineEditor";
 import EmailSignup from "./pages/EmailSignup";
+import Feed from "./pages/Feed";
 
 import LoginGoogle from "./Components/LoginGoogle";
 
@@ -176,6 +177,7 @@ function App() {
                     <Route path="/Signup" element={<Signup />}></Route>
                     <Route path="/login" element={<Login />} />
                     <Route path="/emailsignup" element={<EmailSignup />} />
+                    <Route path="/feed" element={<Feed />} />
                   </Routes>
                 </switch>
                 <MoveTab />
