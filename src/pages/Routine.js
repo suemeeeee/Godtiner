@@ -3,6 +3,7 @@
 import MyUpper from "../Components/MyUpper";
 import { useParams } from "react-router-dom";
 
+import "./Routine.css";
 import feedDummyData from "../DummyData/feedDummyData.json";
 
 const Routine = () => {
@@ -19,19 +20,33 @@ const Routine = () => {
   return (
     <div>
       <MyUpper text={"루틴 상세페이지"} />
-      <div>
-        <img src={detailRoutine.RoutinePic}></img>
+
+      <div className="Routine">
+        <img className="RoutineImg" src={detailRoutine.RoutinePic}></img>
         <br />
-        <h1>{detailRoutine.RoutineTitle}</h1>
+        <h1 className="RoutineTitle">{detailRoutine.RoutineTitle}</h1>
         {detailRoutine.RoutineContent.map((it) => (
-          <div style={{ diplay: "inline-block" }}>
-            <div>{it[0]}</div> <div>{it[1]}</div> <div>{it[2]}</div>
+          <div className="RoutineDetail">
+            <input className="checkbox" type="checkbox" />
+            <span className="RoutineTime">
+              <span className="RoutineStartTime">{it[0]}</span>
+              <span className="RoutineEndTime">{it[1]}</span>
+            </span>
+            <span className="RoutineContent">{it[2]}</span>
           </div>
         ))}
-        <h2>루틴 설명</h2>
-        <div>{detailRoutine.RoutineIntro}</div>
-        <h2>루틴 제공자</h2>
-        <div>{detailRoutine.Routiner}</div>
+        <h2 style={{ textAlign: "left", fontSize: "40px", marginLeft: "30px" }}>
+          루틴 설명
+        </h2>
+        <div
+          style={{ fontSize: "30px", textAlign: "left", marginLeft: "30px" }}
+        >
+          {detailRoutine.RoutineIntro}
+        </div>
+        <h2 style={{ textAlign: "left", fontSize: "40px", marginLeft: "30px" }}>
+          루틴 제공자
+        </h2>
+        <div style={{ fontSize: "30px" }}>{detailRoutine.Routiner}</div>
       </div>
     </div>
   );

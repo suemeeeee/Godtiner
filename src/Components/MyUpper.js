@@ -15,7 +15,9 @@ const MyUpper = ({ text }) => {
           style={{ width: "30px", height: "30px" }}
         />
       </button>
-      <span className="pageDescript">{text}</span>
+      <span className="pageDescript" style={{ fontSize: "30px" }}>
+        {text}
+      </span>
     </div>
   );
 };
