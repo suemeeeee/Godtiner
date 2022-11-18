@@ -111,7 +111,7 @@ const EmailSignup = () => {
           value={userName}
           onChange={onChangeUserName}
         />
-        {userNameError && <div class="invalid-input">Required.</div>}
+        {userNameError && <div className="invalid-input">Required.</div>}
       </div>
 
       <div className="idDiv">
@@ -122,7 +122,7 @@ const EmailSignup = () => {
           onChange={onChangeEmail}
         />
         {emailError && (
-          <div class="invalid-input">Please enter valid email format.</div>
+          <div className="invalid-input">Please enter valid email format.</div>
         )}
       </div>
       <div className="pwDiv">
@@ -134,7 +134,7 @@ const EmailSignup = () => {
           onChange={onChangePassword}
         />
         {passwordError && (
-          <div class="invalid-input">
+          <div className="invalid-input">
             Password must be at least 8 characters and contain at least one
             letter and one number.{" "}
           </div>
