@@ -161,25 +161,23 @@ function App() {
                     <button>SignUp</button>
                   </Link>
                 </li>
-                <switch>
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/new" element={<New />} />
-                    <Route path="/routine/:id" element={<Routine />} />
-                    <Route path="/recommend" element={<Recommend />} />
-                    <Route path="/shareroutine" element={<ShareRoutine />} />
-                    <Route
-                      path="/myroutineeditor"
-                      element={<MyRoutineEditor />}
-                    />
-                  </Routes>
-                  <Routes>
-                    <Route path="/Signup" element={<Signup />}></Route>
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/emailsignup" element={<EmailSignup />} />
-                    <Route path="/feed" element={<Feed />} />
-                  </Routes>
-                </switch>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/new" element={<New />} />
+                  <Route path="/routine/:id" element={<Routine />} />
+                  <Route path="/recommend" element={<Recommend />} />
+                  <Route path="/shareroutine" element={<ShareRoutine />} />
+                  <Route
+                    path="/myroutineeditor"
+                    element={<MyRoutineEditor />}
+                  />
+                </Routes>
+                <Routes>
+                  <Route path="/Signup" element={<Signup />}></Route>
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/emailsignup" element={<EmailSignup />} />
+                  <Route path="/feed" element={<Feed />} />
+                </Routes>
                 <MoveTab />
               </div>
             </BrowserRouter>

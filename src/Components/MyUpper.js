@@ -10,7 +10,7 @@ const MyUpper = ({ text }) => {
         style={{ padding: "20px" }}
       >
         <img
-          src="img/arrow.png"
+          src="../img/arrow.png"
           alt="arrow"
           style={{ width: "30px", height: "30px" }}
         />

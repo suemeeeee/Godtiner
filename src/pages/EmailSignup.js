@@ -9,14 +9,14 @@ import Axios from "axios";
 const EmailSignup = () => {
   const navigate = useNavigate();
 
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
   const [nickName, setNickName] = useState("");
 
+  const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [userNameError, setUserNameError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
   const [nickNameError, setNickNameError] = useState(false);
 
   const [popup, setPopup] = useState({
@@ -64,10 +64,12 @@ const EmailSignup = () => {
     } else {
       Axios.post("http://localhost:8080/join", {
         password: password,
-        userName: userName,
         email: email,
+        userName: userName,
+        nickName: nickName,
       })
         .then(function (response) {
+          console.log(response);
           if (response.data.code == 0) {
             setPopup({
               open: true,

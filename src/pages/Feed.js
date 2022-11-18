@@ -13,7 +13,10 @@ const Feed = () => {
       <div className="Routine_list">
         <div>
           {feedDummyData.Feed_Routine.map((it) => (
-            <div>
+            <div
+              key={it.RoutineId}
+              onClick={() => navigate(`/routine/${it.RoutineId}`)}
+            >
               <img src={it.RoutinePic}></img>
               <br />
               <text>{it.RoutineTitle}</text>

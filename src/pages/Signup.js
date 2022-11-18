@@ -17,6 +17,7 @@ function Signup() {
     let res = await Axios.get("http://localhost:8080/user", config);
     setUser(res.data);
   };
+
   const navigate = useNavigate();
 
   return (

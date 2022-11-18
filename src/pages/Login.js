@@ -3,22 +3,34 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MyUpper from "../Components/MyUpper";
 import "./Login.css";
+import Axios from "axios";
 
-//miu로 바꾸는게 .. 나을지도
 const Login = () => {
-  const [id, setId] = useState("");
-  const [pw, setPw] = useState("");
-  const [button, setButton] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const realId = "kiki@naver.com"; //아직 서버 없으니까 임시 데이터
-  const realPw = "12345678";
+  const onChangeEmail = (e) => {
+    setEmail(e.target.value);
+  };
 
-  function changeButton() {
-    id.includes("@") && pw.length >= 5 ? setButton(false) : setButton(true);
-  } //ID 조건은 @포함하고 5자 이상으로 설정
+  const onChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
 
-  const goToMain = () => {
-    navigate("/");
+  const onSubmit = (e) => {
+    Axios.post("http://localhost:8080/join", {
+      password: password,
+      email: email,
+    })
+      .then((response) => {
+        const { accessToken } = response.data;
+        Axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${accessToken}`;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const navigate = useNavigate();
@@ -34,47 +46,28 @@ const Login = () => {
 
       <div className="idDiv">
         <input
-          placeholder="E-mail"
-          id="id"
+          placeholder="이메일"
+          value={email}
           className="loginId"
-          onChange={(e) => {
-            setId(e.target.value);
-          }}
-          onKeyUp={changeButton}
+          onChange={onChangeEmail}
         />
       </div>
       <div className="pwDiv">
         <input
           type="password"
           placeholder="비밀번호"
-          id="password"
+          value={password}
           className="loginPw"
-          onChange={(e) => {
-            setPw(e.target.value);
-          }}
-          onKeyUp={changeButton}
+          onChange={onChangePassword}
         />
       </div>
       <div className="buttonDiv">
-        <button
-          type="button"
-          className="loginButton"
-          disabled={button}
-          onClick={(e) => {
-            if (realId === id) {
-              if (realPw === pw) {
-                e.stopPropagation();
-                goToMain();
-              }
-            } else {
-              alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
-            }
-          }}
-        >
+        <button type="button" className="loginButton" onClick={onSubmit}>
           로그인
         </button>
       </div>
     </div>
   );
 };
+
 export default Login;
