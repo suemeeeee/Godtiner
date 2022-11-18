@@ -51,6 +51,38 @@ const EmailSignup = () => {
         message: "Please make sure all fields are filled in correctly.",
       });
       return;
+    } else {
+      Axios.post("http://localhost:8080/join", {
+        password: password,
+        userName: userName,
+        email: email,
+      })
+        .then(function (response) {
+          if (response.data.code == 0) {
+            setPopup({
+              open: true,
+              title: "Confirm",
+              message: "Join Success!",
+              callback: function () {
+                navigate("/Login"); //회원가입 허가 후 바로 로그인 창으로 이동
+              },
+            });
+          } else {
+            let message = response.data.message;
+            if (response.data.code == 10000) {
+              message =
+                "User ID is duplicated. Please enter a different User ID. ";
+            }
+            setPopup({
+              open: true,
+              title: "Error",
+              message: message,
+            });
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   };
 
@@ -62,37 +94,6 @@ const EmailSignup = () => {
     if (password && userName && email) return true;
     else return false;
   };
-
-  Axios.post("http://localhost:8080/join", {
-    password: password,
-    userName: userName,
-    email: email,
-  })
-    .then(function (response) {
-      if (response.data.code == 0) {
-        setPopup({
-          open: true,
-          title: "Confirm",
-          message: "Join Success!",
-          callback: function () {
-            navigate("/Login"); //회원가입 허가 후 바로 로그인 창으로 이동
-          },
-        });
-      } else {
-        let message = response.data.message;
-        if (response.data.code == 10000) {
-          message = "User ID is duplicated. Please enter a different User ID. ";
-        }
-        setPopup({
-          open: true,
-          title: "Error",
-          message: message,
-        });
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
 
   return (
     <div>
