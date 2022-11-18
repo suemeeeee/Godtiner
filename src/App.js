@@ -168,7 +168,7 @@ function App() {
                   <Route path="/recommend" element={<Recommend />} />
                   <Route path="/shareroutine" element={<ShareRoutine />} />
                   <Route
-                    path="/myroutineeditor"
+                    path="/myroutineeditor/:id"
                     element={<MyRoutineEditor />}
                   />
                 </Routes>

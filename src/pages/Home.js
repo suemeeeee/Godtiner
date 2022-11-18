@@ -19,8 +19,6 @@ const Home = () => {
   const [data, setData] = useState(routineList);
 
   const [name, setName] = useState("내 루틴");
-  const [curDate, setCurDate] = useState(new Date());
-  const [visible, setVisible] = useState(false);
 
   return (
     <div className="Home">
