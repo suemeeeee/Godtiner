@@ -12,10 +12,12 @@ const EmailSignup = () => {
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
+  const [nickName, setNickName] = useState("");
 
   const [passwordError, setPasswordError] = useState(false);
   const [userNameError, setUserNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
+  const [nickNameError, setNickNameError] = useState(false);
 
   const [popup, setPopup] = useState({
     open: false,
@@ -28,6 +30,12 @@ const EmailSignup = () => {
     setUserNameError(false);
     setUserName(e.target.value);
   };
+
+  const onChangeNickName = (e) => {
+    setNickNameError(false);
+    setNickName(e.target.value);
+  };
+
   const onChangeEmail = (e) => {
     const emailRegex =
       /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
@@ -36,6 +44,7 @@ const EmailSignup = () => {
     else setEmailError(true);
     setEmail(e.target.value);
   };
+
   const onChangePassword = (e) => {
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     if (!e.target.value || passwordRegex.test(e.target.value))
@@ -43,12 +52,13 @@ const EmailSignup = () => {
     else setPasswordError(true);
     setPassword(e.target.value);
   };
+
   const onSubmit = (e) => {
     if (!validation()) {
       setPopup({
         open: true,
         title: "Error",
-        message: "Please make sure all fields are filled in correctly.",
+        message: "내용을 올바르게 입력해 주세요 .",
       });
       return;
     } else {
@@ -89,15 +99,17 @@ const EmailSignup = () => {
   const validation = () => {
     if (!password) setPasswordError(true);
     if (!userName) setUserNameError(true);
+    if (!nickName) setNickNameError(true);
     if (!email) setEmailError(true);
 
-    if (password && userName && email) return true;
+    if (password && userName && email && nickName) return true;
     else return false;
   };
 
   return (
     <div>
       <MyUpper />
+
       <div className="welcome">
         <h2>
           Godtiner님, <br /> 가입을 환영해요!
@@ -106,12 +118,26 @@ const EmailSignup = () => {
 
       <div className="userNameDiv">
         <input
-          placeholder="닉네임"
+          placeholder="유저명"
           className="userName"
           value={userName}
           onChange={onChangeUserName}
         />
-        {userNameError && <div className="invalid-input">Required.</div>}
+        {userNameError && (
+          <div className="invalid-input">유저명을 입력해주세요</div>
+        )}
+      </div>
+
+      <div className="nickNameDiv">
+        <input
+          placeholder="닉네임"
+          className="nickName"
+          value={nickName}
+          onChange={onChangeNickName}
+        />
+        {nickNameError && (
+          <div className="invalid-input">닉네임을 입력해주세요</div>
+        )}
       </div>
 
       <div className="idDiv">
@@ -122,7 +148,7 @@ const EmailSignup = () => {
           onChange={onChangeEmail}
         />
         {emailError && (
-          <div className="invalid-input">Please enter valid email format.</div>
+          <div className="invalid-input">유효한 이메일을 입력해주세요</div>
         )}
       </div>
       <div className="pwDiv">
@@ -135,8 +161,7 @@ const EmailSignup = () => {
         />
         {passwordError && (
           <div className="invalid-input">
-            Password must be at least 8 characters and contain at least one
-            letter and one number.{" "}
+            비밀번호는 1개 이상의 숫자와 문자를 포함하여 8자 이상이어야 합니다.
           </div>
         )}
       </div>
