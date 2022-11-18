@@ -68,47 +68,8 @@ const dummyData = [
 export const RoutineStateContext = React.createContext();
 export const RoutineDispatchContext = React.createContext();
 
-//공유 루틴 context뿌리기
-export const ShareRoutineContext = React.createContext();
-export const ShareStateContext = React.createContext();
-
 function App() {
   const [data, dispatch] = useReducer(reducer, dummyData);
-
-  //공유 데이터 dummydata, 정말 야매로 지은 것이기 때문에 구조 확정 절대 no
-  const shareDummyData = [
-    {
-      name: "건강회복루틴",
-      content: "잊혀진 우리의 건강을 위하여",
-      routine: [
-        {
-          id: 2,
-          startTime: "09:00",
-          endTime: "10:00",
-          s_content: "조깅",
-        },
-        {
-          id: 3,
-          startTime: "11:00",
-          endTime: "12:00",
-          s_content: "필라테스",
-        },
-      ],
-    },
-    {
-      name: "JLPT 만점을 위하여",
-      content: "JLPT N1 합격",
-      routine: [
-        {
-          id: 1,
-          startTime: "07:40",
-          endTime: "07:40",
-          s_name: "기상",
-        },
-      ],
-    },
-  ];
-  const [shareData, setShareDate] = useState(shareDummyData);
 
   const dataId = useRef(0);
 
@@ -145,44 +106,36 @@ function App() {
     });
   };
 
-  //개인 루틴 공유하기. 구현하기 어려운 점 1번으로 인해 다시 만들어야 함
-  const onShare = () => {};
-
   return (
     <RoutineStateContext.Provider value={data}>
       <RoutineDispatchContext.Provider value={{ onCreate, onRemove, onEdit }}>
-        {/* 이 밑은 공유 기능을 위해 파일 전역에 공유 데이터를 뿌리기 위함임. 구조 엉성함 */}
-        <ShareRoutineContext.Provider value={shareData}>
-          <ShareStateContext.Provider value={onShare}>
-            <BrowserRouter>
-              <div className="App">
-                <li>
-                  <Link to="Signup">
-                    <button>SignUp</button>
-                  </Link>
-                </li>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/new" element={<New />} />
-                  <Route path="/routine/:id" element={<Routine />} />
-                  <Route path="/recommend" element={<Recommend />} />
-                  <Route path="/shareroutine" element={<ShareRoutine />} />
-                  <Route
-                    path="/myroutineeditor/:id"
-                    element={<MyRoutineEditor />}
-                  />
-                </Routes>
-                <Routes>
-                  <Route path="/Signup" element={<Signup />}></Route>
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/emailsignup" element={<EmailSignup />} />
-                  <Route path="/feed" element={<Feed />} />
-                </Routes>
-                <MoveTab />
-              </div>
-            </BrowserRouter>
-          </ShareStateContext.Provider>
-        </ShareRoutineContext.Provider>
+        <BrowserRouter>
+          <div className="App">
+            <li>
+              <Link to="Signup">
+                <button>SignUp</button>
+              </Link>
+            </li>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/new" element={<New />} />
+              <Route path="/routine/:id" element={<Routine />} />
+              <Route path="/recommend" element={<Recommend />} />
+              <Route path="/shareroutine" element={<ShareRoutine />} />
+              <Route
+                path="/myroutineeditor/:id"
+                element={<MyRoutineEditor />}
+              />
+            </Routes>
+            <Routes>
+              <Route path="/Signup" element={<Signup />}></Route>
+              <Route path="/login" element={<Login />} />
+              <Route path="/emailsignup" element={<EmailSignup />} />
+              <Route path="/feed" element={<Feed />} />
+            </Routes>
+            <MoveTab />
+          </div>
+        </BrowserRouter>
       </RoutineDispatchContext.Provider>
     </RoutineStateContext.Provider>
   );
