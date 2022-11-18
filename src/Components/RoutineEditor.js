@@ -1,6 +1,6 @@
 //상세루틴 편집하는 컴포넌트
 
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 //import mui
 import Switch from "@mui/material/Switch";
 import { RoutineDispatchContext } from "../App";
@@ -8,20 +8,8 @@ import { useNavigate } from "react-router-dom";
 
 import "./RoutineEditor.css";
 
-const RoutineEditor = () => {
-  const contentRef = useRef();
-  const navigate = useNavigate();
-
-  const handleSubmit = () => {
-    if (content.length < 1) {
-      contentRef.current.focus();
-      return;
-    }
-    onCreate(content, startTime, endTime);
-    navigate("/");
-  };
-
-  const { onCreate, onEdit, onRemove } = useContext(RoutineDispatchContext);
+const RoutineEditor = ({ isEdit, originData }) => {
+  const { onCreate, onEdit } = useContext(RoutineDispatchContext);
   //세부루틴 이름
   const [content, setContent] = useState("");
 
@@ -31,6 +19,29 @@ const RoutineEditor = () => {
   const [startTime, setStartTime] = useState("");
   //끝나는 시간
   const [endTime, setEndTime] = useState("");
+
+  const contentRef = useRef();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setStartTime(originData.startTime);
+    setEndTime(originData.endTime);
+    setContent(originData.content);
+  }, [isEdit, originData]);
+
+  const handleSubmit = () => {
+    if (content.length < 1) {
+      contentRef.current.focus();
+      return;
+    }
+    if (!isEdit) {
+      onCreate(content, startTime, endTime);
+    } else {
+      onEdit(originData.id, content, startTime, endTime);
+    }
+
+    navigate("/", { replace: true });
+  };
 
   return (
     <div className="RoutineEditor">
@@ -70,7 +81,7 @@ const RoutineEditor = () => {
           <span>요일 반복</span>
         </div>
       </section>
-      <button onClick={handleSubmit}>추가하기</button>
+      <button onClick={handleSubmit}>{isEdit ? "수정하기" : "추가하기"}</button>
     </div>
   );
 };

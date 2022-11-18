@@ -14,7 +14,7 @@ const RoutineItem = ({ id, content, startTime, endTime }) => {
       </div>
       <button
         className="RoutineContent"
-        onClick={() => navigate("/myroutineeditor")}
+        onClick={() => navigate(`/myroutineeditor/${id}`)}
       >
         {content}
       </button>

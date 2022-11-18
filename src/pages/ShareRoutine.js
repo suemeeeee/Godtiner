@@ -4,7 +4,6 @@ import RoutineItem from "../Components/RoutineItem";
 
 const ShareRoutine = () => {
   const routineList = useContext(RoutineStateContext);
-  const { onShare } = useContext(ShareStateContext);
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
   const [routine, setRoutine] = useState(routineList);
