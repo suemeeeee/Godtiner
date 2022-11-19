@@ -6,8 +6,18 @@ const ShareRoutine = () => {
   const routineList = useContext(RoutineStateContext);
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
-  const [routine, setRoutine] = useState(routineList);
+  const [checkedList, setCheckedList] = useState([]);
 
+  const onCheckedElement = (checked, id, startTime, endTime, content) => {
+    let newArr = [{ id }, { startTime }, { endTime }, { content }];
+    if (checked) {
+      setCheckedList([...checkedList, newArr]);
+    } else {
+      setCheckedList(checkedList.filter((it) => parseInt(it.id) !== id));
+    }
+  };
+
+  console.log(checkedList);
   return (
     <div>
       <div>
@@ -22,15 +32,25 @@ const ShareRoutine = () => {
           onChange={(e) => setContent(e.target.value)}
         />
       </div>
-      {/* 공개 루틴 상세 설정 부분이 제일 어려움. 11월 9일 노션 기록 참조 요망 */}
+
       <div>
         <h3>공개 루틴 상세 설정</h3>
-        {}
-        {/* <RoutineItem> 컴포넌트를 사용하면 안됨. 왜냐하면 RoutineItem컴포넌트에서 상세루틴을 클릭시 상세루틴 수정 페이지로 옮길 것이기 때문임.  */}
-        {/* {routine.map((it) => (
-          <RoutineItem key={it.id} {...it} />
-        ))} */}
+        {routineList.map((it) => (
+          <div>
+            <div>
+              {it.startTime}-{it.endTime}
+            </div>
+            <div>{it.content}</div>
+            <input
+              type="checkbox"
+              key={it.id}
+              onChange={(e) => onCheckedElement(e.target.checked, it)}
+              checked={checkedList.includes(it.id) ? true : false}
+            />
+          </div>
+        ))}
       </div>
+      <button>공유하기</button>
     </div>
   );
 };
