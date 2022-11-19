@@ -8,7 +8,6 @@ const Mypage = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <MyUpper />
       <MoveTab />
     </div>
   );
