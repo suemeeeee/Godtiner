@@ -6,7 +6,7 @@ const MoveTab = () => {
   return (
     <footer>
       <div>
-        <button className="Home_btn" onClick={() => navigate("/")}>
+        <button className="Home_btn" onClick={() => navigate("/home")}>
           🗓️
         </button>
       </div>
@@ -24,15 +24,14 @@ const MoveTab = () => {
         </button>
       </div>
       <div>
-        <button className="Mission_btn" onClick={() => navigate("/Mission")}>
+        <button className="Mission_btn" onClick={() => navigate("/mission")}>
           🏆
         </button>
       </div>
       <div>
-        <button
-          className="Mypage_btn"
-          onClick={() => navigate("/mypage")}
-        ></button>
+        <button className="Mypage_btn" onClick={() => navigate("/mypage")}>
+          😀
+        </button>
       </div>
     </footer>
   );
