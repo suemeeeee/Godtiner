@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap");
+
 body {
   background-color: #f6f6f6;
   display: flex;
@@ -31,8 +33,9 @@ body {
 .App {
   /*기본적으로 화면의 100퍼센트를 차지하게 됨*/
   min-height: 100vh;
-  padding-left: 20px;
-  padding-right: 20px;
+  /* padding-left: 20px;
+  padding-right: 20px; */
+  font-family: "Gowun Dodum", sans-serif;
 }
 
 /* Home */

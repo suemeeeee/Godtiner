@@ -1,6 +1,7 @@
 .myPageCss {
   text-align: center;
 }
+
 .profileImg {
   margin-top: 40px;
   margin-bottom: 40px;
@@ -13,6 +14,7 @@
 
 .userName_mp {
   font-size: 40px;
+  font-weight: bold;
 }
 
 .userEmail_mp {
@@ -37,19 +39,22 @@ button {
   font-size: 30px;
   border-radius: 15px;
   margin-bottom: 40px;
+  font-family: "Gowun Dodum", sans-serif;
+  font-weight: bold;
 }
 
 .profileEdit:hover {
   background-color: rgb(44, 44, 255);
   color: white;
+  transform: scale(1.02);
+  transition: 0.25s;
 }
 
 .alertEdit {
   font-size: 30px;
   text-align: left;
-  margin-left: 40px;
+  margin-left: 60px;
   margin-bottom: 20px;
-  margin-top: 20px;
 }
 
 .editButton {
@@ -64,6 +69,7 @@ button {
   border-radius: 15px;
   margin: 10px;
   background-color: transparent;
+  font-family: "Gowun Dodum", sans-serif;
 }
 
 .editButton1:hover {
@@ -77,9 +83,13 @@ button {
   border-radius: 15px;
   margin-top: 20px;
   margin-bottom: 40px;
+  font-family: "Gowun Dodum", sans-serif;
+  font-weight: bold;
 }
 
 .logoutButton:hover {
   background-color: rgb(255, 80, 80);
   color: white;
+  transform: scale(1.02);
+  transition: 0.25s;
 }

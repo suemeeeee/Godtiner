@@ -15,6 +15,7 @@ import EmailSignup from "./pages/EmailSignup";
 import Feed from "./pages/Feed";
 import SignupComplete from "./pages/SignupComplete";
 import Mypage from "./pages/Mypage";
+import ProfileEdit from "./pages/ProfileEdit";
 
 const reducer = (state, action) => {
   let newRoutine = [];
@@ -129,6 +130,7 @@ function App() {
               />
               <Route path="/feed" element={<Feed />} />
               <Route path="/mypage" element={<Mypage />} />
+              <Route path="/profileedit" element={<ProfileEdit />} />
             </Routes>
           </div>
         </BrowserRouter>
