@@ -21,7 +21,9 @@ const Feed = () => {
             <img className="feedImg" src={it.RoutinePic}></img>
             <br />
             <text className="feedTitle">{it.RoutineTitle}</text>
-            <div className="feedTag">{it.RoutineTag}</div>
+            <div className="feedTag">
+              #{it.RoutineTag[0]} #{it.RoutineTag[1]}
+            </div>
             <div>
               <div className="feedback">
                 ❤{it.Routine_like} 📥{it.Routine_save} 👀{it.Routine_look}
