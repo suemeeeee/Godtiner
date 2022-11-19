@@ -26,6 +26,9 @@ const Routine = () => {
         <img className="RoutineImg" src={detailRoutine.RoutinePic}></img>
         <br />
         <h1 className="RoutineTitle">{detailRoutine.RoutineTitle}</h1>
+        <div style={{ textAlign: "left", marginLeft: "30px" }}>
+          <input className="checkAll" type="checkbox" /> 전체선택
+        </div>
         {detailRoutine.RoutineContent.map((it) => (
           <div className="RoutineDetail">
             <input className="checkbox" type="checkbox" />
@@ -36,18 +39,18 @@ const Routine = () => {
             <span className="RoutineContent">{it[2]}</span>
           </div>
         ))}
-        <h2 style={{ textAlign: "left", fontSize: "40px", marginLeft: "30px" }}>
+        <h2 style={{ textAlign: "left", fontSize: "35px", marginLeft: "30px" }}>
           루틴 설명
         </h2>
         <div
-          style={{ fontSize: "30px", textAlign: "left", marginLeft: "30px" }}
+          style={{ fontSize: "25px", textAlign: "left", marginLeft: "30px" }}
         >
           {detailRoutine.RoutineIntro}
         </div>
-        <h2 style={{ textAlign: "left", fontSize: "40px", marginLeft: "30px" }}>
+        <h2 style={{ textAlign: "left", fontSize: "35px", marginLeft: "30px" }}>
           루틴 제공자
         </h2>
-        <div style={{ fontSize: "30px" }}>{detailRoutine.Routiner}</div>
+        <div style={{ fontSize: "25px" }}>{detailRoutine.Routiner}</div>
       </div>
       <MoveTab />
     </div>
