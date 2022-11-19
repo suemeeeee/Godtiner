@@ -1,6 +1,5 @@
 import { useContext, useState } from "react";
 import { RoutineStateContext, ShareStateContext } from "../App";
-import RoutineItem from "../Components/RoutineItem";
 
 const ShareRoutine = () => {
   const routineList = useContext(RoutineStateContext);
@@ -17,15 +16,17 @@ const ShareRoutine = () => {
     }
   };
 
-  const trueOrfalse = (id) => {
-    const choice = checkedList.map((it) => it[0].includes(id));
-    return choice;
+  const onCheckedAll = (checked) => {
+    if (checked) {
+      const listArr = [];
+      routineList.forEach((it) => listArr.push(it));
+      setCheckedList(listArr);
+    } else {
+      setCheckedList([]);
+    }
   };
 
   console.log(checkedList);
-  // if (checkedList.length > 0) {
-  //   console.log(checkedList.map((it) => it[0]));
-  // }
 
   return (
     <div>
@@ -44,12 +45,19 @@ const ShareRoutine = () => {
 
       <div>
         <h3>공개 루틴 상세 설정</h3>
+        <input
+          type="checkbox"
+          onChange={(e) => {
+            onCheckedAll(e.target.checked);
+          }}
+        />
         {routineList.map((it) => (
           <div>
             <div>
               {it.startTime}-{it.endTime}
             </div>
             <div>{it.content}</div>
+
             <input
               type="checkbox"
               key={it.id}
