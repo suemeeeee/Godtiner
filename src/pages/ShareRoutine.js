@@ -13,11 +13,20 @@ const ShareRoutine = () => {
     if (checked) {
       setCheckedList([...checkedList, newArr]);
     } else {
-      setCheckedList(checkedList.filter((it) => it.content !== content));
+      setCheckedList(checkedList.filter((it) => it[0] !== id));
     }
   };
 
+  const trueOrfalse = (id) => {
+    const choice = checkedList.map((it) => it[0].includes(id));
+    return choice;
+  };
+
   console.log(checkedList);
+  // if (checkedList.length > 0) {
+  //   console.log(checkedList.map((it) => it[0]));
+  // }
+
   return (
     <div>
       <div>
@@ -53,7 +62,6 @@ const ShareRoutine = () => {
                   it.content
                 )
               }
-              checked={checkedList.includes(it.id) ? true : false}
             />
           </div>
         ))}
