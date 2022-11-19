@@ -40,7 +40,7 @@ const Login = () => {
       <MyUpper />
       <div className="welcome">
         <h2>
-          다시 돌아온 것을 <br /> 환영해요!
+          오늘도 힘차게 <br /> 달려봐요!
         </h2>
       </div>
 

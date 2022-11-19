@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import feedDummyData from "../DummyData/feedDummyData.json";
 import "./Feed.css";
+import MoveTab from "../Components/MoveTab";
 const Feed = () => {
   const navigate = useNavigate();
 
@@ -29,6 +30,7 @@ const Feed = () => {
           </div>
         ))}
       </div>
+      <MoveTab />
     </div>
   );
 };

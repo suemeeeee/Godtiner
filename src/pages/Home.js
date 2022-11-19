@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import MySearchAlarm from "../Components/MySearchAlarm";
 import "./Home.css";
 import Calendar from "../Components/Calendar";
+import MoveTab from "../Components/MoveTab";
 import { RoutineStateContext } from "../App";
 import RoutineItem from "../Components/RoutineItem";
 import {
@@ -52,6 +53,7 @@ const Home = () => {
           onClick={() => navigate("/new")}
         />
       </div>
+      <MoveTab />
     </div>
   );
 };

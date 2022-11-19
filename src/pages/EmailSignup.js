@@ -69,27 +69,15 @@ const EmailSignup = () => {
         nickName: nickName,
       })
         .then(function (response) {
-          console.log(response);
-          if (response.data.code == 0) {
-            setPopup({
-              open: true,
-              title: "Confirm",
-              message: "Join Success!",
-              callback: function () {
-                navigate("/Login"); //회원가입 허가 후 바로 로그인 창으로 이동
-              },
-            });
+          if (response.data == "회원가입 완료") {
+            console.log(response);
+            navigate("/signupcomplete");
           } else {
             let message = response.data.message;
-            if (response.data.code == 10000) {
+            if (response.data == "이메일 중복") {
               message =
                 "User ID is duplicated. Please enter a different User ID. ";
             }
-            setPopup({
-              open: true,
-              title: "Error",
-              message: message,
-            });
           }
         })
         .catch(function (error) {

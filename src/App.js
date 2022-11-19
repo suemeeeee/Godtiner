@@ -1,7 +1,6 @@
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
-import React, { useReducer, useRef, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useReducer, useRef } from "react";
 import "./App.css";
-import MoveTab from "./Components/MoveTab"; //화면 하단의 탭이동 footer
 
 //페이지 라우팅
 import Home from "./pages/Home";
@@ -14,8 +13,8 @@ import ShareRoutine from "./pages/ShareRoutine";
 import MyRoutineEditor from "./pages/MyRoutineEditor";
 import EmailSignup from "./pages/EmailSignup";
 import Feed from "./pages/Feed";
-
-import LoginGoogle from "./Components/LoginGoogle";
+import SignupComplete from "./pages/SignupComplete";
+import Mypage from "./pages/Mypage";
 
 const reducer = (state, action) => {
   let newRoutine = [];
@@ -111,13 +110,15 @@ function App() {
       <RoutineDispatchContext.Provider value={{ onCreate, onRemove, onEdit }}>
         <BrowserRouter>
           <div className="App">
-            <li>
-              <Link to="Signup">
-                <button>SignUp</button>
-              </Link>
-            </li>
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Signup />} />
+              <Route path="/signupcomplete" element={<SignupComplete />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/emailsignup" element={<EmailSignup />} />
+            </Routes>
+
+            <Routes>
+              <Route path="/home" element={<Home />} />
               <Route path="/new" element={<New />} />
               <Route path="/routine/:id" element={<Routine />} />
               <Route path="/recommend" element={<Recommend />} />
@@ -126,14 +127,9 @@ function App() {
                 path="/myroutineeditor/:id"
                 element={<MyRoutineEditor />}
               />
-            </Routes>
-            <Routes>
-              <Route path="/Signup" element={<Signup />}></Route>
-              <Route path="/login" element={<Login />} />
-              <Route path="/emailsignup" element={<EmailSignup />} />
               <Route path="/feed" element={<Feed />} />
+              <Route path="/mypage" element={<Mypage />} />
             </Routes>
-            <MoveTab />
           </div>
         </BrowserRouter>
       </RoutineDispatchContext.Provider>

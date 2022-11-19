@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 
 import "./Routine.css";
 import feedDummyData from "../DummyData/feedDummyData.json";
+import MoveTab from "../Components/MoveTab";
 
 const Routine = () => {
   // 백엔드 통신 API 나중에 구현
@@ -48,6 +49,7 @@ const Routine = () => {
         </h2>
         <div style={{ fontSize: "30px" }}>{detailRoutine.Routiner}</div>
       </div>
+      <MoveTab />
     </div>
   );
 };
