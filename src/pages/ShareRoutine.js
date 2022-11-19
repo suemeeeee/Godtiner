@@ -9,11 +9,11 @@ const ShareRoutine = () => {
   const [checkedList, setCheckedList] = useState([]);
 
   const onCheckedElement = (checked, id, startTime, endTime, content) => {
-    let newArr = [{ id }, { startTime }, { endTime }, { content }];
+    let newArr = [id, startTime, endTime, content];
     if (checked) {
       setCheckedList([...checkedList, newArr]);
     } else {
-      setCheckedList(checkedList.filter((it) => parseInt(it.id) !== id));
+      setCheckedList(checkedList.filter((it) => it.content !== content));
     }
   };
 
@@ -44,7 +44,15 @@ const ShareRoutine = () => {
             <input
               type="checkbox"
               key={it.id}
-              onChange={(e) => onCheckedElement(e.target.checked, it)}
+              onChange={(e) =>
+                onCheckedElement(
+                  e.target.checked,
+                  it.id,
+                  it.startTime,
+                  it.endTime,
+                  it.content
+                )
+              }
               checked={checkedList.includes(it.id) ? true : false}
             />
           </div>
