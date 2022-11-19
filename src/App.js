@@ -14,6 +14,7 @@ import ShareRoutine from "./pages/ShareRoutine";
 import MyRoutineEditor from "./pages/MyRoutineEditor";
 import EmailSignup from "./pages/EmailSignup";
 import Feed from "./pages/Feed";
+import SignupComplete from "./pages/SignupComplete";
 
 import LoginGoogle from "./Components/LoginGoogle";
 
@@ -132,6 +133,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/emailsignup" element={<EmailSignup />} />
               <Route path="/feed" element={<Feed />} />
+              <Route path="/signupcomplete" element={<SignupComplete />} />
             </Routes>
             <MoveTab />
           </div>
