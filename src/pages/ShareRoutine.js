@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { RoutineStateContext, ShareStateContext } from "../App";
 
 const ShareRoutine = () => {
