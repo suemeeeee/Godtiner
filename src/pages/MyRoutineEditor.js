@@ -1,19 +1,23 @@
 // 내 루틴에서 세부 루틴을 눌렀을 때 수정하는 페이지
 
+<<<<<<< HEAD
 import React, { useContext, useEffect, useState } from "react";
+=======
+import { useEffect, useState } from "react";
+>>>>>>> 52ea84424b026bc2d627dfc92dec5384f1759401
 import { useNavigate, useParams } from "react-router-dom";
-import { RoutineStateContext } from "../App";
 import RoutineEditor from "../Components/RoutineEditor";
+
+import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
 
 const MyRoutineEditor = () => {
   const [originData, setOriginData] = useState();
   const { id } = useParams();
   const navigate = useNavigate();
-  const routineList = useContext(RoutineStateContext);
 
   useEffect(() => {
-    if (routineList.length >= 1) {
-      const targetRoutine = routineList.find(
+    if (MyRoutineDummyData.MyRoutine.length >= 1) {
+      const targetRoutine = MyRoutineDummyData.MyRoutine.find(
         (it) => parseInt(it.id) === parseInt(id)
       );
       if (targetRoutine) {
@@ -22,7 +26,7 @@ const MyRoutineEditor = () => {
         navigate("/", { replace: true });
       }
     }
-  }, [id, routineList]);
+  }, [id, MyRoutineDummyData]);
 
   return (
     <div>

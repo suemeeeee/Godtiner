@@ -1,10 +1,13 @@
+<<<<<<< HEAD
 import React, { useContext, useState } from "react";
+=======
+import { useState } from "react";
+>>>>>>> 52ea84424b026bc2d627dfc92dec5384f1759401
 import { useNavigate } from "react-router-dom";
 import MySearchAlarm from "../Components/MySearchAlarm";
 import "./Home.css";
 import Calendar from "../Components/Calendar";
 import MoveTab from "../Components/MoveTab";
-import { RoutineStateContext } from "../App";
 import RoutineItem from "../Components/RoutineItem";
 import {
   IoIosAddCircle,
@@ -13,12 +16,10 @@ import {
   IoIosCalendar,
   IoMdArrowBack,
 } from "react-icons/io";
+import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
 
 const Home = () => {
-  const routineList = useContext(RoutineStateContext);
   const navigate = useNavigate();
-  const [data, setData] = useState(routineList);
-
   const [name, setName] = useState("내 루틴");
 
   return (
@@ -31,19 +32,8 @@ const Home = () => {
         color=""
         onClick={() => navigate("/shareroutine")}
       />
-      <div className="routinename">
-        <input
-          className="routine_name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div className="routinSection">
-        {data.map((it) => (
-          <RoutineItem key={it.id} {...it} />
-        ))}
-      </div>
       <div>
+        {/* 일부러 위쪽으로 올림. 확인하기 위해서 */}
         <IoIosAddCircle
           size="80"
           color="blue"
@@ -53,7 +43,20 @@ const Home = () => {
           onClick={() => navigate("/new")}
         />
       </div>
-      <MoveTab />
+      <div className="routinename">
+        <input
+          className="routine_name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </div>
+      <div className="routinSection">
+        {MyRoutineDummyData.MyRoutine.map((it) => (
+          <RoutineItem key={it.id} {...it} />
+        ))}
+      </div>
+      {/* moveTap의 크기가 너무 커서 자꾸 마지막 루틴이 안보임. 크기조절 해야할 듯 */}
+      {/* <MoveTab /> */}
     </div>
   );
 };
