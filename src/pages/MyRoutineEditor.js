@@ -5,15 +5,18 @@ import { useNavigate, useParams } from "react-router-dom";
 import { RoutineStateContext } from "../App";
 import RoutineEditor from "../Components/RoutineEditor";
 
+import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
+
 const MyRoutineEditor = () => {
   const [originData, setOriginData] = useState();
   const { id } = useParams();
   const navigate = useNavigate();
-  const routineList = useContext(RoutineStateContext);
+
+  //const routineList = useContext(RoutineStateContext);
 
   useEffect(() => {
-    if (routineList.length >= 1) {
-      const targetRoutine = routineList.find(
+    if (MyRoutineDummyData.MyRoutine.length >= 1) {
+      const targetRoutine = MyRoutineDummyData.MyRoutine.find(
         (it) => parseInt(it.id) === parseInt(id)
       );
       if (targetRoutine) {
@@ -22,7 +25,7 @@ const MyRoutineEditor = () => {
         navigate("/", { replace: true });
       }
     }
-  }, [id, routineList]);
+  }, [id, MyRoutineDummyData]);
 
   return (
     <div>

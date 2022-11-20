@@ -6,13 +6,15 @@ import Switch from "@mui/material/Switch";
 import { RoutineDispatchContext } from "../App";
 import { useNavigate } from "react-router-dom";
 
+import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
+
 import "./RoutineEditor.css";
 
 const RoutineEditor = ({ isEdit, originData }) => {
-  const { onCreate, onEdit } = useContext(RoutineDispatchContext);
+  //const { onCreate, onEdit } = useContext(RoutineDispatchContext);
+
   //세부루틴 이름
   const [content, setContent] = useState("");
-
   //알림설정
   const [onOff, setOnOff] = useState(false);
   //시작시간
@@ -23,24 +25,46 @@ const RoutineEditor = ({ isEdit, originData }) => {
   const contentRef = useRef();
   const navigate = useNavigate();
 
+  //더미데이터가 2개까지 있으므로
+  const dataId = useRef(3);
+
   useEffect(() => {
-    setStartTime(originData.startTime);
-    setEndTime(originData.endTime);
-    setContent(originData.content);
+    if (isEdit) {
+      setStartTime(originData.startTime);
+      setEndTime(originData.endTime);
+      setContent(originData.content);
+    }
   }, [isEdit, originData]);
 
   const handleSubmit = () => {
+    let newRoutine = [];
+
     if (content.length < 1) {
       contentRef.current.focus();
       return;
     }
     if (!isEdit) {
-      onCreate(content, startTime, endTime);
-    } else {
-      onEdit(originData.id, content, startTime, endTime);
-    }
+      let newData = {
+        id: dataId.current,
+        startTime,
+        endTime,
+        content,
+      };
+      newRoutine = [...MyRoutineDummyData.MyRoutine, newData];
+      MyRoutineDummyData.MyRoutine = newRoutine;
 
-    navigate("/", { replace: true });
+      dataId.current += 1;
+    } else {
+      let new_data = {
+        id: originData.id,
+        startTime,
+        endTime,
+        content,
+      };
+      const getIndex = MyRoutineDummyData.MyRoutine.indexOf(originData);
+      MyRoutineDummyData.MyRoutine[getIndex] = new_data;
+    }
+    navigate("/home", { replace: true });
   };
 
   return (

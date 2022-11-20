@@ -13,13 +13,14 @@ import {
   IoIosCalendar,
   IoMdArrowBack,
 } from "react-icons/io";
+import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
 
 const Home = () => {
-  const routineList = useContext(RoutineStateContext);
   const navigate = useNavigate();
-  const [data, setData] = useState(routineList);
-
   const [name, setName] = useState("내 루틴");
+  MyRoutineDummyData.MyRoutine.map((it) => {
+    console.log(it.id, it.content);
+  });
 
   return (
     <div className="Home">
@@ -31,18 +32,6 @@ const Home = () => {
         color=""
         onClick={() => navigate("/shareroutine")}
       />
-      <div className="routinename">
-        <input
-          className="routine_name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div className="routinSection">
-        {data.map((it) => (
-          <RoutineItem key={it.id} {...it} />
-        ))}
-      </div>
       <div>
         <IoIosAddCircle
           size="80"
@@ -53,7 +42,20 @@ const Home = () => {
           onClick={() => navigate("/new")}
         />
       </div>
-      <MoveTab />
+      <div className="routinename">
+        <input
+          className="routine_name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </div>
+      <div className="routinSection">
+        {MyRoutineDummyData.MyRoutine.map((it) => (
+          <RoutineItem key={it.id} {...it} />
+        ))}
+      </div>
+      {/* moveTap의 크기가 너무 커서 자꾸 마지막 루틴이 안보임. 크기조절 해야할 듯 */}
+      {/* <MoveTab /> */}
     </div>
   );
 };

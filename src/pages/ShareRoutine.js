@@ -2,31 +2,31 @@ import { useContext, useState } from "react";
 import { RoutineStateContext, ShareStateContext } from "../App";
 
 const ShareRoutine = () => {
-  const routineList = useContext(RoutineStateContext);
+  //const routineList = useContext(RoutineStateContext);
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
   const [checkedList, setCheckedList] = useState([]);
 
-  const onCheckedElement = (checked, id, startTime, endTime, content) => {
-    let newArr = [id, startTime, endTime, content];
-    if (checked) {
-      setCheckedList([...checkedList, newArr]);
-    } else {
-      setCheckedList(checkedList.filter((it) => it[0] !== id));
-    }
-  };
+  // const onCheckedElement = (checked, id, startTime, endTime, content) => {
+  //   let newArr = [id, startTime, endTime, content];
+  //   if (checked) {
+  //     setCheckedList([...checkedList, newArr]);
+  //   } else {
+  //     setCheckedList(checkedList.filter((it) => it[0] !== id));
+  //   }
+  // };
 
-  const onCheckedAll = (checked) => {
-    if (checked) {
-      const listArr = [];
-      routineList.forEach((it) => listArr.push(it));
-      setCheckedList(listArr);
-    } else {
-      setCheckedList([]);
-    }
-  };
+  // const onCheckedAll = (checked) => {
+  //   if (checked) {
+  //     const listArr = [];
+  //     routineList.forEach((it) => listArr.push(it));
+  //     setCheckedList(listArr);
+  //   } else {
+  //     setCheckedList([]);
+  //   }
+  // };
 
-  console.log(checkedList);
+  // console.log(checkedList);
 
   return (
     <div>
@@ -45,13 +45,13 @@ const ShareRoutine = () => {
 
       <div>
         <h3>공개 루틴 상세 설정</h3>
-        <input
+        {/* <input
           type="checkbox"
           onChange={(e) => {
             onCheckedAll(e.target.checked);
           }}
-        />
-        {routineList.map((it) => (
+        /> */}
+        {/* {routineList.map((it) => (
           <div>
             <div>
               {it.startTime}-{it.endTime}
@@ -72,7 +72,7 @@ const ShareRoutine = () => {
               }
             />
           </div>
-        ))}
+        ))} */}
       </div>
       <button>공유하기</button>
     </div>

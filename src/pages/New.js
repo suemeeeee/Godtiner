@@ -6,7 +6,7 @@ const New = () => {
   return (
     <div>
       <MyUpper text={"루틴 추가하기"} />
-      <RoutineEditor />
+      <RoutineEditor isEdit={false} />
     </div>
   );
 };
