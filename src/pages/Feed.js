@@ -26,21 +26,21 @@ const Feed = () => {
     <div>
       <h2 style={{ fontSize: "40px" }}>🔍최신 루틴</h2>
       <div className="Routine_list">
-        {AllRoutines.content.map((it) => (
+        {feedDummyData.Feed_Routine.map((it) => (
           <div
             className="RoutineItem"
             key={it.id}
-            onClick={() => navigate(`/routine/${it.id}`)}
+            onClick={() => navigate(`/routine/${it.RoutineId}`)}
           >
-            <img className="feedImg" src={it.thumbnailUrl}></img>
+            <img className="feedImg" src={it.RoutinePic}></img>
             <br />
-            <text className="feedTitle">{it.title}</text>
+            <text className="feedTitle">{it.RoutineTitle}</text>
             <div className="feedTag">
-              #{it.tagList[0]} #{it.tagList[1]}
+              #{it.RoutineTag[0]} #{it.RoutineTag[1]}
             </div>
             <div>
               <div className="feedback">
-                ❤{it.likecnt} 📥{it.pickcnt} 👀{it.hits}
+                ❤{it.Routine_like} 📥{it.Routine_save} 👀{it.Routine_look}
               </div>
             </div>
           </div>
