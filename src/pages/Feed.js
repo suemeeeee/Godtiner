@@ -1,32 +1,44 @@
 // 피드페이지
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Axios } from "axios";
 
 import feedDummyData from "../DummyData/feedDummyData.json";
 import "./Feed.css";
 import MoveTab from "../Components/MoveTab";
+
 const Feed = () => {
   const navigate = useNavigate();
+  const [AllRoutines, setAllRoutines] = useState();
+
+  Axios.get("http://localhost:8080//feed/all")
+    .then((Response) => {
+      console.log(Response.data);
+      setAllRoutines(Response.data);
+    })
+    .catch((Error) => {
+      console.log(Error);
+    });
 
   return (
     <div>
       <h2 style={{ fontSize: "40px" }}>🔍최신 루틴</h2>
       <div className="Routine_list">
-        {feedDummyData.Feed_Routine.map((it) => (
+        {AllRoutines.content.map((it) => (
           <div
             className="RoutineItem"
-            key={it.RoutineId}
-            onClick={() => navigate(`/routine/${it.RoutineId}`)}
+            key={it.id}
+            onClick={() => navigate(`/routine/${it.id}`)}
           >
-            <img className="feedImg" src={it.RoutinePic}></img>
+            <img className="feedImg" src={it.thumbnailUrl}></img>
             <br />
-            <text className="feedTitle">{it.RoutineTitle}</text>
+            <text className="feedTitle">{it.title}</text>
             <div className="feedTag">
-              #{it.RoutineTag[0]} #{it.RoutineTag[1]}
+              #{it.tag[0]} #{it.tag[1]}
             </div>
             <div>
               <div className="feedback">
-                ❤{it.Routine_like} 📥{it.Routine_save} 👀{it.Routine_look}
+                ❤{it.likecnt} 📥{it.pickcnt} 👀{it.hits}
               </div>
             </div>
           </div>
