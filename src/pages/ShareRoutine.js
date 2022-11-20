@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 import React, { useContext, useState } from "react";
 import { RoutineStateContext, ShareStateContext } from "../App";
-=======
-import { useState } from "react";
->>>>>>> 52ea84424b026bc2d627dfc92dec5384f1759401
 
 const ShareRoutine = () => {
   const [name, setName] = useState("");

@@ -1,10 +1,7 @@
 // 내 루틴에서 세부 루틴을 눌렀을 때 수정하는 페이지
 
-<<<<<<< HEAD
 import React, { useContext, useEffect, useState } from "react";
-=======
-import { useEffect, useState } from "react";
->>>>>>> 52ea84424b026bc2d627dfc92dec5384f1759401
+
 import { useNavigate, useParams } from "react-router-dom";
 import RoutineEditor from "../Components/RoutineEditor";
 

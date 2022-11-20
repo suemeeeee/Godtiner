@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React, { useContext, useState } from "react";
-=======
-import { useState } from "react";
->>>>>>> 52ea84424b026bc2d627dfc92dec5384f1759401
 import { useNavigate } from "react-router-dom";
 import MySearchAlarm from "../Components/MySearchAlarm";
 import "./Home.css";
