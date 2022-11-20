@@ -1,8 +1,6 @@
 import "./RoutineItem.css";
 import { useNavigate } from "react-router-dom";
 
-import RoutineEditor from "./RoutineEditor";
-
 const RoutineItem = ({ id, content, startTime, endTime }) => {
   // home화면에서 세부 루틴들을 보여줌
 

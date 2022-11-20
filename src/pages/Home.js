@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MySearchAlarm from "../Components/MySearchAlarm";
 import "./Home.css";
 import Calendar from "../Components/Calendar";
 import MoveTab from "../Components/MoveTab";
-import { RoutineStateContext } from "../App";
 import RoutineItem from "../Components/RoutineItem";
 import {
   IoIosAddCircle,
@@ -18,9 +17,6 @@ import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
 const Home = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("내 루틴");
-  MyRoutineDummyData.MyRoutine.map((it) => {
-    console.log(it.id, it.content);
-  });
 
   return (
     <div className="Home">
@@ -33,6 +29,7 @@ const Home = () => {
         onClick={() => navigate("/shareroutine")}
       />
       <div>
+        {/* 일부러 위쪽으로 올림. 확인하기 위해서 */}
         <IoIosAddCircle
           size="80"
           color="blue"

@@ -1,8 +1,6 @@
-import { useContext, useState } from "react";
-import { RoutineStateContext, ShareStateContext } from "../App";
+import { useState } from "react";
 
 const ShareRoutine = () => {
-  //const routineList = useContext(RoutineStateContext);
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
   const [checkedList, setCheckedList] = useState([]);

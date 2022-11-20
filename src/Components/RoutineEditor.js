@@ -1,9 +1,8 @@
 //상세루틴 편집하는 컴포넌트
 
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 //import mui
 import Switch from "@mui/material/Switch";
-import { RoutineDispatchContext } from "../App";
 import { useNavigate } from "react-router-dom";
 
 import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
@@ -11,8 +10,6 @@ import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
 import "./RoutineEditor.css";
 
 const RoutineEditor = ({ isEdit, originData }) => {
-  //const { onCreate, onEdit } = useContext(RoutineDispatchContext);
-
   //세부루틴 이름
   const [content, setContent] = useState("");
   //알림설정
