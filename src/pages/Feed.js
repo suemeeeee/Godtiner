@@ -1,7 +1,7 @@
 // 피드페이지
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Axios } from "axios";
+import Axios from "axios";
 
 import feedDummyData from "../DummyData/feedDummyData.json";
 import "./Feed.css";
@@ -11,14 +11,16 @@ const Feed = () => {
   const navigate = useNavigate();
   const [AllRoutines, setAllRoutines] = useState();
 
-  Axios.get("http://localhost:8080//feed/all")
-    .then((Response) => {
-      console.log(Response.data);
-      setAllRoutines(Response.data);
-    })
-    .catch((Error) => {
-      console.log(Error);
-    });
+  useEffect(() => {
+    Axios.get("http://localhost:8080//feed/all")
+      .then((Response) => {
+        console.log(Response.data);
+        setAllRoutines(Response.data);
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+  }, []);
 
   return (
     <div>
@@ -34,7 +36,7 @@ const Feed = () => {
             <br />
             <text className="feedTitle">{it.title}</text>
             <div className="feedTag">
-              #{it.tag[0]} #{it.tag[1]}
+              #{it.tagList[0]} #{it.tagList[1]}
             </div>
             <div>
               <div className="feedback">
