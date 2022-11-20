@@ -51,8 +51,7 @@ const Home = () => {
           <RoutineItem key={it.id} {...it} />
         ))}
       </div>
-      {/* moveTap의 크기가 너무 커서 자꾸 마지막 루틴이 안보임. 크기조절 해야할 듯 */}
-      {/* <MoveTab /> */}
+      <MoveTab />
     </div>
   );
 };
