@@ -10,6 +10,11 @@ import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
 import "./RoutineEditor.css";
 
 const RoutineEditor = ({ isEdit, originData }) => {
+  const r_id =
+    parseInt(
+      MyRoutineDummyData.MyRoutine[MyRoutineDummyData.MyRoutine.length - 1].id
+    ) + 1;
+
   //세부루틴 이름
   const [content, setContent] = useState("");
   //알림설정
@@ -22,8 +27,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
   const contentRef = useRef();
   const navigate = useNavigate();
 
-  //더미데이터가 2개까지 있으므로
-  const dataId = useRef(3);
+  console.log(r_id);
 
   useEffect(() => {
     if (isEdit) {
@@ -42,15 +46,13 @@ const RoutineEditor = ({ isEdit, originData }) => {
     }
     if (!isEdit) {
       let newData = {
-        id: dataId.current,
+        id: r_id,
         startTime,
         endTime,
         content,
       };
       newRoutine = [...MyRoutineDummyData.MyRoutine, newData];
       MyRoutineDummyData.MyRoutine = newRoutine;
-
-      dataId.current += 1;
     } else {
       let new_data = {
         id: originData.id,
