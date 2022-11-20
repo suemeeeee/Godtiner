@@ -65,13 +65,13 @@ const EmailSignup = () => {
       Axios.post("http://localhost:8080/join", {
         password: password,
         email: email,
-        userName: userName,
-        nickName: nickName,
+        name: userName,
+        nickname: nickName,
       })
         .then(function (response) {
           if (response.data == "회원가입 완료") {
             console.log(response);
-            navigate("/signupcomplete");
+            window.location.href = "http://localhost:3000/signupcomplete";
           } else {
             let message = response.data.message;
             if (response.data == "이메일 중복") {
