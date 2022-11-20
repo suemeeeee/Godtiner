@@ -1,18 +1,3 @@
-.slide-in {
-  animation: change 0.5s ease forwards;
-}
-
-@keyframes change {
-  from {
-    transform: translateX(100%);
-    visibility: visible;
-  }
-
-  to {
-    transform: translateX(0%);
-  }
-}
-
 .Routine_list {
   text-align: center;
   width: 100%;
@@ -31,6 +16,8 @@
 
 .feedTitle {
   font-size: 28px;
+  width: fit-content;
+  text-align: center;
 }
 
 .feedTag {
