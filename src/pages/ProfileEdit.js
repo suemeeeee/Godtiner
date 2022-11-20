@@ -34,11 +34,17 @@ const ProfileEdit = () => {
       <div className="ProfileEdit">
         <div className="Edit_div_pe">
           <text>닉네임</text>
-          <input onChange={onChangenickName}></input>
+          <input
+            className="ProfileEditInput"
+            onChange={onChangenickName}
+          ></input>
         </div>
         <div className="Edit_div_pe">
           <text>자기소개</text>
-          <input onChange={onChangeProfileContent}></input>
+          <input
+            className="ProfileEditInput"
+            onChange={onChangeProfileContent}
+          ></input>
         </div>
         <div className="save_div_pe">
           <button className="save_pe" onClick={onSubmit}>

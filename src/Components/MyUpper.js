@@ -7,15 +7,15 @@ const MyUpper = ({ text }) => {
       <button
         className="backButton"
         onClick={() => navigate(-1)}
-        style={{ padding: "20px" }}
+        style={{ padding: "5px" }}
       >
         <img
           src="../img/arrow.png"
           alt="arrow"
-          style={{ width: "30px", height: "30px" }}
+          style={{ width: "30px", height: "30px", marginRight: "10px" }}
         />
       </button>
-      <span className="pageDescript" style={{ fontSize: "30px" }}>
+      <span className="pageDescript" style={{ fontSize: "25px" }}>
         {text}
       </span>
     </div>

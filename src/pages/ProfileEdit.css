@@ -10,7 +10,7 @@
   display: block;
 }
 
-input {
+.ProfileEditInput {
   width: 80%;
   height: 50px;
   border-radius: 15px;

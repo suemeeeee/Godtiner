@@ -1,0 +1,65 @@
+.ShareRoutine {
+  height: 100vh;
+  text-align: center;
+  background-color: rgb(237, 237, 237);
+}
+
+.thumbnail_sr {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 50%;
+  height: 50%;
+  border-radius: 70%;
+  overflow: hidden;
+  box-shadow: 4px 4px 4px rgb(160, 160, 160);
+}
+
+.RoutineTitle_sr {
+}
+
+.text_sr {
+  margin-left: 60px;
+  font-size: 23px;
+}
+.RoutineTitleInput_sr {
+  width: 80%;
+  height: 50px;
+  border: 0;
+  border-radius: 15px;
+  font-size: 20px;
+}
+
+.IntroTextArea_sr {
+  width: 80%;
+  height: 120px;
+  font-size: 20px;
+  border: 0;
+  border-radius: 15px;
+}
+
+.Tag_sr {
+  margin-top: 20px;
+}
+
+.TagButton_sr {
+  width: 80px;
+  height: 45px;
+  background-color: rgb(255, 255, 255);
+  margin: 10px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.clicked {
+  background-color: blue;
+  color: white;
+}
+
+.ShareButton_sr {
+  width: 100%;
+  height: 75px;
+  bottom: 0;
+  background-color: blue;
+  font-size: 25px;
+  color: white;
+}

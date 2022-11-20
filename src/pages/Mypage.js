@@ -5,7 +5,6 @@ import Avatar from "react-avatar-edit";
 import "./Mypage.css";
 
 import MoveTab from "../Components/MoveTab";
-import { width } from "@mui/system";
 
 import UserDummyData from "../DummyData/UserDummyData.json";
 
