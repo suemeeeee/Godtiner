@@ -36,7 +36,7 @@ const Feed = () => {
             <br />
             <text className="feedTitle">{it.title}</text>
             <div className="feedTag">
-              #{it.tag[0]} #{it.tag[1]}
+              #{it.tagList[0]} #{it.tagList[1]}
             </div>
             <div>
               <div className="feedback">
