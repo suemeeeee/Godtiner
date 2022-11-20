@@ -3,6 +3,7 @@ import { RoutineStateContext, ShareStateContext } from "../App";
 import Avatar from "react-avatar-edit";
 import feedDummyData from "../DummyData/feedDummyData.json";
 import UserDummyData from "../DummyData/UserDummyData.json";
+import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
 
 import "./ShareRoutine.css";
 
@@ -191,6 +192,16 @@ const ShareRoutine = () => {
           <h3 className="text_sr" style={{ textAlign: "left" }}>
             공개 루틴 상세 설정
           </h3>
+          {MyRoutineDummyData.MyRoutine.map((it) => (
+            <div className="RoutineDetail">
+              <input className="checkbox" type="checkbox" />
+              <span className="RoutineTime">
+                <span className="RoutineStartTime">{it.startTime}</span>
+                <span className="RoutineEndTime">{it.endTime}</span>
+              </span>
+              <span className="RoutineContent">{it.content}</span>
+            </div>
+          ))}
           {/* <input
           type="checkbox"
           onChange={(e) => {
