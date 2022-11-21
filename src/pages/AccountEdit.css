@@ -1,0 +1,24 @@
+.acoountEdit_ae {
+  margin-top: 50%;
+}
+
+.div_ae {
+  margin-left: 5%;
+  margin-bottom: 15%;
+}
+
+.text_ae {
+  font-size: 40px;
+}
+
+.data_ae {
+  font-size: 30px;
+  color: gray;
+}
+.accountDeleteButton_ae {
+  width: 30%;
+  height: 5vh;
+  font-size: 25px;
+  color: red;
+  background-color: transparent;
+}

@@ -15,6 +15,7 @@ import Feed from "./pages/Feed";
 import SignupComplete from "./pages/SignupComplete";
 import Mypage from "./pages/Mypage";
 import ProfileEdit from "./pages/ProfileEdit";
+import AccountEdit from "./pages/AccountEdit";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="/feed" element={<Feed />} />
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/profileedit" element={<ProfileEdit />} />
+          <Route path="/accountedit" element={<AccountEdit />} />
         </Routes>
       </div>
     </BrowserRouter>

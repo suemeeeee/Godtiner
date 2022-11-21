@@ -64,7 +64,14 @@ const Mypage = () => {
       </button>
       <div className="alertEdit">알림 설정</div>
       <div className="editButton">
-        <button className="editButton1">계정 설정</button>
+        <button
+          className="editButton1"
+          onClick={() => {
+            navigate("/accountedit");
+          }}
+        >
+          계정 설정
+        </button>
 
         <button className="editButton1">찜한 루틴 편집</button>
 
