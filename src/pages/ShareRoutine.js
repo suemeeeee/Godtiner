@@ -8,8 +8,10 @@ import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
 import "./ShareRoutine.css";
 
 import MyUpper from "../Components/MyUpper";
+import { useNavigate } from "react-router-dom";
 
 const ShareRoutine = () => {
+  const navigate = useNavigate();
   var TagButton_sr = document.getElementsByClassName("TagButton_sr");
   function handleClick(e) {
     if (e.target.classList[0] == "clicked") {
@@ -88,6 +90,8 @@ const ShareRoutine = () => {
     //더미데이터로 전송할 객체에 데이터 제대로 들어갔는지 콘솔 출력
 
     console.log(feedDummyData);
+
+    navigate("/home", { replace: true });
   };
 
   //아래는 썸네일 설정

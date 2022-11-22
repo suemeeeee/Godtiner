@@ -26,6 +26,7 @@ const ProfileEdit = () => {
   const onSubmit = (e) => {
     UserDummyData.User.UserName = nickName;
     UserDummyData.User.UserProfileContent = profileContent;
+    navigate("/mypage", { replace: true });
   };
 
   return (
