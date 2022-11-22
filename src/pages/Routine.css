@@ -28,6 +28,14 @@
   margin: 10px;
   text-align: left;
 }
+.like_r {
+  margin-left: 65%;
+  text-align: center;
+  font-size: 30px;
+  width: 10%;
+  height: 5vh;
+  border-radius: 50%;
+}
 
 .RoutineTime {
   background-color: rgb(210, 210, 210);

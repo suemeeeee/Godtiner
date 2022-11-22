@@ -8,5 +8,9 @@
     "UserSignupDate": "2022.11.21",
     "UserLikedRoutine": "",
     "UserSharedRoutine": ""
+  },
+
+  "LikedRoutine": {
+    "LikeId": [2]
   }
 }

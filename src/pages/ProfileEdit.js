@@ -34,14 +34,14 @@ const ProfileEdit = () => {
       <MyUpper />
       <div className="ProfileEdit">
         <div className="Edit_div_pe">
-          <text>닉네임</text>
+          <text className="text_pe">닉네임</text>
           <input
             className="ProfileEditInput"
             onChange={onChangenickName}
           ></input>
         </div>
         <div className="Edit_div_pe">
-          <text>자기소개</text>
+          <text className="text_pe">자기소개</text>
           <input
             className="ProfileEditInput"
             onChange={onChangeProfileContent}

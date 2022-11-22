@@ -6,6 +6,7 @@ import Axios from "axios";
 import feedDummyData from "../DummyData/feedDummyData.json";
 import "./Feed.css";
 import MoveTab from "../Components/MoveTab";
+import MySearchAlram from "../Components/MySearchAlarm";
 
 const Feed = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const Feed = () => {
 
   return (
     <div>
+      <MySearchAlram />
       <h2 style={{ fontSize: "40px" }}>🔍최신 루틴</h2>
       <div className="Routine_list">
         {feedDummyData.Feed_Routine.map((it) => (

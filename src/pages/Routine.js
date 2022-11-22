@@ -2,22 +2,45 @@
 //다른 사람들의 루틴을 보는 페이지 입니다.
 import MyUpper from "../Components/MyUpper";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 import "./Routine.css";
+import UserDummyData from "../DummyData/UserDummyData.json";
 import feedDummyData from "../DummyData/feedDummyData.json";
 import MoveTab from "../Components/MoveTab";
 
 const Routine = () => {
+  const [buttonText, setButtonText] = useState("🤍");
   // 백엔드 통신 API 나중에 구현
   // 일단 더미 데이터로
   let { id } = useParams();
   console.log(id);
+
+  // if (
+  //   UserDummyData.LikedRoutine.LikeId.find(
+  //     (f) => f === UserDummyData.LikedRoutine.LikeId
+  //   )
+  // ) {
+  //   setButtonText("❤️");
+  // }
 
   let detailRoutine = feedDummyData.Feed_Routine.find((item) => {
     return item.RoutineId == id;
   });
 
   console.log(detailRoutine);
+
+  const Like = (e) => {
+    if (buttonText === "🤍") {
+      setButtonText("❤️");
+      UserDummyData.LikedRoutine.LikeId.push(id);
+    } else {
+      setButtonText("🤍");
+      UserDummyData.LikedRoutine.LikeId.pop(id);
+    }
+    console.log(UserDummyData.LikedRoutine.LikeId);
+  };
+
   return (
     <div>
       <MyUpper text={"루틴 상세페이지"} />
@@ -28,6 +51,9 @@ const Routine = () => {
         <h1 className="RoutineTitle">{detailRoutine.RoutineTitle}</h1>
         <div style={{ textAlign: "left", marginLeft: "30px" }}>
           <input className="checkAll" type="checkbox" /> 전체선택
+          <button className="like_r" onClick={Like}>
+            {buttonText}
+          </button>
         </div>
         {detailRoutine.RoutineContent.map((it) => (
           <div className="RoutineDetail">
@@ -51,6 +77,9 @@ const Routine = () => {
           루틴 제공자
         </h2>
         <div style={{ fontSize: "25px" }}>{detailRoutine.Routiner}</div>
+        <div>
+          <button className="ShareButton_sr">저장하기</button>
+        </div>
       </div>
       <MoveTab />
     </div>
