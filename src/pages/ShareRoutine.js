@@ -132,18 +132,10 @@ const ShareRoutine = () => {
 
     if (checked) {
       setCheckedList([...checkedList, newArr]);
-    } else if (!checked) {
-      //setCheckedList(checkedList.filter((it) => it.id !== value));
-      // const mapId = Object.values(checkedList)
-      // checkedList.map((it)=> {
-      //   const routineId = Object.values(it)
-      //   setCheckedList(routineId.filter(v=>))
-      // })
-      // setCheckedList(
-      //   checkedList.filter(function (rowData) {
-      //     return rowData.id !== value;
-      //   })
-      // );
+    } else {
+      setCheckedList(
+        checkedList.filter((it) => parseInt(it.id) !== parseInt(value))
+      );
     }
   };
 
