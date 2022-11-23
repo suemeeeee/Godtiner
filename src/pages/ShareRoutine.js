@@ -41,7 +41,9 @@ const ShareRoutine = () => {
   const [tag, setTag] = useState([]);
   const [content, setContent] = useState();
   const [RoutineImg, setRoutineImg] = useState();
+  //체크선택 시, 내용이 들어갈 것
   const [checkedList, setCheckedList] = useState([]);
+  console.log(checkedList);
 
   //현재 데이터 갯수에 따른 ID 지정 변수
   const nextRoutineId = useRef(3);
@@ -118,14 +120,32 @@ const ShareRoutine = () => {
 
     setRoutineImg(e.target.files[0]);
   };
-  // const onCheckedElement = (checked, id, startTime, endTime, content) => {
-  //   let newArr = [id, startTime, endTime, content];
-  //   if (checked) {
-  //     setCheckedList([...checkedList, newArr]);
-  //   } else {
-  //     setCheckedList(checkedList.filter((it) => it[0] !== id));
-  //   }
-  // };
+
+  const onCheckedElement = (checked, it, value) => {
+    let newRoutine = [];
+    let newArr = {
+      id: it.id,
+      startTime: it.startTime,
+      endTime: it.endTime,
+      content: it.content,
+    };
+
+    if (checked) {
+      setCheckedList([...checkedList, newArr]);
+    } else if (!checked) {
+      //setCheckedList(checkedList.filter((it) => it.id !== value));
+      // const mapId = Object.values(checkedList)
+      // checkedList.map((it)=> {
+      //   const routineId = Object.values(it)
+      //   setCheckedList(routineId.filter(v=>))
+      // })
+      // setCheckedList(
+      //   checkedList.filter(function (rowData) {
+      //     return rowData.id !== value;
+      //   })
+      // );
+    }
+  };
 
   // const onCheckedAll = (checked) => {
   //   if (checked) {
@@ -198,7 +218,15 @@ const ShareRoutine = () => {
           </h3>
           {MyRoutineDummyData.MyRoutine.map((it) => (
             <div className="RoutineDetail">
-              <input className="checkbox" type="checkbox" />
+              <input
+                className="checkbox"
+                type="checkbox"
+                value={it.id}
+                onChange={(e) => {
+                  onCheckedElement(e.target.checked, it, e.target.value);
+                }}
+                checked={checkedList.some((v) => v.id === it.id) ? true : false}
+              />
               <span className="RoutineTime">
                 <span className="RoutineStartTime">{it.startTime}</span>
                 <span className="RoutineEndTime">{it.endTime}</span>

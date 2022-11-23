@@ -3,6 +3,7 @@
 import React, { useContext, useEffect, useState } from "react";
 
 import { useNavigate, useParams } from "react-router-dom";
+import MyUpper from "../Components/MyUpper";
 import RoutineEditor from "../Components/RoutineEditor";
 
 import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
@@ -27,6 +28,7 @@ const MyRoutineEditor = () => {
 
   return (
     <div>
+      <MyUpper text={"루틴 수정하기"} />
       {originData && <RoutineEditor isEdit={true} originData={originData} />}
     </div>
   );
