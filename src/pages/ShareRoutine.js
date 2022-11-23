@@ -43,10 +43,16 @@ const ShareRoutine = () => {
   const [RoutineImg, setRoutineImg] = useState();
   //체크선택 시, 내용이 들어갈 것
   const [checkedList, setCheckedList] = useState([]);
-  console.log(checkedList);
+  // console.log(checkedList);
 
   //현재 데이터 갯수에 따른 ID 지정 변수
-  const nextRoutineId = useRef(3);
+  //id가 증가가 되지 않아서 임시로 변경
+  // const nextRoutineId = useRef(3);
+  const nextRoutineId =
+    parseInt(
+      feedDummyData.Feed_Routine[feedDummyData.Feed_Routine.length - 1]
+        .RoutineId
+    ) + 1;
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -68,25 +74,36 @@ const ShareRoutine = () => {
   // 공유하기 버튼을 누를 시 실행
   const onPush = () => {
     const Feed_Routine = {
-      RoutineId: nextRoutineId.current,
+      // RoutineId: nextRoutineId.current,
+      // Routiner: UserDummyData.User.UserName,
+      // RoutineTitle: title,
+      // RoutinePic: RoutineImg,
+      // RoutineTag: tag, //태그 배열로 바꿔야 함.. 일단 단일 태그
+      // RoutineIntro: intro,
+      // RoutineContent: [
+      //   ["8:00", " ", "따뜻한 물 한잔 마시기"],
+      //   ["9:00", " ", "신문기사 하나 읽기"],
+      //   ["10:00", "10:30", "가벼운 아침 운동"],
+      //   ["22:00", " ", "30분 책 읽기"],
+      // ], //임시
+      // Routine_like: "", //보류
+      // Routine_save: "",
+      // Routine_look: "",
+      //RoutineId: nextRoutineId.current,
+      RoutineId: nextRoutineId,
       Routiner: UserDummyData.User.UserName,
       RoutineTitle: title,
       RoutinePic: RoutineImg,
       RoutineTag: tag, //태그 배열로 바꿔야 함.. 일단 단일 태그
       RoutineIntro: intro,
-      RoutineContent: [
-        ["8:00", " ", "따뜻한 물 한잔 마시기"],
-        ["9:00", " ", "신문기사 하나 읽기"],
-        ["10:00", "10:30", "가벼운 아침 운동"],
-        ["22:00", " ", "30분 책 읽기"],
-      ], //임시
+      RoutineContent: checkedList,
       Routine_like: "", //보류
       Routine_save: "",
       Routine_look: "",
     };
 
     feedDummyData.Feed_Routine.push(Feed_Routine);
-    nextRoutineId.current += 1;
+    //nextRoutineId.current += 1;
 
     console.log(Feed_Routine);
     //더미데이터로 전송할 객체에 데이터 제대로 들어갔는지 콘솔 출력
@@ -121,8 +138,8 @@ const ShareRoutine = () => {
     setRoutineImg(e.target.files[0]);
   };
 
+  //개별체크
   const onCheckedElement = (checked, it, value) => {
-    let newRoutine = [];
     let newArr = {
       id: it.id,
       startTime: it.startTime,
@@ -139,17 +156,15 @@ const ShareRoutine = () => {
     }
   };
 
-  // const onCheckedAll = (checked) => {
-  //   if (checked) {
-  //     const listArr = [];
-  //     routineList.forEach((it) => listArr.push(it));
-  //     setCheckedList(listArr);
-  //   } else {
-  //     setCheckedList([]);
-  //   }
-  // };
-
-  // console.log(checkedList);
+  const onCheckedAll = (checked) => {
+    let newRoutine = [];
+    if (checked) {
+      MyRoutineDummyData.MyRoutine.forEach((it) => newRoutine.push(it));
+      setCheckedList(newRoutine);
+    } else {
+      setCheckedList([]);
+    }
+  };
 
   return (
     <div>
@@ -208,6 +223,18 @@ const ShareRoutine = () => {
           <h3 className="text_sr" style={{ textAlign: "left" }}>
             공개 루틴 상세 설정
           </h3>
+          <input
+            className="allCheckbox"
+            type="Checkbox"
+            onChange={(e) => {
+              onCheckedAll(e.target.checked);
+            }}
+            checked={
+              checkedList.length == MyRoutineDummyData.MyRoutine.length
+                ? true
+                : false
+            }
+          />
           {MyRoutineDummyData.MyRoutine.map((it) => (
             <div className="RoutineDetail">
               <input
@@ -226,34 +253,6 @@ const ShareRoutine = () => {
               <span className="RoutineContent">{it.content}</span>
             </div>
           ))}
-          {/* <input
-          type="checkbox"
-          onChange={(e) => {
-            onCheckedAll(e.target.checked);
-          }}
-        /> */}
-          {/* {routineList.map((it) => (
-          <div>
-            <div>
-              {it.startTime}-{it.endTime}
-            </div>
-            <div>{it.content}</div>
-
-            <input
-              type="checkbox"
-              key={it.id}
-              onChange={(e) =>
-                onCheckedElement(
-                  e.target.checked,
-                  it.id,
-                  it.startTime,
-                  it.endTime,
-                  it.content
-                )
-              }
-            />
-          </div>
-        ))} */}
         </div>
         <button className="ShareButton_sr" onClick={onPush}>
           공유하기

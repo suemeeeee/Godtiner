@@ -25,7 +25,7 @@ const Routine = () => {
   // }
 
   let detailRoutine = feedDummyData.Feed_Routine.find((item) => {
-    return item.RoutineId == id;
+    return parseInt(item.RoutineId) == parseInt(id);
   });
 
   console.log(detailRoutine);
