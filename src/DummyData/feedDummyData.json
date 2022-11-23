@@ -33,6 +33,23 @@
       "Routine_like": 200,
       "Routine_save": 120,
       "Routine_look": 460
+    },
+    {
+      "RoutineId": 3,
+      "Routiner": "PYM",
+      "RoutineTitle": "매일 독서 습관 들이기",
+      "RoutinePic": "../img/book.png",
+      "RoutineTag": ["독서", "학생"],
+      "RoutineIntro": "흔한 고등학생의 독서 습관 루틴",
+      "RoutineContent": [
+        ["8:00", " ", "따뜻한 물 한잔 마시기"],
+        ["9:00", " ", "신문기사 하나 읽기"],
+        ["10:00", "10:30", "가벼운 아침 운동"],
+        ["22:00", " ", "30분 책 읽기"]
+      ],
+      "Routine_like": 122,
+      "Routine_save": 30,
+      "Routine_look": 200
     }
   ]
 }

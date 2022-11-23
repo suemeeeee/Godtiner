@@ -16,7 +16,7 @@ import SignupComplete from "./pages/SignupComplete";
 import Mypage from "./pages/Mypage";
 import ProfileEdit from "./pages/ProfileEdit";
 import AccountEdit from "./pages/AccountEdit";
-
+import SearchPage from "./pages/SearchPage";
 function App() {
   return (
     <BrowserRouter>
@@ -39,6 +39,7 @@ function App() {
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/profileedit" element={<ProfileEdit />} />
           <Route path="/accountedit" element={<AccountEdit />} />
+          <Route path="/searchpage" element={<SearchPage />} />
         </Routes>
       </div>
     </BrowserRouter>
