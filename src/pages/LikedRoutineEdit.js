@@ -9,15 +9,15 @@ const LikedRoutineEdit = () => {
   //유저가 like한 루틴의 아이디들을 배열에 담은 변수 ex) ['1', '3']
   const wishedId = UserDummyData.LikedRoutine.LikeId;
   //유저가 like한 루틴(객체)를 담은 변수 (임시로 1번 루틴 넣어둠)
-  let wishedList = [];
+  const [wishedList, setWishedList] = useState([]);
 
   //전체 루틴 데이터 돌면서 wishedId 배열에 그 루틴 아이디가 있으면
   // wishedList에 추가해주기
   //왜 안되지 ...
   feedDummyData.Feed_Routine.map((w) => {
     console.log(wishedId);
-    if (wishedList.includes(String(w.RoutineId))) {
-      wishedList.push(w);
+    if (wishedList.includes(w.RoutineId)) {
+      setWishedList(w, ...wishedList);
     }
     console.log(wishedList);
   });
