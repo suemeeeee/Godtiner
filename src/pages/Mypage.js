@@ -73,7 +73,14 @@ const Mypage = () => {
           계정 설정
         </button>
 
-        <button className="editButton1">찜한 루틴 편집</button>
+        <button
+          className="editButton1"
+          onClick={() => {
+            navigate("/likedroutineedit");
+          }}
+        >
+          찜한 루틴 편집
+        </button>
 
         <button className="editButton1">공유한 루틴 편집</button>
       </div>

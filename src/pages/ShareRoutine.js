@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 const ShareRoutine = () => {
   const navigate = useNavigate();
   var TagButton_sr = document.getElementsByClassName("TagButton_sr");
+
   function handleClick(e) {
     if (e.target.classList[0] == "clicked") {
       e.target.classList.remove("clicked");

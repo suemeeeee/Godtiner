@@ -13,6 +13,8 @@ import MoveTab from "../Components/MoveTab";
 const Routine = () => {
   const navigate = useNavigate();
   const [buttonText, setButtonText] = useState("🤍");
+  const [isWishAdd, setIsWishAdd] = useState(false);
+
   //가져갈 루틴을 넣을 곳
   const [selectRoutine, setSelectRoutine] = useState([]);
   console.log(selectRoutine);
@@ -20,31 +22,23 @@ const Routine = () => {
   // 백엔드 통신 API 나중에 구현
   // 일단 더미 데이터로
   let { id } = useParams();
-  console.log(id);
-
-  // if (
-  //   UserDummyData.LikedRoutine.LikeId.find(
-  //     (f) => f === UserDummyData.LikedRoutine.LikeId
-  //   )
-  // ) {
-  //   setButtonText("❤️");
-  // }
 
   let detailRoutine = feedDummyData.Feed_Routine.find((item) => {
     return parseInt(item.RoutineId) == parseInt(id);
   });
 
-  console.log(detailRoutine);
-
-  const Like = (e) => {
-    if (buttonText === "🤍") {
+  //좋아요 누르면 넘겨줄 함수 (false를 true로 바꾸고 꽉찬 하트로)
+  const wishAddHandler = () => {
+    if (isWishAdd === false) {
       setButtonText("❤️");
       UserDummyData.LikedRoutine.LikeId.push(id);
+      console.log("좋아요" + UserDummyData.LikedRoutine.LikeId);
     } else {
       setButtonText("🤍");
       UserDummyData.LikedRoutine.LikeId.pop(id);
+      console.log("좋아요" + UserDummyData.LikedRoutine.LikeId);
     }
-    console.log(UserDummyData.LikedRoutine.LikeId);
+    setIsWishAdd(!isWishAdd);
   };
 
   //체크박스로 루틴을 골라보자(개별ver.)
@@ -110,7 +104,7 @@ const Routine = () => {
             onChange={(e) => onRoutineCheckedAll(e.target.checked)}
           />{" "}
           전체선택
-          <button className="like_r" onClick={Like}>
+          <button className="like_r" onClick={wishAddHandler}>
             {buttonText}
           </button>
         </div>

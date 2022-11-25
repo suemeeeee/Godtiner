@@ -38,7 +38,8 @@ const Feed = () => {
             <br />
             <text className="feedTitle">{it.RoutineTitle}</text>
             <div className="feedTag">
-              #{it.RoutineTag[0]} #{it.RoutineTag[1]}
+              {`#${it.RoutineTag.at(0)} `}
+              {`#${it.RoutineTag.at(1)} `}
             </div>
             <div>
               <div className="feedback">

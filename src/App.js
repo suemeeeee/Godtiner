@@ -18,6 +18,7 @@ import ProfileEdit from "./pages/ProfileEdit";
 import AccountEdit from "./pages/AccountEdit";
 import SearchPage from "./pages/SearchPage";
 import Mission from "./pages/Mission";
+import LikedRoutineEdit from "./pages/LikedRoutineEdit";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           <Route path="/accountedit" element={<AccountEdit />} />
           <Route path="/searchpage" element={<SearchPage />} />
           <Route path="/mission" element={<Mission />} />
+          <Route path="/likedroutineedit" element={<LikedRoutineEdit />} />
         </Routes>
       </div>
     </BrowserRouter>

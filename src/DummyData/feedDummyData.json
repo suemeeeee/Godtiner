@@ -76,20 +76,40 @@
     },
     {
       "RoutineId": 3,
-      "Routiner": "PYM",
-      "RoutineTitle": "매일 독서 습관 들이기",
-      "RoutinePic": "../img/book.png",
-      "RoutineTag": ["독서", "학생"],
-      "RoutineIntro": "흔한 고등학생의 독서 습관 루틴",
+      "Routiner": "루틴왕",
+      "RoutineTitle": "건강, 지식 두마리 토끼",
+      "RoutinePic": "../img/health.png",
+      "RoutineTag": ["학생", "운동"],
+      "RoutineIntro": "건강한 똑똑이 고딩이 되기 위한 질주!",
       "RoutineContent": [
-        ["8:00", " ", "따뜻한 물 한잔 마시기"],
-        ["9:00", " ", "신문기사 하나 읽기"],
-        ["10:00", "10:30", "가벼운 아침 운동"],
-        ["22:00", " ", "30분 책 읽기"]
+        {
+          "id": 1,
+          "startTime": "08:00",
+          "endTime": "08:00",
+          "content": "따듯한 물 한잔 마시기"
+        },
+        {
+          "id": 2,
+          "startTime": "09:00",
+          "endTime": "09:00",
+          "content": "신문기사 하나 읽기"
+        },
+        {
+          "id": 3,
+          "startTime": "10:00",
+          "endTime": "10:30",
+          "content": "가벼운 아침 운동"
+        },
+        {
+          "id": 4,
+          "startTime": "22:00",
+          "endTime": "22:00",
+          "content": "30분 책 일기"
+        }
       ],
-      "Routine_like": 122,
-      "Routine_save": 30,
-      "Routine_look": 200
+      "Routine_like": 150,
+      "Routine_save": 70,
+      "Routine_look": 230
     }
   ]
 }
