@@ -17,7 +17,7 @@ const LikedRoutineEdit = () => {
   feedDummyData.Feed_Routine.map((w) => {
     console.log(wishedId);
     if (wishedList.includes(w.RoutineId)) {
-      setWishedList(w, ...wishedList);
+      setWishedList([w, ...wishedList]);
     }
     console.log(wishedList);
   });
