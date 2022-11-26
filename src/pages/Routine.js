@@ -3,6 +3,7 @@
 import MyUpper from "../Components/MyUpper";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
 import "./Routine.css";
 import UserDummyData from "../DummyData/UserDummyData.json";
@@ -22,10 +23,22 @@ const Routine = () => {
   // 백엔드 통신 API 나중에 구현
   // 일단 더미 데이터로
   let { id } = useParams();
-
   let detailRoutine = feedDummyData.Feed_Routine.find((item) => {
     return parseInt(item.RoutineId) == parseInt(id);
   });
+
+  // 백 api 연동 코드 (콘솔에 출력만)
+  // useEffect(() => {
+  //   axios
+  //     .get(`/feed/${id}`)
+  //     .then((Response) => {
+  //       console.log(Response.data);
+  //       detailRoutine = Response.data;
+  //     })
+  //     .catch((Error) => {
+  //       console.log(Error);
+  //     });
+  // }, []);
 
   //좋아요 누르면 넘겨줄 함수 (false를 true로 바꾸고 꽉찬 하트로)
   const wishAddHandler = () => {

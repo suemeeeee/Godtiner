@@ -13,7 +13,7 @@ const Feed = () => {
   const [AllRoutines, setAllRoutines] = useState();
 
   useEffect(() => {
-    Axios.get("http://localhost:8080//feed/all")
+    Axios.get("/feed/all")
       .then((Response) => {
         console.log(Response.data);
         setAllRoutines(Response.data);

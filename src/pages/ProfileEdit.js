@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 import MyUpper from "../Components/MyUpper";
 import MoveTab from "../Components/MoveTab";
@@ -6,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import UserDummyData from "../DummyData/UserDummyData.json";
 import "./ProfileEdit.css";
+import { Password } from "@mui/icons-material";
 
 const ProfileEdit = () => {
   const navigate = useNavigate();
@@ -27,6 +29,19 @@ const ProfileEdit = () => {
     UserDummyData.User.UserName = nickName;
     UserDummyData.User.UserProfileContent = profileContent;
     navigate("/mypage", { replace: true });
+
+    //백과 api 연동 코드
+    // axios
+    //   .put("/member", {
+    //     nickname: nickName,
+    //     profilecontent: profileContent,
+    //   })
+    //   .then((Response) => {
+    //     console.log(Response.data);
+    //   })
+    //   .catch((Error) => {
+    //     console.log(Error);
+    //   });
   };
 
   return (
