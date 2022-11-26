@@ -21,12 +21,14 @@
   width: 40px;
   height: 40px;
   margin: 10px;
+  cursor: pointer;
 }
 .checkAll {
   width: 25px;
   height: 25px;
   margin: 10px;
   text-align: left;
+  cursor: pointer;
 }
 .like_r {
   margin-left: 65%;
@@ -35,6 +37,7 @@
   width: 10%;
   height: 5vh;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .RoutineTime {

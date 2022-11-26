@@ -1,6 +1,7 @@
 .Routine_list {
   text-align: center;
   width: 100%;
+  cursor: pointer;
 }
 
 .RoutineItem {
