@@ -9,6 +9,7 @@ import "./ShareRoutine.css";
 
 import MyUpper from "../Components/MyUpper";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const ShareRoutine = () => {
   const navigate = useNavigate();
@@ -45,6 +46,7 @@ const ShareRoutine = () => {
   //체크선택 시, 내용이 들어갈 것
   const [checkedList, setCheckedList] = useState([]);
   // console.log(checkedList);
+  console.log(tag);
 
   //현재 데이터 갯수에 따른 ID 지정 변수
   //id가 증가가 되지 않아서 임시로 변경
@@ -73,7 +75,9 @@ const ShareRoutine = () => {
 
   //feedDummyDate에 공유한 루틴을 추가하는 함수
   // 공유하기 버튼을 누를 시 실행
-  const onPush = () => {
+  const onPush = async () => {
+    //백엔드 연동시 풀어보기. 유튜브 그대로 참조함
+    //e.preventDefalut();
     const Feed_Routine = {
       // RoutineId: nextRoutineId.current,
       // Routiner: UserDummyData.User.UserName,
@@ -109,6 +113,8 @@ const ShareRoutine = () => {
     console.log(Feed_Routine);
     //더미데이터로 전송할 객체에 데이터 제대로 들어갔는지 콘솔 출력
 
+    //나도 써봤다 api 문장!
+    //await axios.post('shareRoutines',{Feed_Routine});
     console.log(feedDummyData);
 
     navigate("/home", { replace: true });

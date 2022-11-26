@@ -106,21 +106,6 @@ body {
   font-size: 15px;
 }
 
-/* RoutineEditor */
-
-.RoutineEditor .NameBox {
-  width: 60%;
-  height: 40px;
-  text-align: center;
-  border: none;
-  background-color: #ececec;
-  border-radius: 10px;
-}
-
-.RoutineEditor .Notification {
-  justify-content: space-between;
-}
-
 /* FOOTER */
 
 footer {
