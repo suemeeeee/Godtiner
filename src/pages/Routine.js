@@ -2,7 +2,7 @@
 //다른 사람들의 루틴을 보는 페이지 입니다.
 import MyUpper from "../Components/MyUpper";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 import "./Routine.css";
@@ -18,11 +18,21 @@ const Routine = () => {
 
   //가져갈 루틴을 넣을 곳
   const [selectRoutine, setSelectRoutine] = useState([]);
-  console.log(selectRoutine);
+  // console.log(selectRoutine);
 
   // 백엔드 통신 API 나중에 구현
   // 일단 더미 데이터로
   let { id } = useParams();
+
+  useEffect(() => {
+    console.log(UserDummyData.LikedRoutine.LikeId.includes(parseInt(id)));
+    if (UserDummyData.LikedRoutine.LikeId.includes(parseInt(id))) {
+      setIsWishAdd(true);
+      setButtonText("❤️");
+    }
+    console.log(isWishAdd);
+  });
+
   let detailRoutine = feedDummyData.Feed_Routine.find((item) => {
     return parseInt(item.RoutineId) == parseInt(id);
   });
@@ -39,6 +49,8 @@ const Routine = () => {
   //       console.log(Error);
   //     });
   // }, []);
+
+  // const isWished = UserDummyData.LikedRoutine.find((it) => it.LikeId === id);
 
   //좋아요 누르면 넘겨줄 함수 (false를 true로 바꾸고 꽉찬 하트로)
   const wishAddHandler = () => {
