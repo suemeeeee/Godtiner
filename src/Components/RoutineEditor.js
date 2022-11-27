@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 //import mui
 import Switch from "@mui/material/Switch";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
 
@@ -14,7 +14,6 @@ const RoutineEditor = ({ isEdit, originData }) => {
     parseInt(
       MyRoutineDummyData.MyRoutine[MyRoutineDummyData.MyRoutine.length - 1].id
     ) + 1;
-
   //세부루틴 이름
   const [content, setContent] = useState("");
   //알림설정
@@ -27,7 +26,8 @@ const RoutineEditor = ({ isEdit, originData }) => {
   const contentRef = useRef();
   const navigate = useNavigate();
 
-  console.log(r_id);
+  //삭제를 위해서
+  const { id } = useParams();
 
   useEffect(() => {
     if (isEdit) {
@@ -64,6 +64,19 @@ const RoutineEditor = ({ isEdit, originData }) => {
       MyRoutineDummyData.MyRoutine[getIndex] = new_data;
     }
     navigate("/home", { replace: true });
+  };
+
+  const onRemove = () => {
+    if (window.confirm("루틴을 삭제하시겠습니까?")) {
+      const filterRoutine = MyRoutineDummyData.MyRoutine.filter(
+        (it) => parseInt(it.id) !== parseInt(id)
+      );
+      MyRoutineDummyData.MyRoutine = filterRoutine;
+      alert("삭제완료");
+      navigate("/home", { replace: true });
+    } else {
+      alert("취소되었습니다");
+    }
   };
 
   return (
@@ -104,6 +117,9 @@ const RoutineEditor = ({ isEdit, originData }) => {
         </div>
         <div>
           <span>요일 반복</span>
+        </div>
+        <div className="removeText" onClick={onRemove}>
+          {isEdit ? "삭제하기" : " "}
         </div>
       </section>
       <button className="submitRoutine_btn" onClick={handleSubmit}>

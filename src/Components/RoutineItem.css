@@ -24,3 +24,9 @@
   text-align: center;
   cursor: pointer;
 }
+
+.removeText {
+  font-weight: bolder;
+  cursor: pointer;
+  color: red;
+}
