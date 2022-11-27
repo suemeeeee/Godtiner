@@ -10,10 +10,20 @@ import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
 import "./RoutineEditor.css";
 
 const RoutineEditor = ({ isEdit, originData }) => {
-  const r_id =
-    parseInt(
-      MyRoutineDummyData.MyRoutine[MyRoutineDummyData.MyRoutine.length - 1].id
-    ) + 1;
+  let r_id = 0;
+  if (parseInt(MyRoutineDummyData.MyRoutine.length) > 0) {
+    r_id =
+      parseInt(
+        MyRoutineDummyData.MyRoutine[MyRoutineDummyData.MyRoutine.length - 1].id
+      ) + 1;
+  } else {
+    r_id = 1;
+  }
+  // const r_id =
+  //   parseInt(
+  //     MyRoutineDummyData.MyRoutine[MyRoutineDummyData.MyRoutine.length - 1].id
+  //   ) + 1;
+
   //세부루틴 이름
   const [content, setContent] = useState("");
   //알림설정
