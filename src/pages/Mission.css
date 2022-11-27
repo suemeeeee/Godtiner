@@ -1,0 +1,25 @@
+.ul_ms {
+  width: 90%;
+  margin-top: 5%;
+}
+
+.li_ms {
+  width: 45%;
+  height: 210px;
+  display: inline-block;
+  margin: 2%;
+  text-align: center;
+  /* border: 1px solid #cccccc; */
+  line-height: 100%;
+}
+.trophy_img {
+  width: 50%;
+  margin-top: 5%;
+  vertical-align: middle;
+}
+
+.trophy_text {
+  font-size: 25px;
+  width: 100%;
+  vertical-align: middle;
+}
