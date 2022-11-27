@@ -41,6 +41,7 @@ button {
   margin-bottom: 40px;
   font-family: "Gowun Dodum", sans-serif;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .profileEdit:hover {
@@ -48,6 +49,7 @@ button {
   color: white;
   transform: scale(1.02);
   transition: 0.25s;
+  cursor: pointer;
 }
 
 .alertEdit {
@@ -59,6 +61,7 @@ button {
 
 .editButton {
   display: inline-block;
+  cursor: pointer;
 }
 
 .editButton1 {
@@ -70,10 +73,12 @@ button {
   margin: 10px;
   background-color: transparent;
   font-family: "Gowun Dodum", sans-serif;
+  cursor: pointer;
 }
 
 .editButton1:hover {
   background-color: rgb(184, 184, 184);
+  cursor: pointer;
 }
 
 .logoutButton {
@@ -85,6 +90,7 @@ button {
   margin-bottom: 40px;
   font-family: "Gowun Dodum", sans-serif;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .logoutButton:hover {
@@ -92,4 +98,5 @@ button {
   color: white;
   transform: scale(1.02);
   transition: 0.25s;
+  cursor: pointer;
 }
