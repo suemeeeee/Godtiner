@@ -68,7 +68,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
 
   return (
     <div className="RoutineEditor">
-      <section>
+      <section className="routineSection">
         <div className="RoutinName">
           <input
             className="NameBox"
@@ -90,11 +90,13 @@ const RoutineEditor = ({ isEdit, originData }) => {
         <div className="timeDay">
           <span>시간 설정 </span>
           <input
+            className="startTime"
             type="time"
             value={startTime}
             onChange={(e) => setStartTime(e.target.value)}
           />
           <input
+            className="endTime"
             type="time"
             value={endTime}
             onChange={(e) => setEndTime(e.target.value)}
@@ -104,7 +106,9 @@ const RoutineEditor = ({ isEdit, originData }) => {
           <span>요일 반복</span>
         </div>
       </section>
-      <button onClick={handleSubmit}>{isEdit ? "수정하기" : "추가하기"}</button>
+      <button className="submitRoutine_btn" onClick={handleSubmit}>
+        {isEdit ? "수정하기" : "추가하기"}
+      </button>
     </div>
   );
 };

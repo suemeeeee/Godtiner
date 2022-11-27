@@ -14,13 +14,23 @@ const LikedRoutineEdit = () => {
   //전체 루틴 데이터 돌면서 wishedId 배열에 그 루틴 아이디가 있으면
   // wishedList에 추가해주기
   //왜 안되지 ...
-  feedDummyData.Feed_Routine.map((w) => {
-    console.log(wishedId);
-    if (wishedList.includes(w.RoutineId)) {
-      setWishedList([w, ...wishedList]);
-    }
-    console.log(wishedList);
+  // feedDummyData.Feed_Routine.map((w) => {
+  //   console.log(wishedId);
+  //   if (wishedList.includes(w.RoutineId)) {
+  //     setWishedList([w, ...wishedList]);
+  //   }
+  //   console.log(wishedList);
+  // });
+
+  //나름대로 디버깅 해봤는데, 오류가 있음.
+  //한번 랜더 하고, 코드 새롭게 고쳐서 저장하면 배열이 자꾸 늘어나
+  //근데 또 새로고침 하면 다시 원래대로 돌아와...뭘까요
+  wishedId.map((it) => {
+    const newRou = feedDummyData.Feed_Routine[parseInt(it) - 1];
+    //console.log(newRou);
+    wishedList.push(newRou);
   });
+  console.log(wishedList);
 
   return (
     <div>
@@ -37,7 +47,7 @@ const LikedRoutineEdit = () => {
             <br />
             <text className="feedTitle">{it.RoutineTitle}</text>
             <div className="feedTag">
-              #{it.RoutineTag[0]} #{it.RoutineTag[1]}
+              {/* #{it.RoutineTag[0]} #{it.RoutineTag[1]} */}
             </div>
             <div>
               <div className="feedback">
