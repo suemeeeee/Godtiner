@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import MyUpper from "../Components/MyUpper";
 import Popup from "../Components/Popup";
 
-import Axios from "axios";
+import axios from "axios";
 
 const EmailSignup = () => {
   const navigate = useNavigate();
@@ -62,26 +62,24 @@ const EmailSignup = () => {
       });
       return;
     } else {
-      Axios.post("http://localhost:8080/join", {
-        password: password,
-        email: email,
-        name: userName,
-        nickname: nickName,
-      })
+      axios
+        .post("/signUp", {
+          email: email,
+          password: password,
+          name: userName,
+          nickname: nickName,
+        })
         .then(function (response) {
-          if (response.data == "회원가입 완료") {
-            console.log(response);
+          if (response) {
             window.location.href = "http://localhost:3000/signupcomplete";
           } else {
-            let message = response.data.message;
-            if (response.data == "이메일 중복") {
-              message =
-                "User ID is duplicated. Please enter a different User ID. ";
-            }
           }
         })
         .catch(function (error) {
           console.log(error);
+          if (error.response.data.errorCode === 600) {
+            alert("이미 가입된 이메일입니다.");
+          }
         });
     }
   };

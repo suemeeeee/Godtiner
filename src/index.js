@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import Axios from "axios";
 
-Axios.defaults.baseURL = "http://localhost:8080/join";
+Axios.defaults.baseURL = "http://localhost:8080";
 Axios.defaults.withCredentials = true;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
