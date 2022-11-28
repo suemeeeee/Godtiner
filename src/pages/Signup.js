@@ -4,17 +4,11 @@ import { useNavigate } from "react-router-dom";
 import LoginGoogle from "../Components/LoginGoogle";
 import Axios from "axios";
 
-const config = {
-  headers: {
-    Authorization: "Bearer " + localStorage.getItem("jwtToken"),
-  },
-};
-
 function Signup() {
   const [user, setUser] = useState(null);
 
   const getUser = async () => {
-    let res = await Axios.get("http://localhost:8080/user", config);
+    let res = await Axios.get("http://localhost:8080/user");
     setUser(res.data);
   };
 
