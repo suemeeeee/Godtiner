@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MyUpper from "../Components/MyUpper";
 import "./Login.css";
-import Axios from "axios";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,18 +18,17 @@ const Login = () => {
   };
 
   const onSubmit = (e) => {
-    Axios.post("http://localhost:8080/join", {
-      password: password,
-      email: email,
-    })
+    axios
+      .post("/signIn", {
+        password: password,
+        email: email,
+      })
       .then((response) => {
-        const { accessToken } = response.data;
-        Axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${accessToken}`;
+        console.log(response);
+        window.location.href = "http://localhost:3000/home";
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response);
       });
   };
 

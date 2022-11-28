@@ -1,6 +1,6 @@
 import MyUpper from "../Components/MyUpper";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UserDummyData from "../DummyData/UserDummyData.json";
 import feedDummyData from "../DummyData/feedDummyData.json";
 
@@ -13,9 +13,9 @@ const LikedRoutineEdit = () => {
 
   wishedId.map((it) => {
     const newRou = feedDummyData.Feed_Routine[parseInt(it) - 1];
-    //console.log(newRou);
     wishedList.push(newRou);
   });
+
   console.log(wishedList);
 
   return (
@@ -33,7 +33,7 @@ const LikedRoutineEdit = () => {
             <br />
             <text className="feedTitle">{it.RoutineTitle}</text>
             <div className="feedTag">
-              {/* #{it.RoutineTag[0]} #{it.RoutineTag[1]} */}
+              #{it.RoutineTag[0]} #{it.RoutineTag[1]}
             </div>
             <div>
               <div className="feedback">
