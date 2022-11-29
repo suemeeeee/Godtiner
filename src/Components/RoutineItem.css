@@ -13,7 +13,7 @@
   text-align: center;
 }
 
-.RoutineContent {
+.MyRoutineContent {
   display: inline-block;
   border: 0;
   border-radius: 13px;
@@ -23,6 +23,20 @@
   font-size: 22px;
   text-align: center;
   cursor: pointer;
+}
+
+.clearedRoutine {
+  display: inline-block;
+  border: 0;
+  border-radius: 13px;
+  width: 300px;
+  height: 50px;
+  margin-left: 10px;
+  font-size: 22px;
+  text-align: center;
+  cursor: pointer;
+  background-color: rgb(56, 56, 255);
+  color: white;
 }
 
 .removeText {
