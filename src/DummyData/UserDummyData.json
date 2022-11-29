@@ -7,7 +7,9 @@
     "UserProfileContent": "이제 막 갓티너가 된 새싹이입니다! 잘 부탁드립니다!",
     "UserSignupDate": "2022.11.21",
     "UserLikedRoutine": "",
-    "UserSharedRoutine": ""
+    "UserSharedRoutine": "",
+
+    "ClearedRoutine": 0
   },
 
   "LikedRoutine": {
