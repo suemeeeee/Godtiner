@@ -47,3 +47,22 @@
 .routineSection {
   font-size: 24px;
 }
+
+.routineRules_div {
+}
+.textSpan_re {
+}
+
+.routineRule {
+  margin: 1%;
+  width: 10%;
+  height: 5vh;
+  border-radius: 15px;
+  font-size: 25px;
+  text-align: center;
+  background-color: rgb(228, 228, 228);
+}
+
+.routineRulesBtn_div {
+  text-align: center;
+}

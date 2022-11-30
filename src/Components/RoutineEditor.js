@@ -10,6 +10,7 @@ import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
 import "./RoutineEditor.css";
 
 const RoutineEditor = ({ isEdit, originData }) => {
+  //루틴 아이디 설정하는 로직에 뭔가 문제 있는 거 같음 ... 추가할 땐 ㄱㅊ한데 이미 있는 1, 2 들도 계속 3이야
   let r_id = 0;
   if (parseInt(MyRoutineDummyData.MyRoutine.length) > 0) {
     r_id =
@@ -89,6 +90,27 @@ const RoutineEditor = ({ isEdit, originData }) => {
     }
   };
 
+  //월~일 요일 버튼 클릭 시 MyRoutineDummyData에 각각 요일 값 boolean 처리 함수
+  const onClickRoutineRule = (e) => {
+    MyRoutineDummyData.MyRoutine[r_id - 2].routineRules[
+      parseInt(e.target.value)
+    ] =
+      !MyRoutineDummyData.MyRoutine[r_id - 2].routineRules[
+        parseInt(e.target.value)
+      ];
+
+    if (
+      MyRoutineDummyData.MyRoutine[r_id - 2].routineRules[
+        parseInt(e.target.value)
+      ]
+    ) {
+      document.getElementById(e.target.id).style.backgroundColor = "blue";
+    } else {
+      document.getElementById(e.target.id).style.backgroundColor =
+        "rgb(228, 228, 228)";
+    }
+  };
+
   return (
     <div className="RoutineEditor">
       <section className="routineSection">
@@ -101,7 +123,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
           />
         </div>
         <div className="Notification">
-          <span>알림 설정</span>
+          <span className="textSpan_re">알림 설정</span>
           <Switch
             checked={onOff}
             onChange={(e) => {
@@ -111,7 +133,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
         </div>
 
         <div className="timeDay">
-          <span>시간 설정 </span>
+          <span className="textSpan_re">시간 설정 </span>
           <input
             className="startTime"
             type="time"
@@ -125,8 +147,67 @@ const RoutineEditor = ({ isEdit, originData }) => {
             onChange={(e) => setEndTime(e.target.value)}
           />
         </div>
-        <div>
-          <span>요일 반복</span>
+        <div className="routineRules_div">
+          <span className="textSpan_re">요일 반복</span>
+          <br />
+          <div className="routineRulesBtn_div">
+            <button
+              id="monBtn"
+              value="0"
+              className="routineRule"
+              onClick={onClickRoutineRule}
+            >
+              월
+            </button>
+            <button
+              id="tueBtn"
+              value="1"
+              className="routineRule"
+              onClick={onClickRoutineRule}
+            >
+              화
+            </button>
+            <button
+              id="wedBtn"
+              value="2"
+              className="routineRule"
+              onClick={onClickRoutineRule}
+            >
+              수
+            </button>
+            <button
+              id="thuBtn"
+              value="3"
+              className="routineRule"
+              onClick={onClickRoutineRule}
+            >
+              목
+            </button>
+            <button
+              id="friBtn"
+              value="4"
+              className="routineRule"
+              onClick={onClickRoutineRule}
+            >
+              금
+            </button>
+            <button
+              id="satBtn"
+              value="5"
+              className="routineRule"
+              onClick={onClickRoutineRule}
+            >
+              토
+            </button>
+            <button
+              id="sunBtn"
+              value="6"
+              className="routineRule"
+              onClick={onClickRoutineRule}
+            >
+              일
+            </button>
+          </div>
         </div>
         <div className="removeText" onClick={onRemove}>
           {isEdit ? "삭제하기" : " "}

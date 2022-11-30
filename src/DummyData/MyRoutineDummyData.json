@@ -5,6 +5,17 @@
       "startTime": "08:00",
       "endTime": "08:10",
       "content": "아침 명상하기",
+      "routineRules": [
+        {
+          "mon": false,
+          "tue": false,
+          "wed": false,
+          "thu": false,
+          "fri": false,
+          "sat": false,
+          "sun": false
+        }
+      ],
       "isclear": false
     },
     {
@@ -12,6 +23,17 @@
       "startTime": "08:15",
       "endTime": "09:00",
       "content": "기상 스트레칭 하기",
+      "routineRules": [
+        {
+          "mon": false,
+          "tue": false,
+          "wed": false,
+          "thu": false,
+          "fri": false,
+          "sat": false,
+          "sun": false
+        }
+      ],
       "isclear": false
     }
   ]
