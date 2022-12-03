@@ -20,6 +20,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
   } else {
     r_id = 1;
   }
+
   // const r_id =
   //   parseInt(
   //     MyRoutineDummyData.MyRoutine[MyRoutineDummyData.MyRoutine.length - 1].id
@@ -34,6 +35,30 @@ const RoutineEditor = ({ isEdit, originData }) => {
   //끝나는 시간
   const [endTime, setEndTime] = useState("");
 
+  // const [routineRules, setRoutineRules] = useState({
+  //   mon: false,
+  //   tue: false,
+  //   wed: false,
+  //   thu: false,
+  //   fri: false,
+  //   sat: false,
+  //   sun: false,
+  // });
+
+  let routineRules = [
+    {
+      mon: false,
+      tue: false,
+      wed: false,
+      thu: false,
+      fri: false,
+      sat: false,
+      sun: false,
+    },
+  ];
+
+  console.log(routineRules);
+
   const contentRef = useRef();
   const navigate = useNavigate();
 
@@ -45,6 +70,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
       setStartTime(originData.startTime);
       setEndTime(originData.endTime);
       setContent(originData.content);
+      routineRules = originData.routineRules;
     }
   }, [isEdit, originData]);
 
@@ -61,6 +87,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
         startTime,
         endTime,
         content,
+        routineRules,
       };
       newRoutine = [...MyRoutineDummyData.MyRoutine, newData];
       MyRoutineDummyData.MyRoutine = newRoutine;
@@ -70,6 +97,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
         startTime,
         endTime,
         content,
+        routineRules,
       };
       const getIndex = MyRoutineDummyData.MyRoutine.indexOf(originData);
       MyRoutineDummyData.MyRoutine[getIndex] = new_data;
@@ -92,23 +120,74 @@ const RoutineEditor = ({ isEdit, originData }) => {
 
   //월~일 요일 버튼 클릭 시 MyRoutineDummyData에 각각 요일 값 boolean 처리 함수
   const onClickRoutineRule = (e) => {
-    MyRoutineDummyData.MyRoutine[r_id - 2].routineRules[
-      parseInt(e.target.value)
-    ] =
-      !MyRoutineDummyData.MyRoutine[r_id - 2].routineRules[
-        parseInt(e.target.value)
-      ];
+    switch (e.target.value) {
+      case "mon":
+        routineRules[0].mon = !routineRules[0].mon;
+        if (routineRules[0].mon == true) {
+          document.getElementById(e.target.id).style.backgroundColor = "blue";
+        } else {
+          document.getElementById(e.target.id).style.backgroundColor =
+            "rgb(228, 228, 228)";
+        }
+        break;
+      case "tue":
+        routineRules[0].tue = !routineRules[0].tue;
+        if (routineRules[0].tue == true) {
+          document.getElementById(e.target.id).style.backgroundColor = "blue";
+        } else {
+          document.getElementById(e.target.id).style.backgroundColor =
+            "rgb(228, 228, 228)";
+        }
+        break;
+      case "wed":
+        routineRules[0].wed = !routineRules[0].wed;
+        if (routineRules[0].wed == true) {
+          document.getElementById(e.target.id).style.backgroundColor = "blue";
+        } else {
+          document.getElementById(e.target.id).style.backgroundColor =
+            "rgb(228, 228, 228)";
+        }
+        break;
+      case "thu":
+        routineRules[0].thu = !routineRules[0].thu;
+        if (routineRules[0].thu == true) {
+          document.getElementById(e.target.id).style.backgroundColor = "blue";
+        } else {
+          document.getElementById(e.target.id).style.backgroundColor =
+            "rgb(228, 228, 228)";
+        }
+        break;
+      case "fri":
+        routineRules[0].fri = !routineRules[0].fri;
+        if (routineRules[0].fri == true) {
+          document.getElementById(e.target.id).style.backgroundColor = "blue";
+        } else {
+          document.getElementById(e.target.id).style.backgroundColor =
+            "rgb(228, 228, 228)";
+        }
+        break;
+      case "sat":
+        routineRules[0].sat = !routineRules[0].sat;
+        if (routineRules[0].sat == true) {
+          document.getElementById(e.target.id).style.backgroundColor = "blue";
+        } else {
+          document.getElementById(e.target.id).style.backgroundColor =
+            "rgb(228, 228, 228)";
+        }
+        break;
+      case "sun":
+        routineRules[0].sun = !routineRules[0].sun;
+        if (routineRules[0].sun == true) {
+          document.getElementById(e.target.id).style.backgroundColor = "blue";
+        } else {
+          document.getElementById(e.target.id).style.backgroundColor =
+            "rgb(228, 228, 228)";
+        }
+        break;
 
-    if (
-      MyRoutineDummyData.MyRoutine[r_id - 2].routineRules[
-        parseInt(e.target.value)
-      ]
-    ) {
-      document.getElementById(e.target.id).style.backgroundColor = "blue";
-    } else {
-      document.getElementById(e.target.id).style.backgroundColor =
-        "rgb(228, 228, 228)";
+      default:
     }
+    console.log(routineRules);
   };
 
   return (
@@ -153,7 +232,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
           <div className="routineRulesBtn_div">
             <button
               id="monBtn"
-              value="0"
+              value="mon"
               className="routineRule"
               onClick={onClickRoutineRule}
             >
@@ -161,7 +240,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
             </button>
             <button
               id="tueBtn"
-              value="1"
+              value="tue"
               className="routineRule"
               onClick={onClickRoutineRule}
             >
@@ -169,7 +248,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
             </button>
             <button
               id="wedBtn"
-              value="2"
+              value="wed"
               className="routineRule"
               onClick={onClickRoutineRule}
             >
@@ -177,7 +256,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
             </button>
             <button
               id="thuBtn"
-              value="3"
+              value="thu"
               className="routineRule"
               onClick={onClickRoutineRule}
             >
@@ -185,7 +264,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
             </button>
             <button
               id="friBtn"
-              value="4"
+              value="fri"
               className="routineRule"
               onClick={onClickRoutineRule}
             >
@@ -193,7 +272,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
             </button>
             <button
               id="satBtn"
-              value="5"
+              value="sat"
               className="routineRule"
               onClick={onClickRoutineRule}
             >
@@ -201,7 +280,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
             </button>
             <button
               id="sunBtn"
-              value="6"
+              value="sun"
               className="routineRule"
               onClick={onClickRoutineRule}
             >

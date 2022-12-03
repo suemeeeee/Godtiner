@@ -8,7 +8,7 @@
       "routineRules": [
         {
           "mon": false,
-          "tue": false,
+          "tue": true,
           "wed": false,
           "thu": false,
           "fri": false,
