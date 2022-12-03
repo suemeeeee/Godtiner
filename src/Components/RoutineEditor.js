@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
 
 import "./RoutineEditor.css";
+import axios from "axios";
 
 const RoutineEditor = ({ isEdit, originData }) => {
   //루틴 아이디 설정하는 로직에 뭔가 문제 있는 거 같음 ... 추가할 땐 ㄱㅊ한데 이미 있는 1, 2 들도 계속 3이야
@@ -82,6 +83,32 @@ const RoutineEditor = ({ isEdit, originData }) => {
       return;
     }
     if (!isEdit) {
+      //백엔드 연동 시험
+      axios
+        .post(
+          "http://localhost:8080/myRoutine/save",
+          {
+            content: content,
+            startTime: startTime,
+            endTime: endTime,
+            myRulesList: routineRules,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json;charset=utf-8",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+      //여기까지가 백엔드 연동시험
+
+      /* 더미데이터로 할 경우
       let newData = {
         id: r_id,
         startTime,
@@ -91,6 +118,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
       };
       newRoutine = [...MyRoutineDummyData.MyRoutine, newData];
       MyRoutineDummyData.MyRoutine = newRoutine;
+      */
     } else {
       let new_data = {
         id: originData.id,
