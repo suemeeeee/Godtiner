@@ -63,8 +63,23 @@ const RoutineEditor = ({ isEdit, originData }) => {
   const contentRef = useRef();
   const navigate = useNavigate();
 
-  //삭제를 위해서
+  //수정 및 삭제를 위해서
   const { id } = useParams();
+  console.log(id);
+
+  //백엔드 연동을 위한 함수
+  //시작이나 끝나는 시간이 수정되었는지 판별하는 함수
+  const isSameTime = (time, originTime) => {
+    if (time === startTime) {
+      if (startTime === originTime) {
+        setStartTime("");
+      }
+    } else {
+      if (endTime === originTime) {
+        setEndTime("");
+      }
+    }
+  };
 
   useEffect(() => {
     if (isEdit) {
@@ -120,6 +135,35 @@ const RoutineEditor = ({ isEdit, originData }) => {
       MyRoutineDummyData.MyRoutine = newRoutine;
       */
     } else {
+      //백엔드로 연동 시작
+      isSameTime(startTime, originData.startTime);
+      isSameTime(endTime, originData.endTime);
+      axios
+        .put(
+          `http://localhost:8080/myRoutine/detail/${id}`,
+          {
+            content: content,
+            startTime: startTime,
+            endTime: endTime,
+            routineRules,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json;charset=utf-8",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+
+      //연동 끝
+
+      /* 더미데이터로 할 경우
       let new_data = {
         id: originData.id,
         startTime,
@@ -129,10 +173,12 @@ const RoutineEditor = ({ isEdit, originData }) => {
       };
       const getIndex = MyRoutineDummyData.MyRoutine.indexOf(originData);
       MyRoutineDummyData.MyRoutine[getIndex] = new_data;
+      */
     }
-    navigate("/home", { replace: true });
+    //navigate("/home", { replace: true });
   };
 
+  console.log(startTime, endTime);
   const onRemove = () => {
     if (window.confirm("루틴을 삭제하시겠습니까?")) {
       const filterRoutine = MyRoutineDummyData.MyRoutine.filter(
