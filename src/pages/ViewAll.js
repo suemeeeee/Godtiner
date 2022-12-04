@@ -11,15 +11,17 @@ import RoutineItem from "../Components/RoutineItem";
 const ViewAll = () => {
   const navigate = useNavigate();
 
-  const [routineList, setRoutineList] = useState([]);
+  const [likeSortedRoutineList, setLikeSortedRoutineList] = useState([]);
+  const [pickSortedRoutineList, setPickSortedRoutineList] = useState([]);
 
   useEffect(() => {
     axios.get("/feed?sort=likecnt,DESC").then((response) => {
-      setRoutineList(response.data.result.data.simpleLectureDtoList);
+      setLikeSortedRoutineList(response.data.result.data.simpleLectureDtoList);
+    });
+    axios.get("/feed?sort=pickcnt,DESC").then((response) => {
+      setPickSortedRoutineList(response.data.result.data.simpleLectureDtoList);
     });
   }, []);
-
-  console.log(routineList);
 
   return (
     <div>
@@ -47,7 +49,7 @@ const ViewAll = () => {
       </div>
       <hr size="10px" width="90%" />
       <div id="like" className="sortedList_div">
-        {routineList.map((it) => (
+        {likeSortedRoutineList.map((it) => (
           <div
             className="RoutineItem"
             key={it.id}
@@ -72,7 +74,29 @@ const ViewAll = () => {
         ))}
       </div>
       <div id="pick" className="sortedList_div">
-        ㅋㅋ
+        {pickSortedRoutineList.map((it) => (
+          <div
+            className="RoutineItem"
+            key={it.id}
+            onClick={() => navigate(`/routine/${it.id}`)}
+          >
+            <img
+              className="feedImg"
+              src={require(`C:/api/image/${it.feed_thumbnail}`)}
+            ></img>
+            <br />
+            <span className="feedTitle">{it.title}</span>
+            <div className="feedTag">
+              {}
+              {}
+            </div>
+            <div>
+              <div className="feedback">
+                ❤{it.likecnt} 📥{it.pickcnt} 👀{it.hits}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
       <MoveTab />
     </div>
