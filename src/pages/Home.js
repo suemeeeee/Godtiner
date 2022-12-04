@@ -87,7 +87,7 @@ const Home = () => {
         ))} */}
         {/* 이하는 백엔드 실험을 위함 */}
         {routineData.map((it) => (
-          <RoutineItem key={it.myRules.contentsId} {...it} />
+          <RoutineItem key={it.id} {...it} />
         ))}
         {/* 여기까지가 백엔드 실험을 위함 */}
       </div>
