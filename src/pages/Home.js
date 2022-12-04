@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MySearchAlarm from "../Components/MySearchAlarm";
 import "./Home.css";
@@ -19,7 +19,9 @@ const Home = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("내 루틴");
   //백엔드시험을 위해 설치함
-  let routineData = [];
+  //useEffect안에서 값을 정의하면 useEffect를 나오는 순간 값이 보존이 안됨..
+  //구글링결과 useState를 이용해야 한다고 한다..
+  const [routineData, setRoutineData] = useState([]);
 
   useEffect(() => {
     axios
@@ -30,15 +32,13 @@ const Home = () => {
       })
       .then((response) => {
         //console.log(response.data.result.data.myContentsList);
-        routineData = response.data.result.data.myContentsList;
-        console.log(routineData);
+        setRoutineData(response.data.result.data.myContentsList);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
-  //백엔드 연동시험
-
+  }, [routineData]);
+  console.log(routineData);
   //여기까지가 연동시험
 
   return (
@@ -75,7 +75,7 @@ const Home = () => {
         ))} */}
         {/* 이하는 백엔드 실험을 위함 */}
         {routineData.map((it) => (
-          <RoutineItem key={it.id} {...it} />
+          <RoutineItem key={it.myRules.contentsId} {...it} />
         ))}
         {/* 여기까지가 백엔드 실험을 위함 */}
       </div>
