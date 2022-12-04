@@ -36,8 +36,20 @@ const Home = () => {
       })
       .catch((error) => {
         console.log(error);
-      });
-  }, [routineData]);
+      })
+      .then(
+        axios
+          .get("http://localhost:8080/myRoutine/post", {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          })
+          .then((response) => {
+            //console.log(response.data.result.data.myContentsList);
+            setRoutineData(response.data.result.data.myContentsList);
+          })
+      );
+  }, []);
   console.log(routineData);
   //여기까지가 연동시험
 
