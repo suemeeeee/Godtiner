@@ -21,6 +21,7 @@ const ViewAll = () => {
     axios.get("/feed?sort=pickcnt,DESC").then((response) => {
       setPickSortedRoutineList(response.data.result.data.simpleLectureDtoList);
     });
+    document.getElementById("pick").style.display = "none";
   }, []);
 
   return (
