@@ -8,11 +8,13 @@
   display: inline-block;
   width: 45%;
   margin: 10px;
+  text-align: center;
 }
 
 .feedImg {
   width: 100%;
   height: auto;
+  border-radius: 30px;
 }
 
 .feedTitle {
@@ -27,4 +29,8 @@
 
 .feedback {
   font-size: 20px;
+}
+
+.sortedList_div {
+  text-align: center;
 }
