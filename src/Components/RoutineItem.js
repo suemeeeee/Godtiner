@@ -34,7 +34,7 @@ const RoutineItem = ({ id, content, startTime, endTime, isclear }) => {
 
   const onClickContent = () => {
     navigate(`/myroutineeditor/${id}`);
-    console.log("콘텐트 id", id);
+    console.log(id);
   };
   return (
     <div className="routineGroup">
