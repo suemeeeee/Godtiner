@@ -19,6 +19,7 @@ import AccountEdit from "./pages/AccountEdit";
 import SearchPage from "./pages/SearchPage";
 import Mission from "./pages/Mission";
 import LikedRoutineEdit from "./pages/LikedRoutineEdit";
+import ViewAll from "./pages/ViewAll";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           <Route path="/searchpage" element={<SearchPage />} />
           <Route path="/mission" element={<Mission />} />
           <Route path="/likedroutineedit" element={<LikedRoutineEdit />} />
+          <Route path="/viewall" element={<ViewAll />} />
         </Routes>
       </div>
     </BrowserRouter>
