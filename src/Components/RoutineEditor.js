@@ -145,7 +145,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
             content: content,
             startTime: startTime,
             endTime: endTime,
-            routineRules,
+            newRules: routineRules,
           },
           {
             headers: {
@@ -175,7 +175,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
       MyRoutineDummyData.MyRoutine[getIndex] = new_data;
       */
     }
-    //navigate("/home", { replace: true });
+    navigate("/home", { replace: true });
   };
 
   console.log(startTime, endTime);
