@@ -179,6 +179,30 @@ const RoutineEditor = ({ isEdit, originData }) => {
 
   console.log(startTime, endTime);
   const onRemove = () => {
+    //백엔드 연동 실험
+    if (window.confirm("루틴을 삭제하시겠습니까?")) {
+      axios
+        .delete(`http://localhost:8080/myRoutine/detail/${id}`, {
+          headers: {
+            "Content-Type": "application/json;charset=utf-8",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+      alert("삭제완료");
+      navigate("/home", { replace: true });
+    } else {
+      alert("취소되었습니다");
+    }
+
+    //백엔드 연동 실험 끝
+
+    /*
     if (window.confirm("루틴을 삭제하시겠습니까?")) {
       const filterRoutine = MyRoutineDummyData.MyRoutine.filter(
         (it) => parseInt(it.id) !== parseInt(id)
@@ -189,6 +213,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
     } else {
       alert("취소되었습니다");
     }
+    */
   };
 
   //월~일 요일 버튼 클릭 시 MyRoutineDummyData에 각각 요일 값 boolean 처리 함수
