@@ -11,7 +11,6 @@ import "./RoutineEditor.css";
 import axios from "axios";
 
 const RoutineEditor = ({ isEdit, originData }) => {
-  //루틴 아이디 설정하는 로직에 뭔가 문제 있는 거 같음 ... 추가할 땐 ㄱㅊ한데 이미 있는 1, 2 들도 계속 3이야
   let r_id = 0;
   if (parseInt(MyRoutineDummyData.MyRoutine.length) > 0) {
     r_id =
