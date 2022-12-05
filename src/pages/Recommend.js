@@ -14,14 +14,14 @@ const Recommend = () => {
   return (
     <div>
       <MySearchAlarm />
-      <diiv>
+      <div>
         <div>
           <span className="span_rm">✨인기루틴</span>
           <span className="span_rm_text" onClick={onClickViewAll}>
             view All
           </span>
         </div>
-      </diiv>
+      </div>
       <MoveTab />
     </div>
   );

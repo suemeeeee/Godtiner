@@ -1,7 +1,7 @@
 //루틴 상세페이지
 //다른 사람들의 루틴을 보는 페이지 입니다.
 import MyUpper from "../Components/MyUpper";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -13,54 +13,50 @@ import MoveTab from "../Components/MoveTab";
 
 const Routine = () => {
   const navigate = useNavigate();
+
   const [buttonText, setButtonText] = useState("🤍");
   const [isWishAdd, setIsWishAdd] = useState(false);
 
+  const [detailRoutine, setDetailRoutine] = useState([]);
   //가져갈 루틴을 넣을 곳
   const [selectRoutine, setSelectRoutine] = useState([]);
-  // console.log(selectRoutine);
 
-  // 백엔드 통신 API 나중에 구현
-  // 일단 더미 데이터로
-  let { id } = useParams();
+  const params = useParams();
+  const thisId = params.id;
 
   useEffect(() => {
-    console.log(UserDummyData.LikedRoutine.LikeId.includes(parseInt(id)));
-    if (UserDummyData.LikedRoutine.LikeId.includes(parseInt(id))) {
+    if (UserDummyData.LikedRoutine.LikeId.includes(parseInt(thisId))) {
       setIsWishAdd(true);
       setButtonText("❤️");
     }
-    console.log(isWishAdd);
   });
 
-  let detailRoutine = feedDummyData.Feed_Routine.find((item) => {
-    return parseInt(item.RoutineId) == parseInt(id);
-  });
+  useEffect(() => {
+    axios
+      .get(`/feed/${thisId}`)
+      .then((Response) => {
+        console.log(Response.data);
+        setDetailRoutine(Response.data.result.data);
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+  }, []);
 
   // 백 api 연동 코드 (콘솔에 출력만)
-  // useEffect(() => {
-  //   axios
-  //     .get(`/feed/${id}`)
-  //     .then((Response) => {
-  //       console.log(Response.data);
-  //       detailRoutine = Response.data;
-  //     })
-  //     .catch((Error) => {
-  //       console.log(Error);
-  //     });
-  // }, []);
 
+  console.log(detailRoutine);
   // const isWished = UserDummyData.LikedRoutine.find((it) => it.LikeId === id);
 
   //좋아요 누르면 넘겨줄 함수 (false를 true로 바꾸고 꽉찬 하트로)
   const wishAddHandler = () => {
     if (isWishAdd === false) {
       setButtonText("❤️");
-      UserDummyData.LikedRoutine.LikeId.push(id);
+      UserDummyData.LikedRoutine.LikeId.push(thisId);
       console.log("좋아요" + UserDummyData.LikedRoutine.LikeId);
     } else {
       setButtonText("🤍");
-      UserDummyData.LikedRoutine.LikeId.pop(id);
+      UserDummyData.LikedRoutine.LikeId.pop(thisId);
       console.log("좋아요" + UserDummyData.LikedRoutine.LikeId);
     }
     setIsWishAdd(!isWishAdd);
@@ -119,7 +115,10 @@ const Routine = () => {
       <MyUpper text={"루틴 상세페이지"} />
 
       <div className="Routine">
-        <img className="RoutineImg" src={detailRoutine.RoutinePic}></img>
+        <img
+          className="RoutineImg"
+          // src={require(`C:/api/image/${detailRoutine.detailThumbnail}`)}
+        ></img>
         <br />
         <h1 className="RoutineTitle">{detailRoutine.RoutineTitle}</h1>
         <div style={{ textAlign: "left", marginLeft: "30px" }}>
@@ -133,7 +132,7 @@ const Routine = () => {
             {buttonText}
           </button>
         </div>
-        {detailRoutine.RoutineContent.map((it) => (
+        {detailRoutine.sharedContentsList.map((it) => (
           <div className="RoutineDetail">
             <input
               className="checkbox"
@@ -157,12 +156,12 @@ const Routine = () => {
         <div
           style={{ fontSize: "25px", textAlign: "left", marginLeft: "30px" }}
         >
-          {detailRoutine.RoutineIntro}
+          {detailRoutine.routine_content}
         </div>
         <h2 style={{ textAlign: "left", fontSize: "35px", marginLeft: "30px" }}>
           루틴 제공자
         </h2>
-        <div style={{ fontSize: "25px" }}>{detailRoutine.Routiner}</div>
+        <div style={{ fontSize: "25px" }}>{detailRoutine.member.nickname}</div>
         <div>
           <button className="ShareButton_sr" onClick={onPush}>
             저장하기

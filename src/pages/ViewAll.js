@@ -54,7 +54,11 @@ const ViewAll = () => {
           <div
             className="RoutineItem"
             key={it.id}
-            onClick={() => navigate(`/routine/${it.id}`)}
+            onClick={() =>
+              navigate(`/routine/${it.id}`, {
+                id: it.id,
+              })
+            }
           >
             <img
               className="feedImg"
