@@ -71,7 +71,8 @@ const EmailSignup = () => {
         })
         .then(function (response) {
           if (response) {
-            window.location.href = "http://localhost:3000/signupcomplete";
+            navigate("/likedtag", { state: { email } });
+            // window.location.href = "http://localhost:3000/likedtag";
           } else {
           }
         })

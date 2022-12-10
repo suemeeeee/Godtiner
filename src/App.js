@@ -20,7 +20,7 @@ import SearchPage from "./pages/SearchPage";
 import Mission from "./pages/Mission";
 import LikedRoutineEdit from "./pages/LikedRoutineEdit";
 import ViewAll from "./pages/ViewAll";
-
+import LikedTag from "./pages/LikedTag";
 function App() {
   return (
     <BrowserRouter>
@@ -47,6 +47,7 @@ function App() {
           <Route path="/mission" element={<Mission />} />
           <Route path="/likedroutineedit" element={<LikedRoutineEdit />} />
           <Route path="/viewall" element={<ViewAll />} />
+          <Route path="/likedtag" element={<LikedTag />} />
         </Routes>
       </div>
     </BrowserRouter>

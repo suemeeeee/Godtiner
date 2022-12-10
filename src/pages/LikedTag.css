@@ -1,0 +1,31 @@
+.teglistDiv_lt {
+  text-align: center;
+}
+
+.taglist_lt {
+  list-style: none;
+  columns: 2;
+  width: 85%;
+
+  text-align: center;
+}
+
+.btn_lt {
+  width: 60%;
+  height: 5vh;
+  margin: 30px;
+  border-radius: 18px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.completeBtnDiv_lt {
+  text-align: center;
+}
+.completeBtn_lt {
+  margin-top: 10%;
+  width: 70%;
+  height: 4vh;
+  font-size: 20px;
+  border-radius: 15px;
+}
