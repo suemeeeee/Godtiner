@@ -1,0 +1,13 @@
+.notification {
+  background-color: rgb(224, 224, 224);
+  text-align: center;
+  height: 15vh;
+  margin: 5%;
+  border-radius: 20px;
+}
+
+.created_nt {
+}
+.title_nt {
+  font-size: 30px;
+}
