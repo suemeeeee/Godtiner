@@ -116,6 +116,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
         )
         .then((response) => {
           console.log(response);
+          navigate("/home", { replace: true });
         })
         .catch((error) => {
           console.log(error.response);
@@ -155,6 +156,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
         )
         .then((response) => {
           console.log(response);
+          navigate("/home", { replace: true });
         })
         .catch((error) => {
           console.log(error.response);
@@ -174,7 +176,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
       MyRoutineDummyData.MyRoutine[getIndex] = new_data;
       */
     }
-    navigate("/home", { replace: true });
+    //navigate("/home", { replace: true });
   };
 
   console.log(startTime, endTime);

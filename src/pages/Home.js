@@ -31,7 +31,7 @@ const Home = () => {
         },
       })
       .then((response) => {
-        //console.log(response.data.result.data.myContentsList);
+        console.log(response.data);
         setRoutineData(response.data.result.data.myContentsList);
       })
       .catch((error) => {
