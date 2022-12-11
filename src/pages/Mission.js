@@ -24,7 +24,7 @@ const Mission = () => {
                 className="trophy_img trophy_50"
                 src="./img/Trophy.png"
               ></img>
-              <h3 className="trophy_text">미션 50개 달성</h3>
+              <h3 className="trophy_text">미션 1개 달성</h3>
             </li>
             <li className="li_ms">
               <img className="trophy_img" src="./img/Trophy.png"></img>
