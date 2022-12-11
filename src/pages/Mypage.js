@@ -83,6 +83,14 @@ const Mypage = () => {
         </button>
 
         <button className="editButton1">공유한 루틴 편집</button>
+        <button
+          className="editButton1"
+          onClick={() => {
+            navigate("/changetag");
+          }}
+        >
+          관심사 태그 변경
+        </button>
       </div>
       <div>
         <button className="logoutButton">로그아웃</button>
