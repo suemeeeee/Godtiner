@@ -31,7 +31,7 @@ const Home = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         setRoutineData(response.data.result.data.myContentsList);
       })
       .catch((error) => {
@@ -51,7 +51,7 @@ const Home = () => {
       );
   }, []);
   console.log(routineData);
-  //여기까지가 연동시험
+  //여기까지가 연동실험
 
   return (
     <div className="Home">
