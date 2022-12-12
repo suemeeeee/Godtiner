@@ -158,7 +158,7 @@ const ShareRoutine = () => {
       myContentsIdList: checkedRoutineId,
       tagList: checkedTagList,
     };
-    frm.append("files", thumbnail);
+    frm.append("file", thumbnail);
     frm.append(
       "contents",
       new Blob([JSON.stringify(contents)], { type: "application/json" })
@@ -167,7 +167,6 @@ const ShareRoutine = () => {
       .post("http://localhost:8080/sharedRoutine/post", frm, {
         headers: {
           "Content-Type": "multipart/form-data",
-          //.d
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
@@ -178,7 +177,7 @@ const ShareRoutine = () => {
       .catch((error) => {
         console.log(error.response);
       });
-    // navigate("/home", { replace: true });z
+    // navigate("/home", { replace: true });
   };
 
   //개별체크
