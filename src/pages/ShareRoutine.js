@@ -10,20 +10,22 @@ import "./ShareRoutine.css";
 import MyUpper from "../Components/MyUpper";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { LensTwoTone } from "@mui/icons-material";
 
 const ShareRoutine = () => {
-  //연동 실험 1번째, id값 받아오기
-  //이게 약간 애매한 것이 id하나 받아올려고 useEffect를 이용해야 한다는 점
-  //home에서 props로 전달하고 싶지만 home.js에서 shareRoutine.js를 import하지 못한점
+  const navigate = useNavigate();
+
+  //백엔드로 넘겨 줄 변수들 (항상 상단에!)
   const [myRoutineId, setMyRoutineId] = useState(0);
   //연동 실험 2번째, 공유하기 페이지 구성할 때 쓸 api로 내 루틴 가져오기
-  ///myRoutine/share/{id}
   const [myRoutine, setMyRoutine] = useState([]);
   const [tagList, setTagList] = useState([]);
   //연동 실험 3번째, 선택한 태그와 루틴들
   const [checkedRoutineId, setCheckedRoutineId] = useState([]);
   const [checkedTagList, setCheckedTagList] = useState([]);
 
+  //백엔드 연동 axios 코드
+  //id얻어오기 위한 axios 코드
   useEffect(() => {
     axios
       .get("http://localhost:8080/myRoutine/post", {
@@ -38,9 +40,8 @@ const ShareRoutine = () => {
         console.log(error);
       });
   }, []);
-  console.log(myRoutineId);
-  console.log(tagList);
 
+  //공유 페이지 구성 api axios코드
   useEffect(() => {
     axios
       .get(`http://localhost:8080/myRoutine/share/${myRoutineId}`)
@@ -52,12 +53,9 @@ const ShareRoutine = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [myRoutineId]);
-  console.log("받아온 루틴", myRoutine);
-  console.log("받아온 태그", tagList);
-  console.log(checkedRoutineId);
+  }, []);
 
-  const navigate = useNavigate();
+  // 여기서 부터는 태그 버튼 색 변경 코드(추후 수정)
   var TagButton_sr = document.getElementsByClassName("TagButton_sr");
 
   function handleClick(e) {
@@ -78,11 +76,10 @@ const ShareRoutine = () => {
   }
 
   init();
+  //여기까지
 
-  //이 위는 태그 버튼 클릭 시 css 버튼 색상 변경 함수
-  //지금은 단일 태그로 설정해뒀지만, 배열로 바꾸면 이것도 수정 필요
-
-  //전송할 데이터 변수
+  //전송할 데이터 변수(필요한 것만 정리해서 위로 올려주시겠사옵니까?)
+  //참고로 tag는 위에 내가 해 놓음 checkedTagList임
   const [title, setTitle] = useState("");
   const [intro, setIntro] = useState("");
   const [tag, setTag] = useState([]);
@@ -90,17 +87,6 @@ const ShareRoutine = () => {
   const [RoutineImg, setRoutineImg] = useState();
   //체크선택 시, 내용이 들어갈 것
   const [checkedList, setCheckedList] = useState([]);
-  // console.log(checkedList);
-  //console.log(tag);
-
-  //현재 데이터 갯수에 따른 ID 지정 변수
-  //id가 증가가 되지 않아서 임시로 변경
-  // const nextRoutineId = useRef(3);
-  const nextRoutineId =
-    parseInt(
-      feedDummyData.Feed_Routine[feedDummyData.Feed_Routine.length - 1]
-        .RoutineId
-    ) + 1;
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -110,68 +96,21 @@ const ShareRoutine = () => {
     setIntro(e.target.value);
   };
 
+  //태그 버튼 클릭 시 checkedTagList에 해당 태그의 id와 tagname값 객체로 추가
   const onChangeTag = (e) => {
-    //setTag(e.target.value);
-    const tagArray = [{ id: e.target.value, tagName: e.target.name }];
-    if (tagList.length < 2) {
-      if (tagList.some((v) => v.id !== e.target.value)) {
-        setTagList([...tagList, tagArray]);
-      } else {
-        setTagList(tagList.filter((it) => it.id !== e.target.value));
-      }
-    } else {
-      return;
-    }
+    let selectTag = { id: e.target.id, name: e.target.value };
+    e.preventDefault();
+    setCheckedTagList([...checkedTagList, selectTag]);
+    console.log(checkedTagList);
   };
 
   const onChangeContent = (e) => {
     setContent(e.target.value);
   };
 
-  //feedDummyDate에 공유한 루틴을 추가하는 함수
-  // 공유하기 버튼을 누를 시 실행
+  // 공유하기 버튼을 누를 시 실행 백엔드 연동 axios 코드
+  // 쏘영쓰 부탁해유~><
   const onPush = async () => {
-    //백엔드 연동시 풀어보기. 유튜브 그대로 참조함
-    //e.preventDefalut();
-    const Feed_Routine = {
-      // RoutineId: nextRoutineId.current,
-      // Routiner: UserDummyData.User.UserName,
-      // RoutineTitle: title,
-      // RoutinePic: RoutineImg,
-      // RoutineTag: tag, //태그 배열로 바꿔야 함.. 일단 단일 태그
-      // RoutineIntro: intro,
-      // RoutineContent: [
-      //   ["8:00", " ", "따뜻한 물 한잔 마시기"],
-      //   ["9:00", " ", "신문기사 하나 읽기"],
-      //   ["10:00", "10:30", "가벼운 아침 운동"],
-      //   ["22:00", " ", "30분 책 읽기"],
-      // ], //임시
-      // Routine_like: "", //보류
-      // Routine_save: "",
-      // Routine_look: "",
-      //RoutineId: nextRoutineId.current,
-      RoutineId: nextRoutineId,
-      Routiner: UserDummyData.User.UserName,
-      RoutineTitle: title,
-      RoutinePic: RoutineImg,
-      RoutineTag: tag, //태그 배열로 바꿔야 함.. 일단 단일 태그
-      RoutineIntro: intro,
-      RoutineContent: checkedList,
-      Routine_like: "", //보류
-      Routine_save: "",
-      Routine_look: "",
-    };
-
-    feedDummyData.Feed_Routine.push(Feed_Routine);
-    //nextRoutineId.current += 1;
-
-    console.log(Feed_Routine);
-    //더미데이터로 전송할 객체에 데이터 제대로 들어갔는지 콘솔 출력
-
-    //나도 써봤다 api 문장!
-    //await axios.post('shareRoutines',{Feed_Routine});
-    console.log(feedDummyData);
-
     navigate("/home", { replace: true });
   };
 
@@ -229,9 +168,6 @@ const ShareRoutine = () => {
   const onCheckedAll = (checked) => {
     // let newRoutine = [];
     if (checked) {
-      //더미데이터 사용시
-      // MyRoutineDummyData.MyRoutine.forEach((it) => newRoutine.push(it));
-      // setCheckedList(newRoutine);
       const idArray = [];
       myRoutine.forEach((it) => idArray.push(it.id));
       setCheckedRoutineId(idArray);
@@ -279,25 +215,11 @@ const ShareRoutine = () => {
             onChange={onChangeIntro}
           />
         </div>
-        {/* <div className="Tag_sr">
-          <button value="운동" className="TagButton_sr" onClick={onChangeTag}>
-            운동
-          </button>
-          <button value="건강" className="TagButton_sr" onClick={onChangeTag}>
-            건강
-          </button>
-          <button value="학생" className="TagButton_sr" onClick={onChangeTag}>
-            학생
-          </button>
-          <button value="독서" className="TagButton_sr" onClick={onChangeTag}>
-            독서
-          </button>
-        </div> */}
         {tagList.map((it) => (
           <span className="Tag_sr">
             <button
-              value={it.id}
-              name={it.tagName}
+              id={it.id}
+              value={it.tagName}
               className="TagButton_sr"
               onClick={onChangeTag}
             >
@@ -310,37 +232,6 @@ const ShareRoutine = () => {
           <h3 className="text_sr" style={{ textAlign: "left" }}>
             공개 루틴 상세 설정
           </h3>
-          {/* 더미데이터 */}
-          {/* <input
-            className="allCheckbox"
-            type="Checkbox"
-            onChange={(e) => {
-              onCheckedAll(e.target.checked);
-            }}
-            checked={
-              checkedList.length == MyRoutineDummyData.MyRoutine.length
-                ? true
-                : false
-            }
-          />
-          {MyRoutineDummyData.MyRoutine.map((it) => (
-            <div className="RoutineDetail">
-              <input
-                className="checkbox"
-                type="checkbox"
-                value={it.id}
-                onChange={(e) => {
-                  onCheckedElement(e.target.checked, it, e.target.value);
-                }}
-                checked={checkedList.some((v) => v.id === it.id) ? true : false}
-              />
-              <span className="RoutineTime">
-                <span className="RoutineStartTime">{it.startTime}</span>
-                <span className="RoutineEndTime">{it.endTime}</span>
-              </span>
-              <span className="RoutineContent">{it.content}</span>
-            </div>
-          ))} */}
           <input
             type="checkbox"
             onChange={(e) => onCheckedAll(e.target.checked)}
