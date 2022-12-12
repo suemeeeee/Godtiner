@@ -17,15 +17,16 @@ const ShareRoutine = () => {
 
   //백엔드로 넘겨 줄 변수들 (항상 상단에!)
   const [myRoutineId, setMyRoutineId] = useState(0);
-  //연동 실험 2번째, 공유하기 페이지 구성할 때 쓸 api로 내 루틴 가져오기
-  const [myRoutine, setMyRoutine] = useState([]);
-  const [tagList, setTagList] = useState([]);
-  //연동 실험 3번째, 선택한 태그와 루틴들
   const [checkedRoutineId, setCheckedRoutineId] = useState([]);
   const [checkedTagList, setCheckedTagList] = useState([]);
+  const [title, setTitle] = useState("");
+  const [intro, setIntro] = useState("");
 
-  //백엔드 연동 axios 코드
-  //id얻어오기 위한 axios 코드
+  //axios get으로 가져온 아이들(myRoutineId, Tag)
+  const [myRoutine, setMyRoutine] = useState([]);
+  const [tagList, setTagList] = useState([]);
+
+  //myRoutineId얻어오기 위한 axios 코드
   useEffect(() => {
     axios
       .get("http://localhost:8080/myRoutine/post", {
@@ -80,13 +81,12 @@ const ShareRoutine = () => {
 
   //전송할 데이터 변수(필요한 것만 정리해서 위로 올려주시겠사옵니까?)
   //참고로 tag는 위에 내가 해 놓음 checkedTagList임
-  const [title, setTitle] = useState("");
-  const [intro, setIntro] = useState("");
-  const [tag, setTag] = useState([]);
-  const [content, setContent] = useState();
+
+  //const [tag, setTag] = useState([]);
+  //const [content, setContent] = useState();
   const [RoutineImg, setRoutineImg] = useState();
   //체크선택 시, 내용이 들어갈 것
-  const [checkedList, setCheckedList] = useState([]);
+  //const [checkedList, setCheckedList] = useState([]);
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -102,16 +102,6 @@ const ShareRoutine = () => {
     e.preventDefault();
     setCheckedTagList([...checkedTagList, selectTag]);
     console.log(checkedTagList);
-  };
-
-  const onChangeContent = (e) => {
-    setContent(e.target.value);
-  };
-
-  // 공유하기 버튼을 누를 시 실행 백엔드 연동 axios 코드
-  // 쏘영쓰 부탁해유~><
-  const onPush = async () => {
-    navigate("/home", { replace: true });
   };
 
   //아래는 썸네일 설정
@@ -139,23 +129,45 @@ const ShareRoutine = () => {
     setRoutineImg(e.target.files[0]);
   };
 
+  // const onChangeContent = (e) => {
+  //   setContent(e.target.value);
+  // };
+
+  // 공유하기 버튼을 누를 시 실행 백엔드 연동 axios 코드
+  // 쏘영쓰 부탁해유~><
+  const onPush = () => {
+    const frm = new FormData();
+    const data = {
+      title: title,
+      routineContent: intro,
+      myContentsIdList: checkedRoutineId,
+      tagList: checkedTagList,
+    };
+    frm.append("files", thumbnail);
+    frm.append(
+      "data",
+      new Blob([JSON.stringify(data)], { type: "application/json" })
+    );
+    axios
+      .post("http://localhost:8080/sharedRoutine/post", frm, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          //.d
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        navigate("/home", { replace: true });
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+    // navigate("/home", { replace: true });z
+  };
+
   //개별체크
   const onCheckedElement = (checked, value) => {
-    // 더미 데이터 활용시 해당 함수의 두번째 인자로 it을 추가해야 함
-    // let newArr = {
-    //   id: it.id,
-    //   startTime: it.startTime,
-    //   endTime: it.endTime,
-    //   content: it.content,
-    // };
-
-    // if (checked) {
-    //   setCheckedList([...checkedList, newArr]);
-    // } else {
-    //   setCheckedList(
-    //     checkedList.filter((it) => parseInt(it.id) !== parseInt(value))
-    //   );
-    // }
     if (checked) {
       setCheckedRoutineId([...checkedRoutineId, parseInt(value)]);
     } else {
@@ -166,13 +178,11 @@ const ShareRoutine = () => {
   };
 
   const onCheckedAll = (checked) => {
-    // let newRoutine = [];
     if (checked) {
       const idArray = [];
       myRoutine.forEach((it) => idArray.push(it.id));
       setCheckedRoutineId(idArray);
     } else {
-      //setCheckedList([]);
       setCheckedRoutineId([]);
     }
   };
