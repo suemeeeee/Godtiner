@@ -26,8 +26,19 @@ const ShareRoutine = () => {
   const [myRoutine, setMyRoutine] = useState([]);
   const [tagList, setTagList] = useState([]);
 
-  //myRoutineId얻어오기 위한 axios 코드
+  //공유 페이지 구성 api axios코드
   useEffect(() => {
+    axios
+      .get(`http://localhost:8080/myRoutine/share/${myRoutineId}`)
+      .then((response) => {
+        console.log(response);
+        setMyRoutine(response.data.result.data.sharedContentsSimples);
+        setTagList(response.data.result.data.tagList);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     axios
       .get("http://localhost:8080/myRoutine/post", {
         headers: {
@@ -42,19 +53,21 @@ const ShareRoutine = () => {
       });
   }, []);
 
-  //공유 페이지 구성 api axios코드
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8080/myRoutine/share/${myRoutineId}`)
-      .then((response) => {
-        console.log(response);
-        setMyRoutine(response.data.result.data.sharedContentsSimples);
-        setTagList(response.data.result.data.tagList);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  // //myRoutineId얻어오기 위한 axios 코드
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:8080/myRoutine/post", {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //       },
+  //     })
+  //     .then((response) => {
+  //       setMyRoutineId(response.data.result.data.id);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
 
   // 여기서 부터는 태그 버튼 색 변경 코드(추후 수정)
   var TagButton_sr = document.getElementsByClassName("TagButton_sr");
@@ -98,11 +111,13 @@ const ShareRoutine = () => {
 
   //태그 버튼 클릭 시 checkedTagList에 해당 태그의 id와 tagname값 객체로 추가
   const onChangeTag = (e) => {
-    let selectTag = { id: e.target.id, name: e.target.value };
+    let selectTag = { id: e.target.id, tagName: e.target.value };
     e.preventDefault();
     setCheckedTagList([...checkedTagList, selectTag]);
-    console.log(checkedTagList);
   };
+  //
+  //
+  console.log(checkedTagList);
 
   //아래는 썸네일 설정
   const [thumbnail, setThumbnail] = useState(UserDummyData.User.UserProfileImg); //기본 이미지
@@ -137,7 +152,7 @@ const ShareRoutine = () => {
   // 쏘영쓰 부탁해유~><
   const onPush = () => {
     const frm = new FormData();
-    const data = {
+    const contents = {
       title: title,
       routineContent: intro,
       myContentsIdList: checkedRoutineId,
@@ -145,8 +160,8 @@ const ShareRoutine = () => {
     };
     frm.append("files", thumbnail);
     frm.append(
-      "data",
-      new Blob([JSON.stringify(data)], { type: "application/json" })
+      "contents",
+      new Blob([JSON.stringify(contents)], { type: "application/json" })
     );
     axios
       .post("http://localhost:8080/sharedRoutine/post", frm, {
@@ -187,6 +202,8 @@ const ShareRoutine = () => {
     }
   };
 
+  console.log(title, intro, checkedRoutineId, checkedTagList);
+
   return (
     <div>
       <MyUpper text={"루틴 공유하기"} />
@@ -225,19 +242,20 @@ const ShareRoutine = () => {
             onChange={onChangeIntro}
           />
         </div>
-        {tagList.map((it) => (
-          <span className="Tag_sr">
-            <button
-              id={it.id}
-              value={it.tagName}
-              className="TagButton_sr"
-              onClick={onChangeTag}
-            >
-              {it.tagName}
-            </button>
-          </span>
-        ))}
-
+        <div>
+          {tagList.map((it) => (
+            <span className="Tag_sr">
+              <button
+                id={it.id}
+                value={it.tagName}
+                className="TagButton_sr"
+                onClick={onChangeTag}
+              >
+                {it.tagName}
+              </button>
+            </span>
+          ))}
+        </div>
         <div>
           <h3 className="text_sr" style={{ textAlign: "left" }}>
             공개 루틴 상세 설정
