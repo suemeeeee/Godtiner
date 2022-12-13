@@ -34,3 +34,8 @@
 .routine_name:focus {
   outline: none;
 }
+
+.AddRoutineButton,
+.ShareRoutineButton {
+  cursor: pointer;
+}

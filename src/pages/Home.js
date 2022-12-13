@@ -59,6 +59,7 @@ const Home = () => {
       <Calendar />
       <IoMdReorder size="50" />
       <IoIosShare
+        className="ShareRoutineButton"
         size="50"
         color=""
         onClick={() => navigate("/shareroutine")}
@@ -66,6 +67,7 @@ const Home = () => {
       <div>
         {/* 일부러 위쪽으로 올림. 확인하기 위해서 */}
         <IoIosAddCircle
+          className="AddRoutineButton"
           size="80"
           color="blue"
           position="fixed"
