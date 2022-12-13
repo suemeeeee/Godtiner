@@ -24,16 +24,21 @@ const Routine = () => {
   const params = useParams();
   const thisId = params.id;
 
-  useEffect(() => {
-    if (UserDummyData.LikedRoutine.LikeId.includes(parseInt(thisId))) {
-      setIsWishAdd(true);
-      setButtonText("❤️");
-    }
-  });
+  // useEffect(() => {
+  //   if (UserDummyData.LikedRoutine.LikeId.includes(parseInt(thisId))) {
+  //     setIsWishAdd(true);
+  //     setButtonText("❤️");
+  //   }
+  // });
 
+  //
   useEffect(() => {
     axios
-      .get(`/feed/${thisId}`)
+      .get(`http://localhost:8080/myRoutine/post/${thisId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((Response) => {
         console.log(Response.data);
         setDetailRoutine(Response.data.result.data);
@@ -43,10 +48,7 @@ const Routine = () => {
       });
   }, []);
 
-  // 백 api 연동 코드 (콘솔에 출력만)
-
   console.log(detailRoutine);
-  // const isWished = UserDummyData.LikedRoutine.find((it) => it.LikeId === id);
 
   //좋아요 누르면 넘겨줄 함수 (false를 true로 바꾸고 꽉찬 하트로)
   const wishAddHandler = () => {
@@ -132,7 +134,7 @@ const Routine = () => {
             {buttonText}
           </button>
         </div>
-        {detailRoutine.sharedContentsList.map((it) => (
+        {/* {detailRoutine.sharedContentsList.map((it) => (
           <div className="RoutineDetail">
             <input
               className="checkbox"
@@ -149,8 +151,8 @@ const Routine = () => {
             </span>
             <span className="RoutineContent">{it.content}</span>
           </div>
-        ))}
-        <h2 style={{ textAlign: "left", fontSize: "35px", marginLeft: "30px" }}>
+        ))} */}
+        {/* <h2 style={{ textAlign: "left", fontSize: "35px", marginLeft: "30px" }}>
           루틴 설명
         </h2>
         <div
@@ -161,7 +163,7 @@ const Routine = () => {
         <h2 style={{ textAlign: "left", fontSize: "35px", marginLeft: "30px" }}>
           루틴 제공자
         </h2>
-        <div style={{ fontSize: "25px" }}>{detailRoutine.member.nickname}</div>
+        <div style={{ fontSize: "25px" }}>{detailRoutine.member.nickname}</div> */}
         <div>
           <button className="ShareButton_sr" onClick={onPush}>
             저장하기
