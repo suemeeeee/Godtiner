@@ -26,6 +26,22 @@ const ShareRoutine = () => {
   const [myRoutine, setMyRoutine] = useState([]);
   const [tagList, setTagList] = useState([]);
 
+  //myRoutineId얻어오기 위한 axios 코드d
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/myRoutine/post", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        setMyRoutineId(response.data.result.data.id);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   //공유 페이지 구성 api axios코드
   useEffect(() => {
     axios
@@ -51,23 +67,7 @@ const ShareRoutine = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
-
-  // //myRoutineId얻어오기 위한 axios 코드
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:8080/myRoutine/post", {
-  //       headers: {
-  //         Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //       },
-  //     })
-  //     .then((response) => {
-  //       setMyRoutineId(response.data.result.data.id);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
+  }, [myRoutineId]);
 
   // 여기서 부터는 태그 버튼 색 변경 코드(추후 수정)
   var TagButton_sr = document.getElementsByClassName("TagButton_sr");
