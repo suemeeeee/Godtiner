@@ -50,7 +50,8 @@ const Recommend = () => {
           </span>
         </div> */}
         <div className="firstRecommend">
-          <div className="firstRecommend_txt">{`'${selectTag[0].tagName}' 관련 추천 루틴`}</div>
+          {/* <div className="firstRecommend_txt">{`'${selectTag[0].tagName}' 관련 추천 루틴`}</div> */}
+          <div className="firstRecommend_txt">{`관련 추천 루틴`}</div>
           <div>
             {firstRecommend.map((it) => (
               <div
@@ -82,7 +83,8 @@ const Recommend = () => {
           </div>
         </div>
         <div className="secondRecommend">
-          <div className="secondRecommend_txt">{`'${selectTag[1].tagName}' 관련 추천 루틴`}</div>
+          {/* <div className="secondRecommend_txt">{`'${selectTag[1].tagName}' 관련 추천 루틴`}</div> */}
+          <div className="secondRecommend_txt">{`관련 추천 루틴`}</div>
           <div>
             {secondRecommend.map((it) => (
               <div

@@ -10,40 +10,46 @@ import MySearchAlram from "../Components/MySearchAlarm";
 
 const Feed = () => {
   const navigate = useNavigate();
-  const [AllRoutines, setAllRoutines] = useState();
+  const [AllRoutines, setAllRoutines] = useState([]);
 
   useEffect(() => {
-    Axios.get("/feed/all")
+    Axios.get("http://localhost:8080/feed?sort=regdate,DESC")
       .then((Response) => {
-        console.log(Response.data);
-        setAllRoutines(Response.data);
+        console.log(Response);
+        setAllRoutines(Response.data.result.data.simpleLectureDtoList);
       })
       .catch((Error) => {
         console.log(Error);
       });
   }, []);
 
+  console.log(AllRoutines);
+
   return (
     <div>
       <MySearchAlram />
       <h2 style={{ fontSize: "40px" }}>🔍최신 루틴</h2>
       <div className="Routine_list">
-        {feedDummyData.Feed_Routine.map((it) => (
+        {AllRoutines.map((it) => (
           <div
             className="RoutineItem"
             key={it.id}
-            onClick={() => navigate(`/routine/${it.RoutineId}`)}
+            onClick={() => navigate(`/routine/${it.id}`)}
           >
-            <img className="feedImg" src={it.RoutinePic}></img>
+            <img
+              className="feedImg"
+              src={require(`C:/api/image/${it.feed_thumbnail}`)}
+            ></img>
             <br />
-            <text className="feedTitle">{it.RoutineTitle}</text>
+            <text className="feedTitle">{it.title}</text>
             <div className="feedTag">
-              {`#${it.RoutineTag.at(0)} `}
-              {`#${it.RoutineTag.at(1)} `}
+              {it.routineTagList.map((tag) => (
+                <a>#{tag.tag.tagName} </a>
+              ))}
             </div>
             <div>
               <div className="feedback">
-                ❤{it.Routine_like} 📥{it.Routine_save} 👀{it.Routine_look}
+                ❤{it.likecnt} 📥{it.pickcnt} 👀{it.hits}
               </div>
             </div>
           </div>
