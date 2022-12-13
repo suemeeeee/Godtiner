@@ -5,11 +5,12 @@ import MyUpper from "../Components/MyUpper";
 const SearchPage = () => {
   const navigate = useNavigate();
   const [searchedData, setSearchedData] = useState([]);
+
+  //넘겨받은 검색 결과 데이터를 searchedData에 넣어 줌
   const parentFunction = (x) => {
     setSearchedData(x);
   };
 
-  console.log(searchedData);
   //검색 창 전용 MyUpper 필요한데...
   return (
     <div>
@@ -20,17 +21,22 @@ const SearchPage = () => {
           <div
             className="RoutineItem"
             key={it.id}
-            onClick={() => navigate(`/routine/${it.RoutineId}`)}
+            onClick={() => navigate(`/routine/${it.id}`)}
           >
-            <img className="feedImg" src={it.RoutinePic}></img>
+            <img
+              className="feedImg"
+              src={require(`C:/api/image/${it.feed_thumbnail}`)}
+            ></img>
             <br />
-            <text className="feedTitle">{it.RoutineTitle}</text>
+            <text className="feedTitle">{it.title}</text>
             <div className="feedTag">
-              #{it.RoutineTag[0]} #{it.RoutineTag[1]}
+              {it.routineTagList.map((tag) => (
+                <a>#{tag.tag.tagName} </a>
+              ))}
             </div>
             <div>
               <div className="feedback">
-                ❤{it.Routine_like} 📥{it.Routine_save} 👀{it.Routine_look}
+                ❤{it.likecnt} 📥{it.pickcnt} 👀{it.hits}
               </div>
             </div>
           </div>
