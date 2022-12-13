@@ -47,12 +47,24 @@ const MySearchAlarm = ({ parentFunction }) => {
   //아래는 검색버튼 눌렀을 때 함수
   //오류!: 두번 눌러야 반영 됨.. ㅜㅜ 왜냐고~
   const onClickSearch = (e) => {
-    axios.get(`http://localhost:8080/feed?title=${search}`).then((response) => {
-      console.log(response);
-      setFilteredData(response.data.result.data.simpleLectureDtoList);
-      //props로 SearchPage에 검색 결과 배열 넘겨 줌
-      parentFunction(filteredData);
-    });
+    if (search[0] === "#") {
+      axios
+        .get(`http://localhost:8080/feed?tagName=${search.slice(1)}`)
+        .then((response) => {
+          console.log(search.slice(1));
+          console.log(response);
+          setFilteredData(response.data.result.data.simpleLectureDtoList);
+        });
+    } else {
+      axios
+        .get(`http://localhost:8080/feed?title=${search}`)
+        .then((response) => {
+          console.log(response);
+          setFilteredData(response.data.result.data.simpleLectureDtoList);
+        });
+    }
+    //props로 SearchPage에 검색 결과 배열 넘겨 줌
+    parentFunction(filteredData);
   };
 
   return (
