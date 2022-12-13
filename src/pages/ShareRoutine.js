@@ -120,12 +120,17 @@ const ShareRoutine = () => {
   console.log(checkedTagList);
 
   //아래는 썸네일 설정
+  const [state, setState] = useState([{ selectedFiles: null }]);
   const [thumbnail, setThumbnail] = useState(UserDummyData.User.UserProfileImg); //기본 이미지
   const fileInput = useRef(null);
 
   const onChangeImg = (e) => {
     if (e.target.files[0]) {
       setThumbnail(e.target.files[0]);
+
+      let selectFile = { selectedFiles: e.target.files };
+      e.preventDefault();
+      setState(selectFile);
     } else {
       //업로드 취소할 시
       setThumbnail(UserDummyData.User.UserProfileImg); //기본 이미지
@@ -148,6 +153,7 @@ const ShareRoutine = () => {
   //   setContent(e.target.value);
   // };
 
+  //
   // 공유하기 버튼을 누를 시 실행 백엔드 연동 axios 코드
   // 쏘영쓰 부탁해유~><
   const onPush = () => {
@@ -158,11 +164,11 @@ const ShareRoutine = () => {
       myContentsIdList: checkedRoutineId,
       tagList: checkedTagList,
     };
-    frm.append("file", thumbnail);
     frm.append(
       "contents",
       new Blob([JSON.stringify(contents)], { type: "application/json" })
     );
+    frm.append("file", state.selectedFiles[0]);
     axios
       .post("http://localhost:8080/sharedRoutine/post", frm, {
         headers: {
@@ -201,7 +207,13 @@ const ShareRoutine = () => {
     }
   };
 
-  console.log(title, intro, checkedRoutineId, checkedTagList);
+  console.log(
+    title,
+    intro,
+    checkedRoutineId,
+    checkedTagList,
+    state.selectedFiles
+  );
 
   return (
     <div>
