@@ -11,11 +11,12 @@ import MySearchAlram from "../Components/MySearchAlarm";
 const Feed = () => {
   const navigate = useNavigate();
   const [AllRoutines, setAllRoutines] = useState([]);
-
+  const [tagList, setTagList] = useState([]);
   useEffect(() => {
     Axios.get("http://localhost:8080/feed?sort=regdate,DESC")
       .then((Response) => {
         console.log(Response);
+        setTagList(Response.data.result.data.tagInfoList);
         setAllRoutines(Response.data.result.data.simpleLectureDtoList);
       })
       .catch((Error) => {
@@ -24,12 +25,26 @@ const Feed = () => {
   }, []);
 
   console.log(AllRoutines);
+  console.log(tagList);
+
+  const onClickTagBtn = (e) => {
+    //선택한 태그 네임 (ex. 일상)
+    const tagNam = e.target.value;
+  };
 
   return (
     <div>
       <MySearchAlram />
       <h2 style={{ fontSize: "40px" }}>🔍최신 루틴</h2>
-      <div className="Routine_list">
+      <div className="tagList_fd">
+        {tagList.map((it) => (
+          <button id={it.id} value={it.tagName} className="TagButton_fd">
+            #{it.tagName}
+          </button>
+        ))}
+      </div>
+
+      <span className="Routine_list">
         {AllRoutines.map((it) => (
           <div
             className="RoutineItem"
@@ -54,7 +69,7 @@ const Feed = () => {
             </div>
           </div>
         ))}
-      </div>
+      </span>
       <MoveTab />
     </div>
   );

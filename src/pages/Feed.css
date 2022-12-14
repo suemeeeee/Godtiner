@@ -34,3 +34,14 @@
 .sortedList_div {
   text-align: center;
 }
+
+.tagList_fd {
+  text-align: center;
+}
+.TagButton_fd {
+  margin: 2%;
+  width: 12%;
+  height: 6vh;
+  font-size: 20px;
+  border-radius: 15px;
+}

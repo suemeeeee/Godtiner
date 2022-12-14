@@ -21,5 +21,8 @@
 .trophy_text {
   font-size: 25px;
   width: 100%;
+  height: 5vh;
+  border-radius: 15px;
+  margin-top: 5%;
   vertical-align: middle;
 }

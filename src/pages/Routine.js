@@ -10,6 +10,7 @@ import UserDummyData from "../DummyData/UserDummyData.json";
 import feedDummyData from "../DummyData/feedDummyData.json";
 import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
 import MoveTab from "../Components/MoveTab";
+import { param } from "jquery";
 
 const Routine = () => {
   const navigate = useNavigate();
@@ -21,27 +22,26 @@ const Routine = () => {
   //가져갈 루틴을 넣을 곳
   const [selectRoutine, setSelectRoutine] = useState([]);
 
-  const params = useParams();
-  const thisId = params.id;
+  const [nickName, setNickName] = useState("");
+  const [imgSrc, setImgSrc] = useState("");
+  const routineId = useParams();
+  console.log(routineId.id);
 
   // useEffect(() => {
-  //   if (UserDummyData.LikedRoutine.LikeId.includes(parseInt(thisId))) {
+  //   if (UserDummyData.LikedRoutine.LikeId.includes(parseInt(routineId))) {
   //     setIsWishAdd(true);
   //     setButtonText("❤️");
   //   }
   // });
 
-  //
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/myRoutine/post/${thisId}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
+      .get(`http://localhost:8080/feed/${routineId.id}`)
       .then((Response) => {
-        console.log(Response.data);
         setDetailRoutine(Response.data.result.data);
+        setNickName(Response.data.result.data.member.nickname);
+        setImgSrc(Response.data.result.data.detailThumbnail);
+        console.log(imgSrc);
       })
       .catch((Error) => {
         console.log(Error);
@@ -54,11 +54,11 @@ const Routine = () => {
   const wishAddHandler = () => {
     if (isWishAdd === false) {
       setButtonText("❤️");
-      UserDummyData.LikedRoutine.LikeId.push(thisId);
+      UserDummyData.LikedRoutine.LikeId.push(routineId);
       console.log("좋아요" + UserDummyData.LikedRoutine.LikeId);
     } else {
       setButtonText("🤍");
-      UserDummyData.LikedRoutine.LikeId.pop(thisId);
+      UserDummyData.LikedRoutine.LikeId.pop(routineId);
       console.log("좋아요" + UserDummyData.LikedRoutine.LikeId);
     }
     setIsWishAdd(!isWishAdd);
@@ -115,14 +115,13 @@ const Routine = () => {
   return (
     <div>
       <MyUpper text={"루틴 상세페이지"} />
-
       <div className="Routine">
-        <img
+        {/* <img
           className="RoutineImg"
-          // src={require(`C:/api/image/${detailRoutine.detailThumbnail}`)}
-        ></img>
+          src={require(`C:/api/image/${detailRoutine.detailThumbnail}`)}
+        ></img> */}
         <br />
-        <h1 className="RoutineTitle">{detailRoutine.RoutineTitle}</h1>
+        <h1 className="RoutineTitle">{detailRoutine.title}</h1>
         <div style={{ textAlign: "left", marginLeft: "30px" }}>
           <input
             className="checkAll"
@@ -134,25 +133,28 @@ const Routine = () => {
             {buttonText}
           </button>
         </div>
-        {/* {detailRoutine.sharedContentsList.map((it) => (
-          <div className="RoutineDetail">
-            <input
-              className="checkbox"
-              type="checkbox"
-              value={it.id}
-              onChange={(e) => {
-                onRoutineCheckedElement(e.target.checked, it, e.target.value);
-              }}
-              checked={selectRoutine.some((v) => v.id === it.id) ? true : false}
-            />
-            <span className="RoutineTime">
-              <span className="RoutineStartTime">{it.startTime}</span>
-              <span className="RoutineEndTime">{it.endTime}</span>
-            </span>
-            <span className="RoutineContent">{it.content}</span>
-          </div>
-        ))} */}
-        {/* <h2 style={{ textAlign: "left", fontSize: "35px", marginLeft: "30px" }}>
+        {detailRoutine.sharedContentsList &&
+          detailRoutine.sharedContentsList.map((it) => (
+            <div className="RoutineDetail">
+              <input
+                className="checkbox"
+                type="checkbox"
+                value={it.id}
+                onChange={(e) => {
+                  onRoutineCheckedElement(e.target.checked, it, e.target.value);
+                }}
+                checked={
+                  selectRoutine.some((v) => v.id === it.id) ? true : false
+                }
+              />
+              <span className="RoutineTime">
+                <span className="RoutineStartTime">{it.startTime}</span>
+                <span className="RoutineEndTime">{it.endTime}</span>
+              </span>
+              <span className="RoutineContent">{it.content}</span>
+            </div>
+          ))}
+        <h2 style={{ textAlign: "left", fontSize: "35px", marginLeft: "30px" }}>
           루틴 설명
         </h2>
         <div
@@ -163,7 +165,7 @@ const Routine = () => {
         <h2 style={{ textAlign: "left", fontSize: "35px", marginLeft: "30px" }}>
           루틴 제공자
         </h2>
-        <div style={{ fontSize: "25px" }}>{detailRoutine.member.nickname}</div> */}
+        <div style={{ fontSize: "25px" }}>{nickName}</div>
         <div>
           <button className="ShareButton_sr" onClick={onPush}>
             저장하기
