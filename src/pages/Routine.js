@@ -10,38 +10,39 @@ import UserDummyData from "../DummyData/UserDummyData.json";
 import feedDummyData from "../DummyData/feedDummyData.json";
 import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
 import MoveTab from "../Components/MoveTab";
-import { param } from "jquery";
 
 const Routine = () => {
   const navigate = useNavigate();
 
   const [buttonText, setButtonText] = useState("🤍");
-  const [isWishAdd, setIsWishAdd] = useState(false);
 
   const [detailRoutine, setDetailRoutine] = useState([]);
   //가져갈 루틴을 넣을 곳
   const [selectRoutine, setSelectRoutine] = useState([]);
 
   const [nickName, setNickName] = useState("");
-  const [imgSrc, setImgSrc] = useState("");
-  const routineId = useParams();
-  console.log(routineId.id);
 
-  // useEffect(() => {
-  //   if (UserDummyData.LikedRoutine.LikeId.includes(parseInt(routineId))) {
-  //     setIsWishAdd(true);
-  //     setButtonText("❤️");
-  //   }
-  // });
+  const routineId = useParams();
+  let params = routineId.id;
+  console.log(params);
+
+  const auth = `Bearer ${localStorage.getItem("token")}`;
+  console.log(auth);
+  console.log(typeof auth);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/feed/${routineId.id}`)
+      .get(`http://localhost:8080/feed/${params}`, {
+        headers: {
+          Authorization: auth,
+        },
+      })
       .then((Response) => {
         setDetailRoutine(Response.data.result.data);
         setNickName(Response.data.result.data.member.nickname);
-        setImgSrc(Response.data.result.data.detailThumbnail);
-        console.log(imgSrc);
+        if (detailRoutine.liked) {
+          setButtonText("❤️");
+        }
       })
       .catch((Error) => {
         console.log(Error);
@@ -51,17 +52,24 @@ const Routine = () => {
   console.log(detailRoutine);
 
   //좋아요 누르면 넘겨줄 함수 (false를 true로 바꾸고 꽉찬 하트로)
+  let isLiked = detailRoutine.liked;
+  console.log(isLiked, typeof isLiked);
   const wishAddHandler = () => {
-    if (isWishAdd === false) {
+    if (!isLiked) {
+      axios.post(`http://localhost:8080/sharedRoutine/${params}/liked`, {
+        headers: {
+          Authorization: auth,
+        },
+      });
       setButtonText("❤️");
-      UserDummyData.LikedRoutine.LikeId.push(routineId);
-      console.log("좋아요" + UserDummyData.LikedRoutine.LikeId);
     } else {
+      axios.delete(`http://localhost:8080/sharedRoutine/${params}/liked`, {
+        headers: {
+          Authorization: auth,
+        },
+      });
       setButtonText("🤍");
-      UserDummyData.LikedRoutine.LikeId.pop(routineId);
-      console.log("좋아요" + UserDummyData.LikedRoutine.LikeId);
     }
-    setIsWishAdd(!isWishAdd);
   };
 
   //체크박스로 루틴을 골라보자(개별ver.)

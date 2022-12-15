@@ -7,9 +7,9 @@ const SearchPage = () => {
   const [searchedData, setSearchedData] = useState([]);
 
   //넘겨받은 검색 결과 데이터를 searchedData에 넣어 줌
-  const parentFunction = (x) => {
+  function parentFunction(x) {
     setSearchedData(x);
-  };
+  }
 
   //검색 창 전용 MyUpper 필요한데...
   return (

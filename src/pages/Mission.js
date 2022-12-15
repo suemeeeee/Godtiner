@@ -10,13 +10,14 @@ const Mission = () => {
     axios
       .get("http://localhost:8080/mission", {
         headers: {
+          "Content-Type": `application/json`,
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((response) => {
         console.log(response);
       });
-  });
+  }, []);
 
   //버튼 클릭 시 이미지 색칠된 트로피로 변경
   console.log(document.getElementsByClassName("trophy_img trophy_1"));

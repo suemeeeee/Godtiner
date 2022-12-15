@@ -61,10 +61,11 @@ const MySearchAlarm = ({ parentFunction }) => {
         .then((response) => {
           console.log(response);
           setFilteredData(response.data.result.data.simpleLectureDtoList);
+          parentFunction(filteredData);
         });
     }
-    //props로 SearchPage에 검색 결과 배열 넘겨 줌
-    parentFunction(filteredData);
+    // //props로 SearchPage에 검색 결과 배열 넘겨 줌
+    // parentFunction(filteredData);
   };
 
   return (
