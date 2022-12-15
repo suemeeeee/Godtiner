@@ -14,7 +14,7 @@ import MoveTab from "../Components/MoveTab";
 const Routine = () => {
   const navigate = useNavigate();
 
-  const [buttonText, setButtonText] = useState("🤍");
+  const [buttonText, setButtonText] = useState("");
 
   const [detailRoutine, setDetailRoutine] = useState([]);
   //가져갈 루틴을 넣을 곳
@@ -22,13 +22,15 @@ const Routine = () => {
 
   const [nickName, setNickName] = useState("");
 
+  const [isLiked, setIsLiked] = useState(false);
+
   const routineId = useParams();
   let params = routineId.id;
   console.log(params);
 
   const auth = `Bearer ${localStorage.getItem("token")}`;
   console.log(auth);
-  console.log(typeof auth);
+  const url = `http://localhost:8080/sharedRoutine/${params}/liked`;
 
   useEffect(() => {
     axios
@@ -40,8 +42,12 @@ const Routine = () => {
       .then((Response) => {
         setDetailRoutine(Response.data.result.data);
         setNickName(Response.data.result.data.member.nickname);
-        if (detailRoutine.liked) {
+        if (Response.data.result.data.liked) {
           setButtonText("❤️");
+          setIsLiked(true);
+        } else {
+          setButtonText("🤍");
+          setIsLiked(false);
         }
       })
       .catch((Error) => {
@@ -50,10 +56,9 @@ const Routine = () => {
   }, []);
 
   console.log(detailRoutine);
-
+  console.log("로드 시 찜 유무", isLiked);
   //좋아요 누르면 넘겨줄 함수 (false를 true로 바꾸고 꽉찬 하트로)
-  let isLiked = detailRoutine.liked;
-  console.log(isLiked, typeof isLiked);
+
   const wishAddHandler = () => {
     if (!isLiked) {
       axios.post(`http://localhost:8080/sharedRoutine/${params}/liked`, {
@@ -62,6 +67,7 @@ const Routine = () => {
         },
       });
       setButtonText("❤️");
+      setIsLiked(true);
     } else {
       axios.delete(`http://localhost:8080/sharedRoutine/${params}/liked`, {
         headers: {
@@ -69,9 +75,11 @@ const Routine = () => {
         },
       });
       setButtonText("🤍");
+      setIsLiked(false);
     }
   };
 
+  console.log(isLiked);
   //체크박스로 루틴을 골라보자(개별ver.)
   const onRoutineCheckedElement = (checked, it, value) => {
     let getNewArr = {

@@ -25,11 +25,7 @@ const Mission = () => {
   function clearMission(e) {
     let missionId = e.target.id;
     console.log(missionId);
-    document.getElementsByClassName(`trophy_img trophy_${missionId}`).src =
-      "./img/ColorTrophy.png";
-    console.log(
-      document.getElementsByClassName(`trophy_img trophy_${missionId}`).src
-    );
+    document.getElementById(`img${missionId}`).style.display = "none";
   }
 
   return (
@@ -39,7 +35,16 @@ const Mission = () => {
         <div className="trophy_div">
           <ul className="ul_ms">
             <li className="li_ms">
-              <img className="trophy_img trophy_1" src="./img/Trophy.png"></img>
+              <img
+                id="img1"
+                className="trophy_img trophy_1"
+                src="./img/Trophy.png"
+              ></img>
+              <img
+                id="img1_clear"
+                className="trophy_img trophy_1"
+                src="./img/ColorTrophy.png"
+              ></img>
               <button id="1" className="trophy_text" onClick={clearMission}>
                 루틴 1개 달성
               </button>
