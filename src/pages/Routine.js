@@ -28,11 +28,8 @@ const Routine = () => {
 
   const routineId = useParams();
   let params = routineId.id;
-  console.log(params);
 
   const auth = `Bearer ${localStorage.getItem("token")}`;
-  console.log(auth);
-  const url = `http://localhost:8080/sharedRoutine/${params}/liked`;
 
   useEffect(() => {
     axios
@@ -59,6 +56,7 @@ const Routine = () => {
       });
   }, []);
 
+  console.log(detailRoutine);
   console.log("내가 고른 루틴들 아이디 : ", selectRoutine);
 
   console.log("로드 시 찜 유무", isLiked);
@@ -66,11 +64,15 @@ const Routine = () => {
 
   const wishAddHandler = () => {
     if (!isLiked) {
-      axios.post(`http://localhost:8080/sharedRoutine/${params}/liked`, {
-        headers: {
-          Authorization: auth,
-        },
-      });
+      axios.post(
+        `http://localhost:8080/sharedRoutine/${params}/liked`,
+        {},
+        {
+          headers: {
+            Authorization: auth,
+          },
+        }
+      );
       setButtonText("❤️");
       setIsLiked(true);
     } else {
