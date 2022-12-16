@@ -125,7 +125,7 @@ const Routine = () => {
       })
       .then((response) => {
         console.log(response);
-        //navigate("/feed", { replace: true });
+        navigate("/feed", { replace: true });
       })
       .catch((error) => {
         console.log(error.response);
