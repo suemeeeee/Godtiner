@@ -46,10 +46,12 @@
   display: inline-block;
   width: 140px;
   height: 50px;
+  margin-right: 10px;
 }
 
 .RoutineContent {
   background-color: rgb(210, 210, 210);
+  border-radius: 10px;
   display: inline-block;
   width: 390px;
   height: 50px;

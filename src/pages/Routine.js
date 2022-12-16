@@ -124,8 +124,12 @@ const Routine = () => {
         },
       })
       .then((response) => {
-        console.log(response);
-        navigate("/feed", { replace: true });
+        //console.log(response);
+        if (window.confirm("내 루틴에 담겼습니다. 확인하시겠습니까?")) {
+          navigate("/home", { replace: true });
+        } else {
+          navigate("/feed", { replace: true });
+        }
       })
       .catch((error) => {
         console.log(error.response);
