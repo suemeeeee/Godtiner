@@ -197,6 +197,7 @@ const ShareRoutine = () => {
     }
   };
 
+  //전체 체크
   const onCheckedAll = (checked) => {
     if (checked) {
       const idArray = [];
@@ -275,7 +276,8 @@ const ShareRoutine = () => {
             type="checkbox"
             onChange={(e) => onCheckedAll(e.target.checked)}
             checked={checkedRoutineId.length == myRoutine.length ? true : false}
-          />
+          />{" "}
+          전체선택
           {myRoutine.map((it) => (
             <div className="RoutineDetail">
               <input
