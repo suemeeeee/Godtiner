@@ -10,12 +10,14 @@ import UserDummyData from "../DummyData/UserDummyData.json";
 import feedDummyData from "../DummyData/feedDummyData.json";
 import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
 import MoveTab from "../Components/MoveTab";
+import { resolveComponentProps } from "@mui/base";
 
 const Routine = () => {
   //내 루틴으로 가져오는 데 사용할 변수들(스크랩기능)
   const [selectRoutine, setSelectRoutine] = useState([]);
   const [postRoutineId, setPostRoutineId] = useState(0);
 
+  const [recommendedRoutine, setRecommendedRoutine] = useState([]);
   const navigate = useNavigate();
 
   const [buttonText, setButtonText] = useState("");
@@ -43,6 +45,7 @@ const Routine = () => {
         setPostRoutineId(Response.data.result.data.id);
         setDetailRoutine(Response.data.result.data);
         setNickName(Response.data.result.data.member.nickname);
+        setRecommendedRoutine(Response.data.result.data.contentsBasedRecommend);
         if (Response.data.result.data.liked) {
           setButtonText("❤️");
           setIsLiked(true);
@@ -54,7 +57,7 @@ const Routine = () => {
       .catch((Error) => {
         console.log(Error);
       });
-  }, []);
+  }, [params]);
 
   console.log(detailRoutine);
   console.log("내가 고른 루틴들 아이디 : ", selectRoutine);
@@ -209,12 +212,43 @@ const Routine = () => {
         </h2>
         <div style={{ fontSize: "25px" }}>{nickName}</div>
         <div>
-          <button className="ShareButton_sr" onClick={onPush}>
+          <h2
+            style={{ textAlign: "left", fontSize: "35px", marginLeft: "30px" }}
+          >
+            이 루틴과 비슷한 루틴
+          </h2>
+          {recommendedRoutine.map((it) => (
+            <div
+              className="RoutineItem"
+              key={it.id}
+              onClick={() => navigate(`/routine/${it.id}`)}
+            >
+              <img
+                className="feedImg"
+                src={require(`C:/api/image/${it.feed_thumbnail}`)}
+              ></img>
+              <br />
+              <text className="feedTitle">{it.title}</text>
+              <div className="feedTag">
+                {it.routineTagList.map((tag) => (
+                  <a>#{tag.tag.tagName} </a>
+                ))}
+              </div>
+              <div>
+                <div className="feedback">
+                  ❤{it.likecnt} 📥{it.pickcnt} 👀{it.hits}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="buttonDiv_r">
+          <button className="SaveButton_r" onClick={onPush}>
             저장하기
           </button>
         </div>
+        <MoveTab />
       </div>
-      <MoveTab />
     </div>
   );
 };

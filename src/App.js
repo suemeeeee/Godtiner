@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 
+import MoveTab from "./Components/MoveTab";
 //페이지 라우팅
 import Home from "./pages/Home";
 import New from "./pages/New";
