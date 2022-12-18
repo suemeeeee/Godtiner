@@ -111,9 +111,15 @@ const ShareRoutine = () => {
 
   //태그 버튼 클릭 시 checkedTagList에 해당 태그의 id와 tagname값 객체로 추가
   const onChangeTag = (e) => {
-    let selectTag = { id: e.target.id, tagName: e.target.value };
-    e.preventDefault();
-    setCheckedTagList([...checkedTagList, selectTag]);
+    if (checkedTagList.some((v) => parseInt(v.id) === parseInt(e.target.id))) {
+      setCheckedTagList(
+        checkedTagList.filter((it) => parseInt(it.id) !== parseInt(e.target.id))
+      );
+    } else {
+      let selectTag = { id: e.target.id, tagName: e.target.value };
+      e.preventDefault();
+      setCheckedTagList([...checkedTagList, selectTag]);
+    }
   };
   //
   //

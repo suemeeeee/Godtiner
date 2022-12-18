@@ -137,30 +137,16 @@ const Routine = () => {
       .catch((error) => {
         console.log(error.response);
       });
-    // selectRoutine.map((it) => {
-    //   const getRoutine = {
-    //     id: parseInt(
-    //       MyRoutineDummyData.MyRoutine[MyRoutineDummyData.MyRoutine.length - 1]
-    //         .id + 1
-    //     ),
-    //     startTime: it.startTime,
-    //     endTime: it.endTime,
-    //     content: it.content,
-    //   };
-    //   MyRoutineDummyData.MyRoutine.push(getRoutine);
-    // });
-    // //일단 home으로 보내버렸음.. 나중에 모달 confirm을 사용할 수 있지 않을까요
-    // navigate("/home", { replace: true });
   };
 
   return (
     <div>
       <MyUpper text={"루틴 상세페이지"} />
       <div className="Routine">
-        {/* <img
+        {/*<img
           className="RoutineImg"
           src={require(`C:/api/image/${detailRoutine.detailThumbnail}`)}
-        ></img> */}
+        ></img>*/}
         <br />
         <h1 className="RoutineTitle">{detailRoutine.title}</h1>
         <div style={{ textAlign: "left", marginLeft: "30px" }}>

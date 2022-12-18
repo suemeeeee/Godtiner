@@ -12,6 +12,7 @@ const Recommend = () => {
   const [selectTag, setSelectTag] = useState([]);
   const [firstRecommend, setFirstRecommend] = useState([]);
   const [secondRecommend, setSecondRecommend] = useState([]);
+  const [itemRecommend, setItemRecommend] = useState([]);
 
   useEffect(() => {
     axios
@@ -25,15 +26,16 @@ const Recommend = () => {
         setFirstRecommend(response.data.result.data.recommendList1);
         setSecondRecommend(response.data.result.data.recommendList2);
         setSelectTag(response.data.result.data.memberInterest);
+        setItemRecommend(response.data.result.data.item_matrix_recommend);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
-  console.log(firstRecommend);
-  console.log(secondRecommend);
-  console.log(selectTag);
+  //  console.log("recommendList1", firstRecommend);
+  //  console.log("recommendList2", secondRecommend);
+  //  console.log("memberInterest", selectTag);
 
   const navigate = useNavigate();
   const onClickViewAll = () => {
@@ -112,6 +114,36 @@ const Recommend = () => {
               </div>
             ))}
           </div>
+        </div>
+        <div className="itemRecommend">
+          <div>아이템 추천</div>
+          {itemRecommend.map((it) => (
+            <div
+              className="RoutineItem"
+              key={it.id}
+              onClick={() =>
+                navigate(`/routine/${it.id}`, {
+                  id: it.id,
+                })
+              }
+            >
+              <img
+                className="feedImg"
+                src={require(`C:/api/image/${it.feed_thumbnail}`)}
+              ></img>
+              <br />
+              <span className="feedTitle">{it.title}</span>
+              <div className="feedTag">
+                {}
+                {}
+              </div>
+              <div>
+                <div className="feedback">
+                  ❤{it.likecnt} 📥{it.pickcnt} 👀{it.hits}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
       <MoveTab />
