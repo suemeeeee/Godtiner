@@ -4,6 +4,7 @@ import MoveTab from "../Components/MoveTab";
 import axios from "axios";
 
 const Mission = () => {
+  const [clearList, setClearList] = useState([]);
   //내가 달성한 미션 들고 오기 axios 코드
   //이미지 변경하는 코드 성공하면 이 데이터 활용해서 버튼 활성화 비활성화 할 예정!
   useEffect(() => {
@@ -16,11 +17,13 @@ const Mission = () => {
       })
       .then((response) => {
         console.log(response);
+        setClearList(response.data.result.data);
       });
   }, []);
 
+  console.log(clearList);
   //버튼 클릭 시 이미지 색칠된 트로피로 변경
-  console.log(document.getElementsByClassName("trophy_img trophy_1"));
+
   //시발 왜 안돼!!!!! src 주소도 다 바뀌는데 왜 이미지가 안 바뀌냐고 ..!!!!
   function clearMission(e) {
     let missionId = e.target.id;
@@ -36,12 +39,12 @@ const Mission = () => {
           <ul className="ul_ms">
             <li className="li_ms">
               <img
-                id="img1"
+                id="img0"
                 className="trophy_img trophy_1"
                 src="./img/Trophy.png"
               ></img>
               <img
-                id="img1_clear"
+                id="img0_clear"
                 className="trophy_img trophy_1"
                 src="./img/ColorTrophy.png"
               ></img>

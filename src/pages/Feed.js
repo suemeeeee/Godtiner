@@ -13,6 +13,7 @@ const Feed = () => {
   const [AllRoutines, setAllRoutines] = useState([]);
   const [tagList, setTagList] = useState([]);
   const [selectedTagList, setSelectedTagList] = useState([]);
+  const [sortState, setSortState] = useState("");
 
   const [likeSortedRoutineList, setLikeSortedRoutineList] = useState([]);
   const [pickSortedRoutineList, setPickSortedRoutineList] = useState([]);
@@ -45,20 +46,50 @@ const Feed = () => {
 
   const onClickTagBtn = (e) => {
     const tagName = e.target.value;
-    console.log(tagName);
-    axios
-      .get(`http://localhost:8080/feed?tagName=${tagName}`)
-      .then((Response) => {
-        console.log(Response);
-        setSelectedTagList(Response.data.result.data.simpleLectureDtoList);
-      })
-      .catch((Error) => {
-        console.log(Error);
-      });
+
+    if (sortState === "recent") {
+      axios
+        .get(`http://localhost:8080/feed?tagName=${tagName}`)
+        .then((Response) => {
+          console.log(Response);
+          setSelectedTagList(Response.data.result.data.simpleLectureDtoList);
+        })
+        .catch((Error) => {
+          console.log(Error);
+        });
+    }
+    if (sortState === "like") {
+      axios
+        .get(
+          `http://localhost:8080/feed?page=0&sort=likecnt,DESC&tagName=${tagName}`
+        )
+        .then((Response) => {
+          console.log(Response);
+          setSelectedTagList(Response.data.result.data.simpleLectureDtoList);
+        })
+        .catch((Error) => {
+          console.log(Error);
+        });
+    }
+    if (sortState === "pick") {
+      axios
+        .get(
+          `http://localhost:8080/feed?page=0&sort=pickcnt,DESC&tagName=${tagName}`
+        )
+        .then((Response) => {
+          console.log(Response);
+          setSelectedTagList(Response.data.result.data.simpleLectureDtoList);
+        })
+        .catch((Error) => {
+          console.log(Error);
+        });
+    }
     document.getElementById("tagSearch").style.display = "block";
     document.getElementById("all").style.display = "none";
+    document.getElementById("pick").style.display = "none";
+    document.getElementById("like").style.display = "none";
   };
-  console.log(selectedTagList);
+
   return (
     <div>
       <MySearchAlram />
@@ -69,6 +100,7 @@ const Feed = () => {
             document.getElementById("like").style.display = "none";
             document.getElementById("pick").style.display = "none";
             document.getElementById("all").style.display = "block";
+            setSortState("recent");
           }}
         >
           최신 순
@@ -79,6 +111,7 @@ const Feed = () => {
             document.getElementById("like").style.display = "block";
             document.getElementById("pick").style.display = "none";
             document.getElementById("all").style.display = "none";
+            setSortState("like");
           }}
         >
           좋아요 순
@@ -89,6 +122,7 @@ const Feed = () => {
             document.getElementById("like").style.display = "none";
             document.getElementById("pick").style.display = "block";
             document.getElementById("all").style.display = "none";
+            setSortState("pick");
           }}
         >
           담기 순
@@ -127,8 +161,9 @@ const Feed = () => {
             <br />
             <span className="feedTitle">{it.title}</span>
             <div className="feedTag">
-              {}
-              {}
+              {it.routineTagList.map((tag) => (
+                <a>#{tag.tag.tagName} </a>
+              ))}
             </div>
             <div>
               <div className="feedback">
@@ -152,8 +187,9 @@ const Feed = () => {
             <br />
             <span className="feedTitle">{it.title}</span>
             <div className="feedTag">
-              {}
-              {}
+              {it.routineTagList.map((tag) => (
+                <a>#{tag.tag.tagName} </a>
+              ))}
             </div>
             <div>
               <div className="feedback">
