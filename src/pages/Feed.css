@@ -40,7 +40,7 @@
 }
 
 .hide_tagList_fd {
-  left: -376px;
+  display: none;
 }
 .TagButton_fd {
   margin: 2%;
@@ -48,4 +48,10 @@
   height: 6vh;
   font-size: 20px;
   border-radius: 15px;
+}
+
+.toggle_icon {
+  text-align: center;
+  font-size: 40px;
+  margin: 0;
 }

@@ -44,7 +44,6 @@ const Feed = () => {
   }, []);
 
   const onClickTagBtn = (e) => {
-    //선택한 태그 네임 (ex. 일상)
     const tagName = e.target.value;
     console.log(tagName);
     axios
@@ -96,7 +95,9 @@ const Feed = () => {
         </span>
       </div>
       <hr size="10px" width="90%" />
-      <p onClick={() => toggleMenu()}>^</p>
+      <p className="toggle_icon" onClick={() => toggleMenu()}>
+        ^
+      </p>
       <div
         className={isOpen ? "show_tagList_fd" : "hide_tagList_fd"}
         onClick={onClickTagBtn}
