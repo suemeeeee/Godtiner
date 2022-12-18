@@ -48,14 +48,9 @@ const Recommend = () => {
     <div className="Recommend">
       <MySearchAlarm />
       <div className="RecommendElement">
-        {/* <div>
-          <span className="span_rm">✨인기루틴</span>
-          <span className="span_rm_text" onClick={onClickViewAll}>
-            view All
-          </span>
-        </div> */}
+        {/* <span className="span_rm">✨인기루틴</span> */}
         <div className="firstRecommend">
-          <div className="firstRecommend_txt">{`'${firstTag}' 관련 추천 루틴`}</div>
+          <div className="firstRecommend_txt">{`✨'${firstTag}' 관련 추천 루틴✨`}</div>
           <div>
             {firstRecommend.map((it) => (
               <div
@@ -87,7 +82,7 @@ const Recommend = () => {
           </div>
         </div>
         <div className="secondRecommend">
-          <div className="secondRecommend_txt">{`'${secondTag}' 관련 추천 루틴`}</div>
+          <div className="secondRecommend_txt">{`✨'${secondTag}' 관련 추천 루틴✨`}</div>
           <div>
             {secondRecommend.map((it) => (
               <div
@@ -119,7 +114,7 @@ const Recommend = () => {
           </div>
         </div>
         <div className="itemRecommend">
-          <div className="secondRecommend_txt">맞춤 추천</div>
+          <div className="secondRecommend_txt">✨맞춤 추천✨</div>
           {itemRecommend.map((it) => (
             <div
               className="RoutineItem"
