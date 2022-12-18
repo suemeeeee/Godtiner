@@ -35,8 +35,12 @@
   text-align: center;
 }
 
-.tagList_fd {
+.show_tagList_fd {
   text-align: center;
+}
+
+.hide_tagList_fd {
+  left: -376px;
 }
 .TagButton_fd {
   margin: 2%;

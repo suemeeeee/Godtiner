@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Recommend = () => {
-  const [selectTag, setSelectTag] = useState([]);
+  const [selectTag, setSelectTag] = useState([{}]);
   const [firstRecommend, setFirstRecommend] = useState([]);
   const [secondRecommend, setSecondRecommend] = useState([]);
   const [itemRecommend, setItemRecommend] = useState([]);
@@ -37,6 +37,7 @@ const Recommend = () => {
   //  console.log("recommendList2", secondRecommend);
   //  console.log("memberInterest", selectTag);
 
+  console.log(selectTag);
   const navigate = useNavigate();
   const onClickViewAll = () => {
     navigate("/viewall");
@@ -52,7 +53,7 @@ const Recommend = () => {
           </span>
         </div> */}
         <div className="firstRecommend">
-          {/* <div className="firstRecommend_txt">{`'${selectTag[0].tagName}' 관련 추천 루틴`}</div> */}
+          <div className="firstRecommend_txt">{`'${selectTag[0].tagName}' 관련 추천 루틴`}</div>
           <div>
             {firstRecommend.map((it) => (
               <div
@@ -84,7 +85,7 @@ const Recommend = () => {
           </div>
         </div>
         <div className="secondRecommend">
-          {/* <div className="secondRecommend_txt">{`'${selectTag[1].tagName}' 관련 추천 루틴`}</div> */}
+          <div className="secondRecommend_txt">{`'${selectTag[1].tagName}' 관련 추천 루틴`}</div>
           <div>
             {secondRecommend.map((it) => (
               <div
@@ -116,7 +117,7 @@ const Recommend = () => {
           </div>
         </div>
         <div className="itemRecommend">
-          <div>아이템 추천</div>
+          <div className="secondRecommend_txt">맞춤 추천</div>
           {itemRecommend.map((it) => (
             <div
               className="RoutineItem"

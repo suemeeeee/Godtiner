@@ -4,6 +4,7 @@
   margin-bottom: 3%;
 }
 .sort_like {
+  margin-top: 15px;
   width: 40%;
   font-size: 30px;
   text-align: center;
@@ -11,6 +12,7 @@
 }
 
 .sort_save {
+  margin-top: 15px;
   width: 40%;
   font-size: 30px;
   text-align: center;

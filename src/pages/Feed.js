@@ -17,6 +17,11 @@ const Feed = () => {
   const [likeSortedRoutineList, setLikeSortedRoutineList] = useState([]);
   const [pickSortedRoutineList, setPickSortedRoutineList] = useState([]);
 
+  const [isOpen, setMenu] = useState(false);
+  const toggleMenu = () => {
+    setMenu((isOpen) => !isOpen); // on,off 개념 boolean
+  };
+
   useEffect(() => {
     axios
       .get("http://localhost:8080/feed?sort=regdate,DESC")
@@ -58,16 +63,6 @@ const Feed = () => {
   return (
     <div>
       <MySearchAlram />
-      {/* <h2 style={{ fontSize: "40px" }}>🔍최신 루틴</h2> */}
-
-      <div className="tagList_fd" onClick={onClickTagBtn}>
-        {tagList.map((it) => (
-          <button id={it.id} value={it.tagName} className="TagButton_fd">
-            #{it.tagName}
-          </button>
-        ))}
-      </div>
-
       <div className="menuTab_va">
         <span
           className="sort_like"
@@ -101,6 +96,18 @@ const Feed = () => {
         </span>
       </div>
       <hr size="10px" width="90%" />
+      <p onClick={() => toggleMenu()}>^</p>
+      <div
+        className={isOpen ? "show_tagList_fd" : "hide_tagList_fd"}
+        onClick={onClickTagBtn}
+      >
+        {tagList.map((it) => (
+          <button id={it.id} value={it.tagName} className="TagButton_fd">
+            #{it.tagName}
+          </button>
+        ))}
+      </div>
+
       <div id="like" className="sortedList_div">
         {likeSortedRoutineList.map((it) => (
           <div
