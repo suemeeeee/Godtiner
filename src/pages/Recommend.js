@@ -9,7 +9,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Recommend = () => {
-  const [selectTag, setSelectTag] = useState([{}]);
+  const [firstTag, setFirstTag] = useState("");
+  const [secondTag, setSecondTag] = useState("");
   const [firstRecommend, setFirstRecommend] = useState([]);
   const [secondRecommend, setSecondRecommend] = useState([]);
   const [itemRecommend, setItemRecommend] = useState([]);
@@ -25,7 +26,8 @@ const Recommend = () => {
         console.log(response);
         setFirstRecommend(response.data.result.data.recommendList1);
         setSecondRecommend(response.data.result.data.recommendList2);
-        setSelectTag(response.data.result.data.memberInterest);
+        setFirstTag(response.data.result.data.memberInterest[0].tagName);
+        setSecondTag(response.data.result.data.memberInterest[1].tagName);
         setItemRecommend(response.data.result.data.item_matrix_recommend);
       })
       .catch((error) => {
@@ -37,7 +39,7 @@ const Recommend = () => {
   //  console.log("recommendList2", secondRecommend);
   //  console.log("memberInterest", selectTag);
 
-  console.log(selectTag);
+  console.log(firstTag);
   const navigate = useNavigate();
   const onClickViewAll = () => {
     navigate("/viewall");
@@ -53,7 +55,7 @@ const Recommend = () => {
           </span>
         </div> */}
         <div className="firstRecommend">
-          <div className="firstRecommend_txt">{`'${selectTag[0].tagName}' 관련 추천 루틴`}</div>
+          <div className="firstRecommend_txt">{`'${firstTag}' 관련 추천 루틴`}</div>
           <div>
             {firstRecommend.map((it) => (
               <div
@@ -85,7 +87,7 @@ const Recommend = () => {
           </div>
         </div>
         <div className="secondRecommend">
-          <div className="secondRecommend_txt">{`'${selectTag[1].tagName}' 관련 추천 루틴`}</div>
+          <div className="secondRecommend_txt">{`'${secondTag}' 관련 추천 루틴`}</div>
           <div>
             {secondRecommend.map((it) => (
               <div
