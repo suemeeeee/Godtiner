@@ -6,8 +6,8 @@ body {
   justify-content: center;
   align-items: center;
   /*vh : viewfalut height의 줄임말. 현재 웹스크린의 실제 크기의 100퍼센트를 최소 높이로 갖겠다.*/
-  min-height: 100vh;
-  margin: 0;
+  /* min-height: 100vh;
+  margin: 0; */
 }
 
 /* min-width : {}안에 있는 모든 css 규칙들은 min-width이상일 때만 적용됨
@@ -16,6 +16,7 @@ body {
 @media (min-width: 650px) {
   .App {
     width: 650px;
+    height: 3000px;
   }
 }
 /*웹브라우저 화면이 650px 이하 일때, 화면의 90%를 차지하게 하겠다*/
@@ -60,8 +61,11 @@ body {
 /* MySearchAlarm */
 
 .MySearchAlarm {
+  width: 650px;
+  position: fixed;
   display: flex;
   border-bottom: 2px solid #0f3ee4;
+  background-color: white;
 }
 
 .MySearchAlarm > div {
@@ -71,11 +75,11 @@ body {
 .MySearchAlarm .SearchBar {
   background-color: #ececec;
   border-radius: 18px;
-  width: 70%;
+  width: 450px;
   margin-top: 10px;
   /* 배치를 잘 못하겠다 */
   margin-left: 70px;
-  margin-right: 10px;
+  margin-right: 30px;
   margin-bottom: 10px;
 }
 

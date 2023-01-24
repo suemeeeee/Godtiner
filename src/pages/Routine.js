@@ -143,10 +143,10 @@ const Routine = () => {
     <div>
       <MyUpper text={"루틴 상세페이지"} />
       <div className="Routine">
-        {/*<img
+        <img
           className="RoutineImg"
           src={require(`C:/api/image/${detailRoutine.detailThumbnail}`)}
-        ></img>*/}
+        ></img>
         <br />
         <h1 className="RoutineTitle">{detailRoutine.title}</h1>
         <div style={{ textAlign: "left", marginLeft: "30px" }}>

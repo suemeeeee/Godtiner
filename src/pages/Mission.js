@@ -43,11 +43,6 @@ const Mission = () => {
                 className="trophy_img trophy_1"
                 src="./img/Trophy.png"
               ></img>
-              <img
-                id="img0_clear"
-                className="trophy_img trophy_1"
-                src="./img/ColorTrophy.png"
-              ></img>
               <button id="1" className="trophy_text" onClick={clearMission}>
                 루틴 1개 달성
               </button>
