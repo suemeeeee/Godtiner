@@ -1,0 +1,24 @@
+.MoveTab {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+}
+
+.MoveTab div {
+  width: 100%;
+}
+
+.MoveTab button {
+  width: 100%;
+  height: 10vh;
+  background-color: #eeeeee;
+  border: none;
+  font-size: 30px;
+}
+
+.MoveTab button:hover {
+  background-color: #bfbfbf;
+}

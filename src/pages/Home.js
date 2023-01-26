@@ -57,41 +57,35 @@ const Home = () => {
     <div className="Home">
       <MySearchAlarm />
       <Calendar />
-      <IoMdReorder size="50" />
-      <IoIosShare
-        className="ShareRoutineButton"
-        size="50"
-        color=""
-        onClick={() => navigate("/shareroutine")}
+      <div className="ectBtn">
+        <IoMdReorder className="SortButton" size="50" />
+        <IoIosShare
+          className="ShareRoutineButton"
+          size="50"
+          color=""
+          onClick={() => navigate("/shareroutine")}
+        />
+      </div>
+      <IoIosAddCircle
+        className="AddRoutineButton"
+        size="80"
+        color="#0066ff"
+        position="fixed"
+        right="50px"
+        botton="300px"
+        onClick={() => navigate("/new")}
       />
-      <div>
-        {/* 일부러 위쪽으로 올림. 확인하기 위해서 */}
-        <IoIosAddCircle
-          className="AddRoutineButton"
-          size="80"
-          color="blue"
-          position="fixed"
-          right="50px"
-          botton="300px"
-          onClick={() => navigate("/new")}
-        />
-      </div>
-      <div className="routinename">
-        <input
-          className="routine_name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
+
+      <input
+        className="routine_name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+
       <div className="routinSection">
-        {/* {MyRoutineDummyData.MyRoutine.map((it) => (
-          <RoutineItem key={it.id} {...it} />
-        ))} */}
-        {/* 이하는 백엔드 실험을 위함 */}
         {routineData.map((it) => (
           <RoutineItem key={it.id} {...it} />
         ))}
-        {/* 여기까지가 백엔드 실험을 위함 */}
       </div>
       <MoveTab />
     </div>

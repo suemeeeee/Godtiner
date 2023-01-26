@@ -4,7 +4,7 @@ import InputBase from "@mui/material/InputBase";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import Notifications from "@mui/icons-material/Notifications";
-
+import "./MySearchAlram.css";
 import feedDummyData from "../DummyData/feedDummyData.json";
 import axios from "axios";
 
@@ -70,20 +70,18 @@ const MySearchAlarm = ({ parentFunction }) => {
 
   return (
     <div className="MySearchAlarm">
-      <div className="SearchBar">
+      <div className="searchBar">
         <InputBase
+          className="inputBase"
           value={search}
           onChange={onChangeSearch}
-          sx={{ ml: 3, flex: 1 }}
           onClick={onClickSearchBar}
         />
-        <div>
-          <IconButton onClick={onClickSearch}>
-            <SearchIcon />
-          </IconButton>
-        </div>
-      </div>
-      <div className="Notifications">
+
+        <IconButton className="iconButton" onClick={onClickSearch}>
+          <SearchIcon />
+        </IconButton>
+
         <IconButton onClick={onClickSearch}>
           <Notifications onClick={() => navigate("/notification")} />
         </IconButton>

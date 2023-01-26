@@ -22,9 +22,9 @@ function Signup() {
 
       <img className="mainImg" src="img/Signup_image1.png" alt="Signup_img" />
 
-      <div className="button1">
+      {/* <div className="button1">
         <LoginGoogle />
-      </div>
+      </div> */}
 
       <div className="button2">
         <button

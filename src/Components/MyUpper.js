@@ -1,23 +1,13 @@
 import { useNavigate } from "react-router-dom";
-
+import "./MyUpper.css";
 const MyUpper = ({ text }) => {
   const navigate = useNavigate();
   return (
-    <div className="MyUpper">
-      <button
-        className="backButton"
-        onClick={() => navigate(-1)}
-        style={{ padding: "5px" }}
-      >
-        <img
-          src="../img/arrow.png"
-          alt="arrow"
-          style={{ width: "30px", height: "30px", marginRight: "10px" }}
-        />
+    <div className="MyUpper_div">
+      <button className="backButton" onClick={() => navigate(-1)}>
+        <img className="MyUpper_img" src="../img/arrow.png" alt="arrow" />
       </button>
-      <span className="pageDescript" style={{ fontSize: "25px" }}>
-        {text}
-      </span>
+      <p className="pageDescript">{text}</p>
     </div>
   );
 };

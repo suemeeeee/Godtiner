@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import "./MoveTab.css";
 
 const MoveTab = () => {
   const navigate = useNavigate();
 
   return (
-    <footer>
+    <footer className="MoveTab">
       <div>
         <button className="Home_btn" onClick={() => navigate("/home")}>
           🗓️

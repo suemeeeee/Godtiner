@@ -1,4 +1,14 @@
+.sortBtn_fd {
+  margin: 0;
+  margin-top: 15px;
+  width: 40%;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
 .Routine_list {
+  display: inline-block;
   text-align: center;
   width: 100%;
   cursor: pointer;
@@ -7,46 +17,56 @@
 .RoutineItem {
   display: inline-block;
   width: 45%;
-  margin: 10px;
+  margin-right: 2.5%;
+  margin-left: 2.5%;
+  margin-bottom: 3%;
   text-align: center;
 }
 
 .feedImg {
   width: 100%;
-  height: auto;
+  height: 15vh;
+  object-fit: cover;
   border-radius: 30px;
 }
 
 .feedTitle {
-  font-size: 28px;
+  font-size: 100%;
   width: fit-content;
   text-align: center;
 }
 
 .feedTag {
-  font-size: 25px;
+  font-size: 100%;
 }
 
 .feedback {
-  font-size: 20px;
+  font-size: 100%;
 }
 
 .sortedList_div {
+  width: 100%;
   text-align: center;
 }
 
 .show_tagList_fd {
+  display: inline-block;
+  align-items: center;
+  margin-bottom: 5%;
   text-align: center;
 }
 
 .hide_tagList_fd {
   display: none;
 }
+
 .TagButton_fd {
-  margin: 2%;
-  width: 12%;
-  height: 6vh;
-  font-size: 20px;
+  padding: 0;
+  margin-right: 2%;
+  margin-bottom: 2%;
+  width: 13%;
+  height: 8vh;
+  font-size: 12px;
   border-radius: 15px;
 }
 

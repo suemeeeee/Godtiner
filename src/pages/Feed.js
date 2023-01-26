@@ -94,8 +94,8 @@ const Feed = () => {
     <div>
       <MySearchAlram />
       <div className="menuTab_va">
-        <span
-          className="sort_like"
+        <p
+          className="sortBtn_fd"
           onClick={() => {
             document.getElementById("like").style.display = "none";
             document.getElementById("pick").style.display = "none";
@@ -104,9 +104,9 @@ const Feed = () => {
           }}
         >
           최신 순
-        </span>
-        <span
-          className="sort_like"
+        </p>
+        <p
+          className="sortBtn_fd"
           onClick={() => {
             document.getElementById("like").style.display = "block";
             document.getElementById("pick").style.display = "none";
@@ -115,9 +115,9 @@ const Feed = () => {
           }}
         >
           좋아요 순
-        </span>
-        <span
-          className="sort_save"
+        </p>
+        <p
+          className="sortBtn_fd"
           onClick={() => {
             document.getElementById("like").style.display = "none";
             document.getElementById("pick").style.display = "block";
@@ -126,7 +126,7 @@ const Feed = () => {
           }}
         >
           담기 순
-        </span>
+        </p>
       </div>
       <hr size="10px" width="90%" />
       <p className="toggle_icon" onClick={() => toggleMenu()}>
@@ -137,8 +137,8 @@ const Feed = () => {
         onClick={onClickTagBtn}
       >
         {tagList.map((it) => (
-          <button id={it.id} value={it.tagName} className="TagButton_fd">
-            #{it.tagName}
+          <button className="TagButton_fd" id={it.id} value={it.tagName}>
+            {it.tagName}
           </button>
         ))}
       </div>
@@ -199,7 +199,8 @@ const Feed = () => {
           </div>
         ))}
       </div>
-      <span id="all" className="Routine_list">
+
+      <div id="all" className="Routine_list">
         {AllRoutines.map((it) => (
           <div
             className="RoutineItem"
@@ -224,9 +225,9 @@ const Feed = () => {
             </div>
           </div>
         ))}
-      </span>
+      </div>
 
-      <span id="tagSearch" className="Routine_list">
+      <div id="tagSearch" className="Routine_list">
         {selectedTagList.map((it) => (
           <div
             className="RoutineItem"
@@ -251,7 +252,7 @@ const Feed = () => {
             </div>
           </div>
         ))}
-      </span>
+      </div>
 
       <MoveTab />
     </div>

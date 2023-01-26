@@ -13,13 +13,17 @@ body {
   }
 }
 .Signup h2 {
-  padding-top: 80px;
+  padding-top: 5vh;
   white-space: pre-line;
   font-size: 40px;
   text-align: left;
   margin-left: 3%;
 }
-
+@media (max-width: 500px) {
+  .Signup h2 {
+    font-size: 30px;
+  }
+}
 .godtiner {
   color: #0000ff;
   font-size: 42px;
@@ -34,20 +38,24 @@ body {
 
 .button1 {
   text-align: center;
-  padding-top: 70px;
+  padding-top: 10%;
 }
 .button2 {
   text-align: center;
-  padding-top: 10px;
+  padding-top: 10%;
+}
+
+.button3 h1 {
+  padding-left: 5%;
 }
 .button3 {
   text-align: center;
-  padding-top: 85px;
+  padding-top: 10%;
 }
 
 .Signup button {
-  width: 600px;
-  height: 70px;
+  width: 80%;
+  height: 7vh;
   margin: auto;
   font-size: 23px;
   font-weight: 800;

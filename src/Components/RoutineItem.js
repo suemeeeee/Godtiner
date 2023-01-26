@@ -31,19 +31,21 @@ const RoutineItem = ({ id, content, startTime, endTime, isclear }) => {
     navigate(`/myroutineeditor/${id}`);
     console.log(id);
   };
+
   return (
     <div className="routineGroup">
-      <div className="time">
+      <p className="time">
         {startTime}-{endTime}
-      </div>
-      <button
-        id="routine"
-        className={"MyRoutineContent"}
-        onClick={onClickContent}
-      >
+      </p>
+      <button id={id} className="MyRoutineContent" onClick={onClickContent}>
         {content}
       </button>
-      <input value={id} type="checkbox" onClick={routineClear} />
+      <input
+        className="myRoutineCheckbox"
+        value={id}
+        type="checkbox"
+        onClick={routineClear}
+      />
     </div>
   );
 };

@@ -1,10 +1,29 @@
 .Routine {
-  text-align: center;
+  width: 100%;
+}
+
+.Routine h2 {
+  margin-left: 5%;
+
+  font-size: 25px;
+
+  width: 100%;
+  text-align: left;
+}
+
+.usersInfo {
+  margin-left: 5%;
+
+  font-size: 20px;
+
+  width: 100%;
+  text-align: left;
 }
 
 .RoutineTitle {
-  margin: 10px;
-  font-size: 40px;
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
 }
 
 .RoutineImg {
@@ -13,70 +32,90 @@
   border-radius: 20px;
 }
 
-.RoutineDetail {
+.checkAll_div {
+  display: flex;
+  align-items: center;
+
   width: 100%;
-  text-align: center;
+  margin-left: 3%;
+  margin-right: 3%;
 }
 
+.routineBody {
+  width: 100%;
+}
+
+.RoutineDetail {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: 6vh;
+
+  margin-top: 4%;
+  margin-bottom: 3%;
+}
+
+.checkbox_rt {
+  margin: 5%;
+}
+
+.RoutineTime_rt {
+  min-width: 20%;
+  height: fit-content;
+
+  font-size: 100%;
+
+  margin-right: 3%;
+}
+
+.RoutineContent_rt {
+  width: 60%;
+  padding: 2%;
+
+  text-align: center;
+  background-color: rgb(228, 228, 228);
+  border-radius: 15px;
+  height: 5vh;
+}
 .checkbox {
-  width: 40px;
-  height: 40px;
+  width: 70%;
+  height: 6vh;
   margin: 10px;
   cursor: pointer;
 }
 .checkAll {
-  width: 25px;
-  height: 25px;
   margin: 10px;
   text-align: left;
   cursor: pointer;
 }
+
 .like_r {
-  margin-left: 65%;
-  text-align: center;
-  font-size: 30px;
+  margin-left: 62%;
+  /* text-align: center; */
+  font-size: 100%;
   width: 10%;
-  height: 5vh;
+  height: 4.5vh;
   border-radius: 50%;
   cursor: pointer;
 }
 
-.RoutineTime {
-  background-color: rgb(210, 210, 210);
-  border-radius: 10px;
-  display: inline-block;
-  width: 140px;
-  height: 50px;
-  margin-right: 10px;
-}
-
-.RoutineContent {
-  background-color: rgb(210, 210, 210);
-  border-radius: 10px;
-  display: inline-block;
-  width: 390px;
-  height: 50px;
-
-  font-size: 25px;
-}
-
-.RoutineStartTime {
-  display: inline-block;
-  font-size: 20px;
-}
-
-.RoutineEndTime {
-  display: inline-block;
-  padding-left: 10px;
-  font-size: 20px;
+.buttonDiv_r {
+  width: 100%;
+  bottom: 0;
+  margin-top: 3%;
 }
 
 .SaveButton_r {
   width: 100%;
-  height: 75px;
-  bottom: 0;
+  height: 8vh;
+
   background-color: blue;
   font-size: 25px;
   color: white;
-  margin-bottom: 100px;
+}
+
+.routineItems_rt {
+  width: 100%;
+  text-align: center;
 }

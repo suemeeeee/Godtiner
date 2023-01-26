@@ -1,10 +1,15 @@
 .calendarHeader {
-  padding-top: 25px;
-  padding-left: 20px;
-  font-size: 40px;
+  margin-top: 5%;
+  margin-bottom: 3%;
+  padding-left: 5%;
+
+  font-size: 35px;
+
   display: flex;
+  align-items: center;
   justify-content: left;
 }
+
 .calendarHeader button {
   margin-left: 10px;
   width: 50px;
@@ -12,15 +17,16 @@
   cursor: pointer;
 }
 
-.week_btn {
-  padding-top: 20px;
+.week_btn_div {
+  width: 100%;
   display: flex;
   justify-content: center;
+  text-align: center;
 }
-.week_btn button {
+.week_btn {
   margin: 10px;
-  width: 80px;
-  height: 120px;
+  width: 10%;
+  height: 10vh;
   border-radius: 40px;
   border: 0;
   font-size: 20px;
@@ -28,11 +34,33 @@
 }
 
 .selectedDay_btn {
-  background-color: blue;
+  margin: 10px;
+  width: 10%;
+  height: 10vh;
+  border-radius: 40px;
+  border: 0;
+  font-size: 20px;
+  cursor: pointer;
+
+  background-color: #0066ff;
   color: aliceblue;
 }
 
 .calendar_btn {
   border: 0;
-  border-radius: 15px;
+  border-radius: 30%;
+}
+
+@media (max-width: 500px) {
+  .calendarHeader {
+    font-size: 30px;
+  }
+
+  .week_btn {
+    font-size: 10px;
+  }
+
+  .selectedDay_btn {
+    font-size: 15px;
+  }
 }

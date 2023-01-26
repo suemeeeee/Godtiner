@@ -1,20 +1,19 @@
 .loginButton {
-  margin-top: 10px;
-  padding: 0;
-  width: 250px;
-  height: 30px;
+  width: 80%;
+  height: 7vh;
   border: none;
   background-color: #0095f6;
   color: white;
   font-size: 17px;
   border-radius: 5px;
+  margin-bottom: 5%;
 }
 
 .idDiv {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 5%;
 }
 
 .pwDiv {
@@ -25,17 +24,17 @@
 
 .loginId {
   font-size: 25px;
-  width: 500px;
-  height: 60px;
-  border-radius: 25px;
+  width: 80%;
+  height: 6vh;
+  border-radius: 30px;
   text-align: center;
 }
 
 .loginPw {
   font-size: 25px;
-  width: 500px;
-  height: 60px;
-  border-radius: 25px;
+  width: 80%;
+  height: 6vh;
+  border-radius: 30px;
   text-align: center;
 }
 
@@ -45,8 +44,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 100px;
-  margin-top: 180px;
+  margin-bottom: 15%;
+  margin-top: 5%;
+}
+
+@media (max-width: 500px) {
+  .welcome {
+    font-size: 25px;
+  }
 }
 
 .buttonDiv {
@@ -54,16 +59,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 100px;
+  margin-top: 15%;
 }
+
 .loginButton {
-  width: 400px;
-  height: 70px;
   border-radius: 40px;
-  font-size: 35px;
+  font-size: 30px;
   transition: 0.25s;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
+
 .loginButton:hover {
   transform: scale(1.05);
 }
@@ -72,14 +77,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 5%;
 }
 
 .userName {
   font-size: 25px;
-  width: 500px;
-  height: 60px;
-  border-radius: 25px;
+  width: 80%;
+  height: 6vh;
+  border-radius: 30px;
   text-align: center;
 }
 
@@ -87,13 +92,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 5%;
 }
 
 .nickName {
   font-size: 25px;
-  width: 500px;
-  height: 60px;
-  border-radius: 25px;
+  width: 80%;
+  height: 6vh;
+  border-radius: 30px;
   text-align: center;
 }

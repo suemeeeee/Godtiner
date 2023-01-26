@@ -143,13 +143,14 @@ const Routine = () => {
     <div>
       <MyUpper text={"루틴 상세페이지"} />
       <div className="Routine">
-        <img
+        {/* <img
           className="RoutineImg"
           src={require(`C:/api/image/${detailRoutine.detailThumbnail}`)}
-        ></img>
+        ></img> */}
         <br />
         <h1 className="RoutineTitle">{detailRoutine.title}</h1>
-        <div style={{ textAlign: "left", marginLeft: "30px" }}>
+
+        <div className="checkAll_div">
           <input
             className="checkAll"
             type="checkbox"
@@ -160,80 +161,73 @@ const Routine = () => {
             //     ? true
             //     : false
             // }
-          />{" "}
+          />
           전체선택
           <button className="like_r" onClick={wishAddHandler}>
             {buttonText}
           </button>
         </div>
-        {detailRoutine.sharedContentsList &&
-          detailRoutine.sharedContentsList.map((it) => (
-            <div className="RoutineDetail">
-              <input
-                className="checkbox"
-                type="checkbox"
-                value={it.id}
-                onChange={(e) => {
-                  onRoutineCheckedElement(e.target.checked, e.target.value);
-                }}
-                checked={selectRoutine.includes(parseInt(it.id)) ? true : false}
-              />
-              <span className="RoutineTime">
-                <span className="RoutineStartTime">{it.startTime}</span>
-                <span className="RoutineEndTime">{it.endTime}</span>
-              </span>
-              <span className="RoutineContent">{it.content}</span>
-            </div>
-          ))}
-        <h2 style={{ textAlign: "left", fontSize: "35px", marginLeft: "30px" }}>
-          루틴 설명
-        </h2>
-        <div
-          style={{ fontSize: "25px", textAlign: "left", marginLeft: "30px" }}
-        >
-          {detailRoutine.routine_content}
-        </div>
-        <h2 style={{ textAlign: "left", fontSize: "35px", marginLeft: "30px" }}>
-          루틴 제공자
-        </h2>
-        <div style={{ fontSize: "25px" }}>{nickName}</div>
-        <div>
-          <h2
-            style={{ textAlign: "left", fontSize: "35px", marginLeft: "30px" }}
-          >
-            이 루틴과 비슷한 루틴
-          </h2>
-          {recommendedRoutine.map((it) => (
-            <div
-              className="RoutineItem"
-              key={it.id}
-              onClick={() => navigate(`/routine/${it.id}`)}
-            >
-              <img
-                className="feedImg"
-                src={require(`C:/api/image/${it.feed_thumbnail}`)}
-              ></img>
-              <br />
-              <text className="feedTitle">{it.title}</text>
-              <div className="feedTag">
-                {it.routineTagList.map((tag) => (
-                  <a>#{tag.tag.tagName} </a>
-                ))}
+
+        <div className="routineBody">
+          {detailRoutine.sharedContentsList &&
+            detailRoutine.sharedContentsList.map((it) => (
+              <div className="RoutineDetail">
+                <input
+                  className="checkbox_rt"
+                  type="checkbox"
+                  value={it.id}
+                  onChange={(e) => {
+                    onRoutineCheckedElement(e.target.checked, e.target.value);
+                  }}
+                  checked={
+                    selectRoutine.includes(parseInt(it.id)) ? true : false
+                  }
+                />
+                <span className="RoutineTime_rt">
+                  <span>{it.startTime}</span>-<span>{it.endTime}</span>
+                </span>
+                <span className="RoutineContent_rt">{it.content}</span>
               </div>
-              <div>
-                <div className="feedback">
-                  ❤{it.likecnt} 📥{it.pickcnt} 👀{it.hits}
+            ))}
+        </div>
+        <h2>루틴 설명</h2>
+        <p className="usersInfo">{detailRoutine.routine_content}</p>
+        <h2>루틴 제공자</h2>
+        <p className="usersInfo">{nickName}</p>
+        <div>
+          <h2>이 루틴과 비슷한 루틴</h2>
+          <div className="routineItems_rt">
+            {recommendedRoutine.map((it) => (
+              <div
+                className="RoutineItem"
+                key={it.id}
+                onClick={() => navigate(`/routine/${it.id}`)}
+              >
+                <img
+                  className="feedImg"
+                  src={require(`C:/api/image/${it.feed_thumbnail}`)}
+                ></img>
+                <br />
+                <text className="feedTitle">{it.title}</text>
+                <div className="feedTag">
+                  {it.routineTagList.map((tag) => (
+                    <a>#{tag.tag.tagName} </a>
+                  ))}
+                </div>
+                <div>
+                  <div className="feedback">
+                    ❤{it.likecnt} 📥{it.pickcnt} 👀{it.hits}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-        <div className="buttonDiv_r">
+        <footer className="buttonDiv_r">
           <button className="SaveButton_r" onClick={onPush}>
             저장하기
           </button>
-        </div>
-        <MoveTab />
+        </footer>
       </div>
     </div>
   );

@@ -18,27 +18,42 @@
 
 .routinSection {
   display: block;
-  padding: 30px;
-}
-
-.add_btn {
-  size: 100;
+  width: 90%;
+  margin: 5%;
+  text-align: center;
 }
 
 .routine_name {
-  width: 200px;
-  height: 50px;
   border: 0;
   font-size: 40px;
-  padding-left: 20px;
-  padding-top: 20px;
+  padding-left: 5%;
 }
 
 .routine_name:focus {
   outline: none;
 }
 
-.AddRoutineButton,
+.ectBtn {
+  margin-left: 80%;
+  margin-top: 5%;
+}
+.SortButton {
+  width: 40%;
+  color: rgb(74, 74, 74);
+}
 .ShareRoutineButton {
-  cursor: pointer;
+  width: 40%;
+  color: rgb(74, 74, 74);
+}
+
+.AddRoutineButton {
+  margin-top: 93%;
+  margin-left: 78%;
+  width: 17%;
+  position: fixed;
+}
+@media (max-width: 500px) {
+  .routine_name {
+    font-size: 25px;
+  }
 }

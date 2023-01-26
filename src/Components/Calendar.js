@@ -41,9 +41,9 @@ const Calendar = () => {
         <DatePicker selected={startDate} onChange={handleChange} inline />
       )}
 
-      <div className="week_btn">
+      <div className="week_btn_div">
         <button
-          className="week-3"
+          className="week_btn"
           onClick={() => {
             setStartDate(addDays(startDate, -3));
           }}
@@ -54,7 +54,7 @@ const Calendar = () => {
           <br />
         </button>
         <button
-          className="week-2"
+          className="week_btn"
           onClick={() => {
             setStartDate(addDays(startDate, -2));
           }}
@@ -64,7 +64,7 @@ const Calendar = () => {
           {format(addDays(startDate, -2), "dd")}
         </button>
         <button
-          className="week-1"
+          className="week_btn"
           onClick={() => {
             setStartDate(addDays(startDate, -1));
           }}
@@ -80,7 +80,7 @@ const Calendar = () => {
         </button>
         {/* 선택 날짜 */}
         <button
-          className="week1"
+          className="week_btn"
           onClick={() => {
             setStartDate(addDays(startDate, 1));
           }}
@@ -90,7 +90,7 @@ const Calendar = () => {
           {format(addDays(startDate, 1), "dd")}
         </button>
         <button
-          className="week2"
+          className="week_btn"
           onClick={() => {
             setStartDate(addDays(startDate, -2));
           }}
@@ -100,7 +100,7 @@ const Calendar = () => {
           {format(addDays(startDate, 2), "dd")}
         </button>
         <button
-          className="week3"
+          className="week_btn"
           onClick={() => {
             setStartDate(addDays(startDate, 3));
           }}
