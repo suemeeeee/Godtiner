@@ -146,6 +146,7 @@ const Routine = () => {
         {/* <img
           className="RoutineImg"
           src={require(`C:/api/image/${detailRoutine.detailThumbnail}`)}
+          src={require(`C:/api/image/${it.feed_thumbnail}`)}
         ></img> */}
         <br />
         <h1 className="RoutineTitle">{detailRoutine.title}</h1>

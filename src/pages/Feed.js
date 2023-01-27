@@ -47,6 +47,12 @@ const Feed = () => {
   const onClickTagBtn = (e) => {
     const tagName = e.target.value;
 
+    if (e.target.className === "TagButton_fd") {
+      e.target.className = "clicked_fd";
+    } else {
+      e.target.className = "TagButton_fd";
+    }
+
     if (sortState === "recent") {
       axios
         .get(`http://localhost:8080/feed?tagName=${tagName}`)

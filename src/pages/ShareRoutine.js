@@ -69,32 +69,6 @@ const ShareRoutine = () => {
       });
   }, [myRoutineId]);
 
-  // 여기서 부터는 태그 버튼 색 변경 코드(추후 수정)
-  var TagButton_sr = document.getElementsByClassName("TagButton_sr");
-
-  function handleClick(e) {
-    if (e.target.classList[0] == "clicked") {
-      e.target.classList.remove("clicked");
-    } else {
-      for (var i = 0; i < TagButton_sr.length; i++) {
-        TagButton_sr[i].classList.remove("clicked");
-      }
-      e.target.classList.add("clicked");
-    }
-  }
-
-  function init() {
-    for (var i = 0; i < TagButton_sr.length; i++) {
-      TagButton_sr[i].addEventListener("click", handleClick);
-    }
-  }
-
-  init();
-  //여기까지
-
-  //전송할 데이터 변수(필요한 것만 정리해서 위로 올려주시겠사옵니까?)
-  //참고로 tag는 위에 내가 해 놓음 checkedTagList임
-
   //const [tag, setTag] = useState([]);
   //const [content, setContent] = useState();
   const [RoutineImg, setRoutineImg] = useState();
@@ -109,8 +83,15 @@ const ShareRoutine = () => {
     setIntro(e.target.value);
   };
 
-  //태그 버튼 클릭 시 checkedTagList에 해당 태그의 id와 tagname값 객체로 추가
   const onChangeTag = (e) => {
+    //클릭 시 생상 변경 코드
+    if (e.target.className === "TagButton_sr") {
+      e.target.className = "clicked_sr";
+    } else {
+      e.target.className = "TagButton_sr";
+    }
+
+    //checkedTagList에 해당 태그의 id와 tagname값 객체로 추가
     if (checkedTagList.some((v) => parseInt(v.id) === parseInt(e.target.id))) {
       setCheckedTagList(
         checkedTagList.filter((it) => parseInt(it.id) !== parseInt(e.target.id))
@@ -121,9 +102,6 @@ const ShareRoutine = () => {
       setCheckedTagList([...checkedTagList, selectTag]);
     }
   };
-  //
-  //
-  console.log(checkedTagList);
 
   //아래는 썸네일 설정
   const [state, setState] = useState([{ selectedFiles: null }]);
@@ -159,9 +137,7 @@ const ShareRoutine = () => {
   //   setContent(e.target.value);
   // };
 
-  //
   // 공유하기 버튼을 누를 시 실행 백엔드 연동 axios 코드
-  // 쏘영쓰 부탁해유~><
   const onPush = () => {
     const frm = new FormData();
     const contents = {
@@ -214,19 +190,19 @@ const ShareRoutine = () => {
     }
   };
 
-  console.log(
-    title,
-    intro,
-    checkedRoutineId,
-    checkedTagList,
-    state.selectedFiles
-  );
+  // console.log(
+  //   title,
+  //   intro,
+  //   checkedRoutineId,
+  //   checkedTagList,
+  //   state.selectedFiles
+  // );
 
   return (
     <div>
       <MyUpper text={"루틴 공유하기"} />
       <div className="ShareRoutine">
-        <div>
+        <div className="thumbnailDiv_sr">
           <img
             className="thumbnail_sr"
             src={thumbnail}
@@ -245,64 +221,62 @@ const ShareRoutine = () => {
           />
         </div>
         <div className="RoutineTitle_sr">
-          <h3 className="text_sr" style={{ textAlign: "left" }}>
-            루틴 이름
-          </h3>
+          <h3 className="text_sr">루틴 이름</h3>
           <input className="RoutineTitleInput_sr" onChange={onChangeTitle} />
         </div>
         <div>
-          <h3 className="text_sr" style={{ textAlign: "left" }}>
-            루틴 소개글
-          </h3>
+          <h3 className="text_sr">루틴 소개글</h3>
           <textarea
             className="IntroTextArea_sr"
             placeholder="이 루틴은 어떤 루틴인가요?"
             onChange={onChangeIntro}
           />
         </div>
-        <div>
+        <div className="TagButtonDiv_sr">
           {tagList.map((it) => (
-            <span className="Tag_sr">
-              <button
-                id={it.id}
-                value={it.tagName}
-                className="TagButton_sr"
-                onClick={onChangeTag}
-              >
-                {it.tagName}
-              </button>
-            </span>
+            <button
+              id={it.id}
+              value={it.tagName}
+              className="TagButton_sr"
+              onClick={onChangeTag}
+            >
+              {it.tagName}
+            </button>
           ))}
         </div>
         <div>
-          <h3 className="text_sr" style={{ textAlign: "left" }}>
-            공개 루틴 상세 설정
-          </h3>
-          <input
-            type="checkbox"
-            onChange={(e) => onCheckedAll(e.target.checked)}
-            checked={checkedRoutineId.length == myRoutine.length ? true : false}
-          />{" "}
-          전체선택
-          {myRoutine.map((it) => (
-            <div className="RoutineDetail">
-              <input
-                type="checkbox"
-                value={it.id}
-                onChange={(e) =>
-                  onCheckedElement(e.target.checked, e.target.value)
-                }
-                checked={
-                  checkedRoutineId.includes(parseInt(it.id)) ? true : false
-                }
-              />
-              <span className="RoutineTime">
-                <span className="RoutineStartTime">{it.startTime}</span>
-                <span className="RoutineEndTime">{it.endTime}</span>
-              </span>
-              <span className="RoutineContent">{it.content}</span>
-            </div>
-          ))}
+          <h3 className="text_sr">공개 루틴 상세 설정</h3>
+          <div className="checkAll_div">
+            <input
+              type="checkbox"
+              onChange={(e) => onCheckedAll(e.target.checked)}
+              checked={
+                checkedRoutineId.length == myRoutine.length ? true : false
+              }
+            />
+            전체선택
+          </div>
+          <div className="routineBody">
+            {myRoutine.map((it) => (
+              <div className="RoutineDetail">
+                <input
+                  className="checkbox_rt"
+                  type="checkbox"
+                  value={it.id}
+                  onChange={(e) =>
+                    onCheckedElement(e.target.checked, e.target.value)
+                  }
+                  checked={
+                    checkedRoutineId.includes(parseInt(it.id)) ? true : false
+                  }
+                />
+                <span className="RoutineTime_rt">
+                  <span>{it.startTime}</span>-<span>{it.endTime}</span>
+                </span>
+                <span className="RoutineContent_rt">{it.content}</span>
+              </div>
+            ))}
+          </div>
         </div>
         <button className="ShareButton_sr" onClick={onPush}>
           공유하기

@@ -292,16 +292,17 @@ const RoutineEditor = ({ isEdit, originData }) => {
 
   return (
     <div className="RoutineEditor">
-      <section className="routineSection">
-        <div className="RoutinName">
-          <input
-            className="NameBox"
-            ref={contentRef}
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-        </div>
-        <div className="Notification">
+      {/* <section className="routineSection"> */}
+      <div className="RoutinName">
+        <input
+          className="NameBox"
+          ref={contentRef}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        />
+      </div>
+
+      {/* <div className="Notification">
           <span className="textSpan_re">알림 설정</span>
           <Switch
             checked={onOff}
@@ -309,92 +310,96 @@ const RoutineEditor = ({ isEdit, originData }) => {
               setOnOff(e.target.checked);
             }}
           />
-        </div>
+        </div> */}
 
-        <div className="timeDay">
-          <span className="textSpan_re">시간 설정 </span>
-          <input
-            className="startTime"
-            type="time"
-            value={startTime}
-            onChange={(e) => setStartTime(e.target.value)}
-          />
-          <input
-            className="endTime"
-            type="time"
-            value={endTime}
-            onChange={(e) => setEndTime(e.target.value)}
-          />
+      <div className="timeDay">
+        <p className="text_re">시간 설정 </p>
+        <input
+          className="startTime"
+          type="time"
+          value={startTime}
+          onChange={(e) => setStartTime(e.target.value)}
+        />
+        <input
+          className="endTime"
+          type="time"
+          value={endTime}
+          onChange={(e) => setEndTime(e.target.value)}
+        />
+      </div>
+
+      <div className="routineRules_div">
+        <p className="text_re">요일 반복</p>
+        <div className="routineRulesBtn_div">
+          <button
+            id="monBtn"
+            value="mon"
+            className="routineRule"
+            onClick={onClickRoutineRule}
+          >
+            월
+          </button>
+          <button
+            id="tueBtn"
+            value="tue"
+            className="routineRule"
+            onClick={onClickRoutineRule}
+          >
+            화
+          </button>
+          <button
+            id="wedBtn"
+            value="wed"
+            className="routineRule"
+            onClick={onClickRoutineRule}
+          >
+            수
+          </button>
+          <button
+            id="thuBtn"
+            value="thu"
+            className="routineRule"
+            onClick={onClickRoutineRule}
+          >
+            목
+          </button>
+          <button
+            id="friBtn"
+            value="fri"
+            className="routineRule"
+            onClick={onClickRoutineRule}
+          >
+            금
+          </button>
+          <button
+            id="satBtn"
+            value="sat"
+            className="routineRule"
+            onClick={onClickRoutineRule}
+          >
+            토
+          </button>
+          <button
+            id="sunBtn"
+            value="sun"
+            className="routineRule"
+            onClick={onClickRoutineRule}
+          >
+            일
+          </button>
         </div>
-        <div className="routineRules_div">
-          <span className="textSpan_re">요일 반복</span>
-          <br />
-          <div className="routineRulesBtn_div">
-            <button
-              id="monBtn"
-              value="mon"
-              className="routineRule"
-              onClick={onClickRoutineRule}
-            >
-              월
-            </button>
-            <button
-              id="tueBtn"
-              value="tue"
-              className="routineRule"
-              onClick={onClickRoutineRule}
-            >
-              화
-            </button>
-            <button
-              id="wedBtn"
-              value="wed"
-              className="routineRule"
-              onClick={onClickRoutineRule}
-            >
-              수
-            </button>
-            <button
-              id="thuBtn"
-              value="thu"
-              className="routineRule"
-              onClick={onClickRoutineRule}
-            >
-              목
-            </button>
-            <button
-              id="friBtn"
-              value="fri"
-              className="routineRule"
-              onClick={onClickRoutineRule}
-            >
-              금
-            </button>
-            <button
-              id="satBtn"
-              value="sat"
-              className="routineRule"
-              onClick={onClickRoutineRule}
-            >
-              토
-            </button>
-            <button
-              id="sunBtn"
-              value="sun"
-              className="routineRule"
-              onClick={onClickRoutineRule}
-            >
-              일
-            </button>
-          </div>
-        </div>
-        <div className="removeText" onClick={onRemove}>
-          {isEdit ? "삭제하기" : " "}
-        </div>
-      </section>
-      <button className="submitRoutine_btn" onClick={handleSubmit}>
-        {isEdit ? "수정하기" : "추가하기"}
-      </button>
+      </div>
+
+      <p className="removeText" onClick={onRemove}>
+        {isEdit ? "삭제하기" : " "}
+      </p>
+      {/* </section> */}
+
+      <footer className="buttonDiv_re">
+        <button className="SaveButton_re" onClick={handleSubmit}>
+          {isEdit ? "수정하기" : "추가하기"}
+        </button>
+      </footer>
     </div>
   );
 };

@@ -60,6 +60,19 @@
   display: none;
 }
 
+.clicked_fd {
+  padding: 0;
+  margin-right: 2%;
+  margin-bottom: 2%;
+  width: 13%;
+  height: 8vh;
+  font-size: 12px;
+  border-radius: 15px;
+
+  background-color: blue;
+  color: white;
+}
+
 .TagButton_fd {
   padding: 0;
   margin-right: 2%;
@@ -68,6 +81,8 @@
   height: 8vh;
   font-size: 12px;
   border-radius: 15px;
+
+  background-color: rgb(233, 233, 233);
 }
 
 .toggle_icon {
