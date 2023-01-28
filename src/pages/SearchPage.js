@@ -2,6 +2,9 @@ import MySearchAlarm from "../Components/MySearchAlarm";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import MyUpper from "../Components/MyUpper";
+import MoveTab from "../Components/MoveTab";
+import "./SearchPage.css";
+
 const SearchPage = () => {
   const navigate = useNavigate();
   const [searchedData, setSearchedData] = useState([]);
@@ -14,9 +17,8 @@ const SearchPage = () => {
   //검색 창 전용 MyUpper 필요한데...
   return (
     <div>
-      {/* <MyUpper /> */}
       <MySearchAlarm parentFunction={parentFunction} />
-      <div>
+      <div className="SearchPageDiv">
         {searchedData.map((it) => (
           <div
             className="RoutineItem"
@@ -42,6 +44,7 @@ const SearchPage = () => {
           </div>
         ))}
       </div>
+      <MoveTab />
     </div>
   );
 };

@@ -163,18 +163,6 @@ const RoutineEditor = ({ isEdit, originData }) => {
         });
 
       //연동 끝
-
-      /* 더미데이터로 할 경우
-      let new_data = {
-        id: originData.id,
-        startTime,
-        endTime,
-        content,
-        routineRules,
-      };
-      const getIndex = MyRoutineDummyData.MyRoutine.indexOf(originData);
-      MyRoutineDummyData.MyRoutine[getIndex] = new_data;
-      */
     }
     //navigate("/home", { replace: true });
   };
@@ -203,19 +191,6 @@ const RoutineEditor = ({ isEdit, originData }) => {
     }
 
     //백엔드 연동 실험 끝
-
-    /*
-    if (window.confirm("루틴을 삭제하시겠습니까?")) {
-      const filterRoutine = MyRoutineDummyData.MyRoutine.filter(
-        (it) => parseInt(it.id) !== parseInt(id)
-      );
-      MyRoutineDummyData.MyRoutine = filterRoutine;
-      alert("삭제완료");
-      navigate("/home", { replace: true });
-    } else {
-      alert("취소되었습니다");
-    }
-    */
   };
 
   //월~일 요일 버튼 클릭 시 MyRoutineDummyData에 각각 요일 값 boolean 처리 함수
