@@ -136,9 +136,9 @@ const EmailSignup = () => {
           value={email}
           onChange={onChangeEmail}
         />
-        {emailError && (
+        {/* {emailError && (
           <div className="invalid-input">유효한 이메일을 입력해주세요</div>
-        )}
+        )} */}
       </div>
       <div className="pwDiv">
         <input
@@ -148,11 +148,11 @@ const EmailSignup = () => {
           value={password}
           onChange={onChangePassword}
         />
-        {passwordError && (
+        {/* {passwordError && (
           <div className="invalid-input">
             비밀번호는 1개 이상의 숫자와 문자를 포함하여 8자 이상이어야 합니다.
           </div>
-        )}
+        )} */}
       </div>
       <div className="buttonDiv">
         <button type="button" className="loginButton" onClick={onSubmit}>

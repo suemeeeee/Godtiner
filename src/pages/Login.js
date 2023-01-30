@@ -41,21 +41,18 @@ const Login = () => {
   return (
     <div>
       <MyUpper />
-      <div className="welcome">
-        <h2>
+      <div className="Login">
+        <h2 className="welcome">
           오늘도 힘차게 <br /> 달려봐요!
         </h2>
-      </div>
 
-      <div className="idDiv">
         <input
           placeholder="이메일"
           value={email}
           className="loginId"
           onChange={onChangeEmail}
         />
-      </div>
-      <div className="pwDiv">
+
         <input
           type="password"
           placeholder="비밀번호"
@@ -63,8 +60,7 @@ const Login = () => {
           className="loginPw"
           onChange={onChangePassword}
         />
-      </div>
-      <div className="buttonDiv">
+
         <button type="button" className="loginButton" onClick={onSubmit}>
           로그인
         </button>

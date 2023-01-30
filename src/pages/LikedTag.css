@@ -1,31 +1,74 @@
-.teglistDiv_lt {
-  text-align: center;
+.LikedTag h1 {
+  width: 95%;
+  margin-top: 10%;
+  margin-left: 5%;
 }
 
-.taglist_lt {
-  list-style: none;
-  columns: 2;
-  width: 85%;
+.LikedTag p {
+  width: 95%;
+  margin-left: 5%;
+}
 
-  text-align: center;
+.teglistDiv_lt {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-bottom: 10%;
+}
+
+.btnLi_lt {
+  padding: 0;
 }
 
 .btn_lt {
-  width: 60%;
-  height: 5vh;
-  margin: 30px;
-  border-radius: 18px;
-  font-size: 20px;
+  width: 100%;
+  height: 7vh;
+
+  font-size: 120%;
+
+  padding: 0;
+  border-radius: 15px;
+  margin-bottom: 30%;
+  border: 0;
+}
+
+.clickedTagBtn_lt {
+  width: 100%;
+  height: 7vh;
+
+  font-size: 120%;
+
+  border-radius: 15px;
+  margin-bottom: 30%;
+
+  border: 0;
+  background-color: blue;
+  color: white;
+}
+
+.taglist_lt {
+  margin-top: 10%;
+  padding: 0;
+  list-style: none;
+  columns: 2;
+  width: 100%;
+
+  padding-left: 10%;
+  padding-right: 10%;
   text-align: center;
 }
 
-.completeBtnDiv_lt {
-  text-align: center;
-}
 .completeBtn_lt {
-  margin-top: 10%;
-  width: 70%;
-  height: 4vh;
-  font-size: 20px;
-  border-radius: 15px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  height: 8vh;
+
+  border: none;
+  background-color: #0066ff;
+  font-size: 25px;
+  color: white;
 }

@@ -1,5 +1,5 @@
 .loginButton {
-  width: 80%;
+  width: 100%;
   height: 7vh;
   border: none;
   background-color: #0095f6;
@@ -9,24 +9,14 @@
   margin-bottom: 5%;
 }
 
-.idDiv {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 5%;
-}
-
-.pwDiv {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .loginId {
   font-size: 25px;
   width: 80%;
   height: 6vh;
   border-radius: 30px;
+
+  border: 0;
+  background-color: rgb(231, 231, 231);
   text-align: center;
 }
 
@@ -35,31 +25,21 @@
   width: 80%;
   height: 6vh;
   border-radius: 30px;
+
+  border: 0;
+  background-color: rgb(231, 231, 231);
   text-align: center;
 }
 
 .welcome {
-  font-size: 35px;
-  text-align: center;
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-bottom: 15%;
-  margin-top: 5%;
+
+  font-size: 200%;
 }
 
-@media (max-width: 500px) {
-  .welcome {
-    font-size: 25px;
-  }
-}
-
-.buttonDiv {
+.Login {
   text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15%;
 }
 
 .loginButton {
@@ -73,13 +53,6 @@
   transform: scale(1.05);
 }
 
-.userNameDiv {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 5%;
-}
-
 .userName {
   font-size: 25px;
   width: 80%;
@@ -88,17 +61,14 @@
   text-align: center;
 }
 
-.nickNameDiv {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 5%;
-}
-
 .nickName {
   font-size: 25px;
   width: 80%;
   height: 6vh;
   border-radius: 30px;
   text-align: center;
+}
+
+.invalid-input {
+  display: block;
 }
