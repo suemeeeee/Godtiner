@@ -49,26 +49,26 @@ const ProfileEdit = () => {
       <MyUpper />
       <div className="ProfileEdit">
         <div className="Edit_div_pe">
-          <text className="text_pe">닉네임</text>
+          <p>닉네임</p>
           <input
-            className="ProfileEditInput"
+            className="nicknameInput_pe"
             onChange={onChangenickName}
           ></input>
         </div>
+
         <div className="Edit_div_pe">
-          <text className="text_pe">자기소개</text>
+          <p>자기소개</p>
           <input
-            className="ProfileEditInput"
+            className="profileCommentInput_pe"
             onChange={onChangeProfileContent}
           ></input>
         </div>
-        <div className="save_div_pe">
-          <button className="save_pe" onClick={onSubmit}>
-            저장하기
-          </button>
-        </div>
+
+        <button className="saveBtn_pe" onClick={onSubmit}>
+          저장하기
+        </button>
       </div>
-      <MoveTab />
+      {/* <MoveTab /> */}
     </div>
   );
 };
