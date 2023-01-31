@@ -16,30 +16,24 @@ function Signup() {
 
   return (
     <div className="Signup">
-      <h2>
+      <h1>
         일상을 굴리는 톱니바퀴, <br /> GODTINER와 함께해요
-      </h2>
+      </h1>
 
       <img className="mainImg" src="img/Signup_image1.png" alt="Signup_img" />
 
-      {/* <div className="button1">
-        <LoginGoogle />
-      </div> */}
-
-      <div className="button2">
+      <div className="btnAreaDiv_su">
         <button
-          className="w-btn w-btn-indigo"
+          className="makeAccountBtn_su"
           type="button"
           onClick={() => navigate("/emailsignup")}
         >
           이메일로 계정 만들기
         </button>
-      </div>
 
-      <div className="button3">
-        <h1>이미 계정이 있으신가요?</h1>
+        <h4>이미 계정이 있으신가요?</h4>
         <button
-          className="w-btn w-btn-blue"
+          className="LoginBtn_su"
           type="button"
           onClick={() => navigate("/login")}
         >

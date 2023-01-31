@@ -12,73 +12,69 @@ body {
     opacity: 1;
   }
 }
-.Signup h2 {
-  padding-top: 5vh;
-  white-space: pre-line;
-  font-size: 40px;
+
+.Signup h1 {
+  padding-top: 20%;
+  margin-top: 0;
+  margin-bottom: 20%;
+  margin-left: 5%;
+
+  font-size: 200%;
   text-align: left;
-  margin-left: 3%;
 }
-@media (max-width: 500px) {
+
+/* @media (max-width: 500px) {
   .Signup h2 {
     font-size: 30px;
   }
-}
-.godtiner {
+} */
+
+/* .godtiner {
   color: #0000ff;
   font-size: 42px;
   padding-right: 5px;
-}
+} */
 
 .mainImg {
   width: 100%;
-  height: auto;
-  padding-top: 30px;
 }
 
-.button1 {
+.btnAreaDiv_su {
   text-align: center;
-  padding-top: 10%;
-}
-.button2 {
-  text-align: center;
-  padding-top: 10%;
+  margin-top: 15%;
 }
 
-.button3 h1 {
-  padding-left: 5%;
-}
-.button3 {
-  text-align: center;
-  padding-top: 10%;
-}
-
-.Signup button {
+.makeAccountBtn_su,
+.LoginBtn_su {
   width: 80%;
   height: 7vh;
-  margin: auto;
-  font-size: 23px;
-  font-weight: 800;
-}
 
-.w-btn {
-  position: relative;
-  border: none;
-  display: inline-block;
-  margin: auto;
-  border-radius: 15px;
-  font-family: "paybooc-Light", sans-serif;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-  text-decoration: none;
-  font-weight: 600;
+  border-radius: 30px;
+
+  font-size: 130%;
+
   transition: 0.25s;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
-.w-btn:hover {
+.makeAccountBtn_su {
+  background-color: #0095f6;
+  color: white;
+}
+
+.Signup h4 {
+  margin-bottom: 0;
+  margin-top: 10%;
+}
+
+.LoginBtn_su {
+}
+
+.button_su:hover {
   transform: scale(1.05);
 }
 
-.w-btn-outline {
+/* .button_su-outline {
   position: relative;
   margin: auto;
   border-radius: 15px;
@@ -87,29 +83,4 @@ body {
   text-decoration: none;
   font-weight: 600;
   transition: 0.25s;
-}
-
-.w-btn-brown {
-  background-color: #dc143c;
-  color: #ffeee4;
-  margin: auto;
-}
-
-.w-btn-indigo {
-  background-color: #ebebeb;
-  color: #373737;
-}
-
-.Signup h1 {
-  text-align: left;
-  font-size: 20px;
-  width: 600px;
-  height: 35px;
-  margin: auto;
-}
-
-.w-btn-blue {
-  margin-top: 100px;
-  background-color: #0000ff;
-  color: #ffffff;
-}
+} */

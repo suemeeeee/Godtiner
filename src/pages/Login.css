@@ -10,7 +10,7 @@
 
 .loginId,
 .loginPw {
-  font-size: 25px;
+  font-size: 120%;
   width: 80%;
   height: 6vh;
   border-radius: 30px;
@@ -35,7 +35,7 @@
   background-color: #0095f6;
   color: white;
 
-  font-size: 100%;
+  font-size: 120%;
 
   transition: 0.25s;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);

@@ -14,7 +14,7 @@
   object-fit: cover;
 
   border-radius: 20px;
-  box-shadow: 4px 4px 4px rgb(160, 160, 160);
+  box-shadow: 2px 2px 2px rgb(194, 194, 194);
 }
 
 .text_sr {
@@ -24,9 +24,12 @@
 .RoutineTitleInput_sr {
   width: 90%;
   height: 5vh;
+  padding-left: 3%;
+
   border: 0;
   border-radius: 15px;
-  font-size: 100%;
+  font-size: 130%;
+  font-family: "Gowun Dodum", sans-serif;
 
   margin-left: 5%;
   margin-right: 5%;
@@ -35,9 +38,13 @@
 .IntroTextArea_sr {
   width: 90%;
   height: 13vh;
+  padding-left: 3%;
+
   border: 0;
   border-radius: 15px;
-  font-size: 120%;
+
+  font-size: 130%;
+  font-family: "Gowun Dodum", sans-serif;
 
   margin-left: 5%;
   margin-right: 5%;
@@ -49,12 +56,14 @@
   display: inline-block;
   text-align: center;
 }
+
 .TagButton_sr {
   padding: 4%;
   margin: 1%;
   border-radius: 15px;
   background-color: rgb(255, 255, 255);
-  font-size: 100%;
+  font-size: 120%;
+  font-family: "Gowun Dodum", sans-serif;
 }
 
 .clicked_sr {
