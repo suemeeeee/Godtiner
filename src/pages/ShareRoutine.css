@@ -70,10 +70,11 @@
   padding: 4%;
   margin: 1%;
   border-radius: 15px;
-  font-size: 100%;
+  font-size: 120%;
 
   background-color: blue;
   color: white;
+  font-family: "Gowun Dodum", sans-serif;
 }
 
 .ShareButton_sr {
