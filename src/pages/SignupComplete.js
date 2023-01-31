@@ -9,7 +9,7 @@ const SignupComplete = () => {
         Godtiner가 되신 것을 <br /> 축하드려요!
       </h1>
 
-      <button className="loginButton" onClick={() => navigate("/login")}>
+      <button className="loginButton_sc" onClick={() => navigate("/login")}>
         로그인하러 가기
       </button>
     </div>

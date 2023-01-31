@@ -7,9 +7,22 @@
   text-align: center;
 }
 
-.loginButton {
-  margin-top: 25%;
-  margin-left: 10%;
+.loginButton_sc {
   width: 80%;
-  font-size: 130%;
+  height: 7vh;
+  margin-top: 20%;
+  margin-left: 10%;
+
+  border-radius: 40px;
+  background-color: #0095f6;
+  color: white;
+
+  font-size: 120%;
+
+  transition: 0.25s;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.loginButton_sc:hover {
+  transform: scale(1.05);
 }

@@ -34,7 +34,7 @@ const Mypage = () => {
   };
 
   return (
-    <div className="myPageCss">
+    <div className="Mypage">
       <img
         className="profileImg"
         src={Image}
@@ -47,25 +47,27 @@ const Mypage = () => {
         type="file"
         style={{ display: "none" }}
         accept="image/jpg,impge/png,image/jpeg"
-        name="profile_img"
+        name="profileImg"
         onChange={onChangeImg}
         ref={fileInput}
       />
-      <div className="userName_mp">{UserDummyData.User.UserName}</div>
-      <div className="userEmail_mp">{UserDummyData.User.UserEmail}</div>
-      <div className="content_mp">{UserDummyData.User.UserProfileContent}</div>
+      <div className="userInfoDiv_mp">
+        <p className="userName_mp">{UserDummyData.User.UserName}</p>
+        <p className="userEmail_mp">{UserDummyData.User.UserEmail}</p>
+        <p className="content_mp">{UserDummyData.User.UserProfileContent}</p>
+      </div>
       <button
-        className="profileEdit"
+        className="profileEditBtn"
         onClick={() => {
           navigate("/profileedit");
         }}
       >
         프로필 편집
       </button>
-      <div className="alertEdit">알림 설정</div>
-      <div className="editButton">
+      {/* <div className="alertEdit">알림 설정</div> */}
+      <div className="editButtonsDiv">
         <button
-          className="editButton1"
+          className="editBtn"
           onClick={() => {
             navigate("/accountedit");
           }}
@@ -74,7 +76,7 @@ const Mypage = () => {
         </button>
 
         <button
-          className="editButton1"
+          className="editBtn"
           onClick={() => {
             navigate("/likedroutineedit");
           }}
@@ -82,9 +84,9 @@ const Mypage = () => {
           찜한 루틴 편집
         </button>
 
-        <button className="editButton1">공유한 루틴 편집</button>
+        <button className="editBtn">공유한 루틴 편집</button>
         <button
-          className="editButton1"
+          className="editBtn"
           onClick={() => {
             navigate("/changetag");
           }}
@@ -92,9 +94,9 @@ const Mypage = () => {
           관심사 태그 변경
         </button>
       </div>
-      <div>
-        <button className="logoutButton">로그아웃</button>
-      </div>
+
+      <button className="logoutButton">로그아웃</button>
+
       <MoveTab />
     </div>
   );

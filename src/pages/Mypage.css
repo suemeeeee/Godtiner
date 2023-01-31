@@ -1,37 +1,46 @@
-.profileImg {
-  width: 200px;
-  height: 200px;
+.Mypage {
+  padding-bottom: %;
+}
 
+.profileImg {
+  width: 50%;
+  height: 50%;
+
+  margin: 5% 0 5% 25%;
   object-fit: cover;
 
   border-radius: 50%;
 }
 
-.userName_mp {
-  font-size: 40px;
-  font-weight: bold;
+.Mypage p {
+  margin: 0;
 }
 
+.userInfoDiv_mp {
+  text-align: center;
+  margin-bottom: 5%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.userName_mp {
+  font-size: 200%;
+  font-weight: bold;
+}
 .userEmail_mp {
-  font-size: 30px;
+  font-size: 150%;
 }
 
 .content_mp {
-  font-size: 25px;
-  text-align: left;
-  margin-left: 30px;
-  margin-top: 50px;
-  margin-bottom: 40px;
+  font-size: 130%;
 }
 
-.profileEdit {
+.profileEditBtn,
+.logoutButton {
   width: 90%;
-  height: 60px;
-  font-size: 30px;
+  height: 6vh;
+  margin-left: 5%;
+  font-size: 150%;
   border-radius: 15px;
-  margin-bottom: 40px;
-  font-family: "Gowun Dodum", sans-serif;
-  font-weight: bold;
   cursor: pointer;
 }
 
@@ -43,44 +52,48 @@
   cursor: pointer;
 }
 
-.alertEdit {
-  font-size: 30px;
-  text-align: left;
-  margin-left: 60px;
-  margin-bottom: 20px;
+.editButtonsDiv {
+  margin-left: 5%;
 }
-
 .editButton {
   display: inline-block;
   cursor: pointer;
 }
 
-.editButton1 {
+/* 
+.alertEdit {
+font-size: 130%;
+  text-align: left;
+  margin-left: 60px;
+  margin-bottom: 20px;
+} */
+
+.editBtn {
   width: 90%;
-  height: 60px;
-  font-size: 30px;
+  height: 6vh;
+
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+
+  font-size: 150%;
   text-align: left;
   border-radius: 15px;
-  margin: 10px;
+
   background-color: transparent;
   font-family: "Gowun Dodum", sans-serif;
   cursor: pointer;
 }
 
-.editButton1:hover {
-  background-color: rgb(184, 184, 184);
+.editBtn:hover {
+  background-color: rgb(234, 234, 234);
   cursor: pointer;
 }
 
 .logoutButton {
   width: 90%;
-  height: 60px;
-  font-size: 30px;
+  height: 6vh;
+  font-size: 150%;
   border-radius: 15px;
-  margin-top: 20px;
-  margin-bottom: 40px;
-  font-family: "Gowun Dodum", sans-serif;
-  font-weight: bold;
   cursor: pointer;
 }
 

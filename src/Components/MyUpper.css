@@ -1,5 +1,5 @@
 .backButton {
-  width: 8%;
+  width: 9%;
   background-color: white;
   border: 0;
 }
@@ -9,9 +9,7 @@
 }
 
 .MyUpper_div {
-  display: flex;
-  align-items: center;
-
+  padding-top: 3%;
   padding-left: 3%;
 }
 
