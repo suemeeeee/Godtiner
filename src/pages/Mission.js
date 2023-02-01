@@ -1,12 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./Mission.css";
 import MoveTab from "../Components/MoveTab";
 import axios from "axios";
 
+import UserDummyData from "../DummyData/UserDummyData.json";
+import { map } from "jquery";
+import { clear } from "@testing-library/user-event/dist/clear";
+
 const Mission = () => {
-  const [clearList, setClearList] = useState([]);
   //내가 달성한 미션 들고 오기 axios 코드
-  //이미지 변경하는 코드 성공하면 이 데이터 활용해서 버튼 활성화 비활성화 할 예정!
+  const [clearList, setClearList] = useState([]);
+
+  const [Btndisabled, setBtnDisabled] = useState(false);
+
+  const [clearLength, setClearLength] = useState();
+
   useEffect(() => {
     axios
       .get("http://localhost:8080/mission", {
@@ -18,11 +26,11 @@ const Mission = () => {
       .then((response) => {
         console.log(response);
         setClearList(response.data.result.data);
+        setClearLength(document.getElementsByClassName("missionBtn").length);
       });
   }, []);
 
   console.log(clearList);
-  //버튼 클릭 시 이미지 색칠된 트로피로 변경
 
   //시발 왜 안돼!!!!! src 주소도 다 바뀌는데 왜 이미지가 안 바뀌냐고 ..!!!!
   function clearMission(e) {
@@ -31,41 +39,85 @@ const Mission = () => {
     document.getElementById(`img${missionId}`).style.display = "none";
   }
 
+  function onClickBtn(e) {
+    if (clearLength >= e.target.value) {
+      alert("미션 클리어! 앞으로도 화이팅!🎉");
+      var unclearImg = document.getElementById(`mission${e.target.value}`);
+      unclearImg.src = "./img/ColorTrophy.png";
+    } else alert("미션을 먼저 클리어해 주세요!🏆");
+  }
+
   return (
     <div>
-      <h1>Mission🏆</h1>
-      <div className="mission_div">
+      <div className="Mission">
+        <h1>Mission🏆</h1>
+        <h4>💙미션을 달성하여, 갓생 살아보자!💙</h4>
         <div className="trophy_div">
           <ul className="ul_ms">
             <li className="li_ms">
               <img
-                id="img0"
-                className="trophy_img trophy_1"
+                id="mission1"
+                className="trophy_img"
                 src="./img/Trophy.png"
               ></img>
-              <button id="1" className="trophy_text" onClick={clearMission}>
+              <button className="missionBtn" value={1} onClick={onClickBtn}>
                 루틴 1개 달성
               </button>
             </li>
+
             <li className="li_ms">
-              <img className="trophy_img" src="./img/Trophy.png"></img>
-              <h3 className="trophy_text">루틴 100개 달성</h3>
+              <img
+                id="mission2"
+                className="trophy_img"
+                src="./img/Trophy.png"
+              ></img>
+              <button className="missionBtn" value={50} onClick={onClickBtn}>
+                루틴 50개 달성
+              </button>
             </li>
+
             <li className="li_ms">
-              <img className="trophy_img" src="./img/Trophy.png"></img>
-              <h3 className="trophy_text">미션 200개 달성</h3>
+              <img
+                id="mission100"
+                className="trophy_img"
+                src="./img/Trophy.png"
+              ></img>
+              <button className="missionBtn" value={100} onClick={onClickBtn}>
+                루틴 100개 달성
+              </button>
             </li>
+
             <li className="li_ms">
-              <img className="trophy_img" src="./img/Trophy.png"></img>
-              <h3 className="trophy_text">미션 500개 달성</h3>
+              <img
+                id="mission200"
+                className="trophy_img"
+                src="./img/Trophy.png"
+              ></img>
+              <button className="missionBtn" value={200} onClick={onClickBtn}>
+                루틴 200개 달성
+              </button>
             </li>
+
             <li className="li_ms">
-              <img className="trophy_img" src="./img/Trophy.png"></img>
-              <h3 className="trophy_text">미션 800개 달성</h3>
+              <img
+                id="mission300"
+                className="trophy_img"
+                src="./img/Trophy.png"
+              ></img>
+              <button className="missionBtn" value={300} onClick={onClickBtn}>
+                루틴 300개 달성
+              </button>
             </li>
+
             <li className="li_ms">
-              <img className="trophy_img" src="./img/Trophy.png"></img>
-              <h3 className="trophy_text">미션 1000개 달성</h3>
+              <img
+                id="mission400"
+                className="trophy_img"
+                src="./img/Trophy.png"
+              ></img>
+              <button className="missionBtn" value={400} onClick={onClickBtn}>
+                루틴 400개 달성
+              </button>
             </li>
           </ul>
         </div>
