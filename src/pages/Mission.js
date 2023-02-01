@@ -10,9 +10,6 @@ import { clear } from "@testing-library/user-event/dist/clear";
 const Mission = () => {
   //내가 달성한 미션 들고 오기 axios 코드
   const [clearList, setClearList] = useState([]);
-
-  const [Btndisabled, setBtnDisabled] = useState(false);
-
   const [clearLength, setClearLength] = useState();
 
   useEffect(() => {
@@ -31,13 +28,6 @@ const Mission = () => {
   }, []);
 
   console.log(clearList);
-
-  //시발 왜 안돼!!!!! src 주소도 다 바뀌는데 왜 이미지가 안 바뀌냐고 ..!!!!
-  function clearMission(e) {
-    let missionId = e.target.id;
-    console.log(missionId);
-    document.getElementById(`img${missionId}`).style.display = "none";
-  }
 
   function onClickBtn(e) {
     if (clearLength >= e.target.value) {
