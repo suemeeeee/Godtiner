@@ -1,11 +1,7 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import "./Mission.css";
 import MoveTab from "../Components/MoveTab";
 import axios from "axios";
-
-import UserDummyData from "../DummyData/UserDummyData.json";
-import { map } from "jquery";
-import { clear } from "@testing-library/user-event/dist/clear";
 
 const Mission = () => {
   //내가 달성한 미션 들고 오기 axios 코드
@@ -21,19 +17,17 @@ const Mission = () => {
         },
       })
       .then((response) => {
-        console.log(response);
         setClearList(response.data.result.data);
         setClearLength(document.getElementsByClassName("missionBtn").length);
       });
   }, []);
 
-  console.log(clearList);
-
   function onClickBtn(e) {
     if (clearLength >= e.target.value) {
+      //만약 내가 클리어한 미션리스트의 length가 클릭한 미션의 value값보다 크거나 같으면, CLEAR
       alert("미션 클리어! 앞으로도 화이팅!🎉");
-      var unclearImg = document.getElementById(`mission${e.target.value}`);
-      unclearImg.src = "./img/ColorTrophy.png";
+      var trophyImage = document.getElementById(`mission${e.target.value}`);
+      trophyImage.src = "./img/ColorTrophy.png";
     } else alert("미션을 먼저 클리어해 주세요!🏆");
   }
 
@@ -41,7 +35,7 @@ const Mission = () => {
     <div>
       <div className="Mission">
         <h1>Mission🏆</h1>
-        <h4>💙미션을 달성하여, 갓생 살아보자!💙</h4>
+        <h4>💙미션 달성하고, 갓생 살아보자!💙</h4>
         <div className="trophy_div">
           <ul className="ul_ms">
             <li className="li_ms">
