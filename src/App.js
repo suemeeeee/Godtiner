@@ -24,6 +24,7 @@ import ViewAll from "./pages/ViewAll";
 import LikedTag from "./pages/LikedTag";
 import ChangeTag from "./pages/ChangeTag";
 import Notification from "./pages/Notification";
+import SharedRoutineEdit from "./pages/SharedRoutineEdit";
 function App() {
   return (
     <BrowserRouter>
@@ -52,6 +53,7 @@ function App() {
           <Route path="/viewall" element={<ViewAll />} />
           <Route path="/likedtag" element={<LikedTag />} />
           <Route path="/changetag" element={<ChangeTag />} />
+          <Route path="/sharedroutineedit" element={<SharedRoutineEdit />} />
           <Route path="/notification" element={<Notification />} />
         </Routes>
       </div>

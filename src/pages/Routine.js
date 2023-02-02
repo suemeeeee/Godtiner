@@ -28,6 +28,8 @@ const Routine = () => {
 
   const [isLiked, setIsLiked] = useState(false);
 
+  const [sharedContents, setSharedContents] = useState([]);
+
   const routineId = useParams();
   let params = routineId.id;
 
@@ -44,6 +46,7 @@ const Routine = () => {
         console.log(Response);
         setPostRoutineId(Response.data.result.data.id);
         setDetailRoutine(Response.data.result.data);
+        setSharedContents(Response.data.result.data.sharedContentsList);
         setNickName(Response.data.result.data.member.nickname);
         setRecommendedRoutine(Response.data.result.data.contentsBasedRecommend);
         if (Response.data.result.data.liked) {
@@ -59,8 +62,9 @@ const Routine = () => {
       });
   }, [params]);
 
-  console.log(detailRoutine);
+  console.log("detailRoutin : ", detailRoutine);
   console.log("내가 고른 루틴들 아이디 : ", selectRoutine);
+  console.log("공유할 콘텐츠 리스트 전부 : ", sharedContents);
 
   console.log("로드 시 찜 유무", isLiked);
   //좋아요 누르면 넘겨줄 함수 (false를 true로 바꾸고 꽉찬 하트로)
@@ -106,9 +110,7 @@ const Routine = () => {
   const onRoutineCheckedAll = (checked) => {
     let newRoutineId = [];
     if (checked) {
-      detailRoutine.sharedContentsList.forEach((it) =>
-        newRoutineId.push(it.id)
-      );
+      sharedContents.forEach((it) => newRoutineId.push(it.id));
       setSelectRoutine(newRoutineId);
     } else {
       setSelectRoutine([]);
@@ -156,12 +158,9 @@ const Routine = () => {
             className="checkAll"
             type="checkbox"
             onChange={(e) => onRoutineCheckedAll(e.target.checked)}
-            // checked={
-            //   selectRoutine.length ==
-            //   Object.keys(detailRoutine.sharedContentsList).length
-            //     ? true
-            //     : false
-            // }
+            checked={
+              selectRoutine.length == sharedContents.length ? true : false
+            }
           />
           전체선택
           <button className="like_r" onClick={wishAddHandler}>
@@ -170,8 +169,8 @@ const Routine = () => {
         </div>
 
         <div className="routineBody">
-          {detailRoutine.sharedContentsList &&
-            detailRoutine.sharedContentsList.map((it) => (
+          {sharedContents &&
+            sharedContents.map((it) => (
               <div className="RoutineDetail">
                 <input
                   className="checkbox_rt"

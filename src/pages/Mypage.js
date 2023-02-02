@@ -84,7 +84,14 @@ const Mypage = () => {
           찜한 루틴 편집
         </button>
 
-        <button className="editBtn">공유한 루틴 편집</button>
+        <button
+          className="editBtn"
+          onClick={() => {
+            navigate("/sharedroutineedit");
+          }}
+        >
+          공유한 루틴 편집
+        </button>
         <button
           className="editBtn"
           onClick={() => {
