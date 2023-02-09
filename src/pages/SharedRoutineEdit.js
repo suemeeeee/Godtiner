@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MyUpper from "../Components/MyUpper";
+import "./SharedRoutineEdit.css";
 
 const SharedRoutineEdit = () => {
   const navigate = useNavigate();
@@ -21,15 +22,12 @@ const SharedRoutineEdit = () => {
         },
       })
       .then((response) => {
-        console.log(response);
-        console.log(response.data.result.data);
         setSharedRoutine(response.data.result.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-  console.log("내가 공유한 루틴들", sharedRoutine);
 
   const onClickedEdit = () => {
     setIsEdit(!isEdit);
@@ -57,7 +55,6 @@ const SharedRoutineEdit = () => {
       setSelectRoutine([]);
     }
   };
-  console.log(selectRoutine);
 
   // 삭제 요청
   const onSubmit = () => {
@@ -80,56 +77,69 @@ const SharedRoutineEdit = () => {
   };
 
   return (
-    <div className="SharedRoutineEdit">
+    <div>
       <MyUpper text={"공유한 루틴 편집"} />
-      <div className="isEditMode">
-        {!isEdit && (
-          <div>
-            <span>찜한 루틴 {sharedRoutine.length}</span>
-            <span onClick={onClickedEdit}>편집</span>
-          </div>
-        )}
-        {isEdit && (
-          <div>
-            <span>전체선택</span>
-            <input
-              type="checkbox"
-              onChange={(e) => onRoutineCheckedAll(e.target.checked)}
-              checked={
-                selectRoutine.length === sharedRoutine.length ? true : false
-              }
-            />
-          </div>
-        )}
-      </div>
-      <div className="SharedRoutineEditBody">
-        {sharedRoutine.map((it) => (
-          <div className="RoutineItem" key={it.id}>
-            {isEdit && (
+      <div className="SharedRoutineEdit">
+        <div className="header_sre">
+          {!isEdit && (
+            <div>
+              <p className="totalTitle_sre">
+                공유한 루틴 총 {sharedRoutine.length}개
+              </p>
+              <button className="editBtn_sre" onClick={onClickedEdit}>
+                편집
+              </button>
+            </div>
+          )}
+          {isEdit && (
+            <div className="selectAllHeader_sre">
+              <p className="totalTitle_sre">전체선택</p>
               <input
+                className="selectAllBox_sre"
                 type="checkbox"
-                className="EditBox"
-                value={it.id}
-                onChange={(e) => {
-                  onRoutineCheckedElement(e.target.checked, e.target.value);
-                }}
-                checked={selectRoutine.includes(parseInt(it.id)) ? true : false}
+                onChange={(e) => onRoutineCheckedAll(e.target.checked)}
+                checked={
+                  selectRoutine.length === sharedRoutine.length ? true : false
+                }
               />
-            )}
-            <img
-              className="feedImg"
-              src={require(`C:/api/image/${it.feed_thumbnail}`)}
-            ></img>
-            <br />
-            <span className="feedTitle">{it.title}</span>
-          </div>
-        ))}
+              <button className="cancleEditBtn_sre" onClick={onClickedEdit}>
+                편집 취소
+              </button>
+            </div>
+          )}
+        </div>
+
+        <div className="SharedRoutineEditBody_sre">
+          {sharedRoutine.map((it) => (
+            <div className="RoutineItem_sre" key={it.id}>
+              {isEdit && (
+                <input
+                  type="checkbox"
+                  className="editBoxItem_sre"
+                  value={it.id}
+                  onChange={(e) => {
+                    onRoutineCheckedElement(e.target.checked, e.target.value);
+                  }}
+                  checked={
+                    selectRoutine.includes(parseInt(it.id)) ? true : false
+                  }
+                />
+              )}
+              <img
+                className="feedImg_sre"
+                src={require(`C:/api/image/${it.feed_thumbnail}`)}
+              ></img>
+              <p className="feedTitle_sre">{it.title}</p>
+            </div>
+          ))}
+        </div>
+
+        {isEdit && (
+          <footer className="buttonDiv_r" onClick={onSubmit}>
+            <button className="deleteBtn_sre">공유삭제</button>
+          </footer>
+        )}
       </div>
-      {isEdit && (
-        <footer className="buttonDiv_r" onClick={onSubmit}>
-          <button className="SaveButton_r">공유삭제</button>
-        </footer>
-      )}
     </div>
   );
 };

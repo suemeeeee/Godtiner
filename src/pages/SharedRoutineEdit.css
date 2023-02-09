@@ -1,0 +1,77 @@
+.SharedRoutineEdit p {
+  display: inline;
+}
+.header_sre {
+  margin-top: 5%;
+  text-align: center;
+}
+
+.totalTitle_sre {
+  margin: 0;
+  width: fit-content;
+
+  font-size: 120%;
+}
+
+.editBtn_sre {
+  width: 15%;
+  height: 5vh;
+  border-radius: 5px;
+  margin-left: 40%;
+  background-color: #0066ff;
+  color: white;
+}
+
+.selectAllHeader_sre {
+  text-align: left;
+  margin-left: 5%;
+}
+.selectAllBox_sre {
+  margin-left: 3%;
+}
+
+.cancleEditBtn_sre {
+  width: 20%;
+  height: 5vh;
+  border-radius: 5px;
+  margin-left: 52%;
+  color: #0066ff;
+}
+.SharedRoutineEditBody_sre {
+  margin-top: 10%;
+}
+
+.editBoxItem_sre {
+  margin-left: 90%;
+}
+.RoutineItem_sre {
+  display: inline-block;
+  width: 45%;
+  margin-right: 2.5%;
+  margin-left: 2.5%;
+  margin-bottom: 5%;
+  text-align: center;
+}
+
+.feedImg_sre {
+  width: 100%;
+  height: 15vh;
+  object-fit: cover;
+  border-radius: 30px;
+}
+
+.feedTitle_sre {
+  font-size: 110%;
+  margin: 0;
+}
+
+.deleteBtn_sre {
+  width: 100%;
+  height: 8vh;
+  position: fixed;
+  bottom: 0;
+
+  background-color: #0066ff;
+  font-size: 25px;
+  color: white;
+}

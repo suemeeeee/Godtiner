@@ -4,10 +4,11 @@ import MoveTab from "../Components/MoveTab";
 import axios from "axios";
 
 const Mission = () => {
-  //내가 달성한 미션 들고 오기 axios 코드
   const [clearList, setClearList] = useState([]);
   const [clearLength, setClearLength] = useState();
 
+  //내가 달성한 미션 들고 오기 axios 코드
+  //객체 배열 형태로 들고옴. clearList에 담아줌.
   useEffect(() => {
     axios
       .get("http://localhost:8080/mission", {
