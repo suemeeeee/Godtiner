@@ -95,6 +95,20 @@
   border-radius: 15px;
 
   font-size: 20px;
+
+  background-color: rgb(233, 233, 233);
+}
+
+.routineRule_active {
+  margin-right: 1.5%;
+  margin-left: 1.5%;
+  padding: 3%;
+  border-radius: 15px;
+
+  font-size: 20px;
+
+  background-color: #0066ff;
+  color: white;
 }
 
 .removeText {

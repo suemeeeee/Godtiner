@@ -11,37 +11,38 @@ import { Password } from "@mui/icons-material";
 
 const ProfileEdit = () => {
   const navigate = useNavigate();
-  const [nickName, setNickName] = useState("");
+  const [nickname, setNickname] = useState("");
   //가입 시에 받은 nickname 넣도록! 일단 암거나
   const [profileContent, setProfileContent] = useState("");
 
-  const onChangenickName = (e) => {
-    setNickName(e.target.value);
+  const onChangenickname = (e) => {
+    setNickname(e.target.value);
+    frm.append("nickname", nickname);
   };
 
   const onChangeProfileContent = (e) => {
     setProfileContent(e.target.value);
+    frm.append("introduction", profileContent);
   };
 
-  //백이랑 통신 API 짜기 (axios)
-  //일단 더미 데이터로 보내는 거
-  const onSubmit = (e) => {
-    UserDummyData.User.UserName = nickName;
-    UserDummyData.User.UserProfileContent = profileContent;
-    navigate("/mypage", { replace: true });
+  var frm = new FormData();
 
-    //백과 api 연동 코드
-    // axios
-    //   .put("/member", {
-    //     nickname: nickName,
-    //     profilecontent: profileContent,
-    //   })
-    //   .then((Response) => {
-    //     console.log(Response.data);
-    //   })
-    //   .catch((Error) => {
-    //     console.log(Error);
-    //   });
+  //api 연동 코드
+  const onSubmit = (e) => {
+    axios
+      .put("http://localhost:8080/member", frm, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((Response) => {
+        console.log(Response.data);
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+
+    navigate("/mypage", { replace: true });
   };
 
   return (
@@ -52,7 +53,7 @@ const ProfileEdit = () => {
           <p>닉네임</p>
           <input
             className="nicknameInput_pe"
-            onChange={onChangenickName}
+            onChange={onChangenickname}
           ></input>
         </div>
 

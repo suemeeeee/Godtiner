@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import MyUpper from "../Components/MyUpper";
 import Avatar from "react-avatar-edit";
@@ -7,6 +7,7 @@ import "./Mypage.css";
 import MoveTab from "../Components/MoveTab";
 
 import UserDummyData from "../DummyData/UserDummyData.json";
+import axios from "axios";
 
 const Mypage = () => {
   const navigate = useNavigate();
@@ -14,6 +15,25 @@ const Mypage = () => {
   const [Image, setImage] = useState(UserDummyData.User.UserProfileImg);
   const fileInput = useRef(null);
 
+  const [nickname, setNickname] = useState("");
+  const [intro, setIntro] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/member", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        setNickname(res.data.nickname);
+        //setIntro()
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
   const onChangeImg = (e) => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
@@ -52,7 +72,7 @@ const Mypage = () => {
         ref={fileInput}
       />
       <div className="userInfoDiv_mp">
-        <p className="userName_mp">{UserDummyData.User.UserName}</p>
+        <p className="userName_mp">{nickname}</p>
         <p className="userEmail_mp">{UserDummyData.User.UserEmail}</p>
         <p className="content_mp">{UserDummyData.User.UserProfileContent}</p>
       </div>

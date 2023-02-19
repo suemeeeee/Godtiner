@@ -195,69 +195,33 @@ const RoutineEditor = ({ isEdit, originData }) => {
 
   //월~일 요일 버튼 클릭 시 MyRoutineDummyData에 각각 요일 값 boolean 처리 함수
   const onClickRoutineRule = (e) => {
+    if (e.target.className === "routineRule") {
+      e.target.className = "routineRule_active";
+    } else {
+      e.target.className = "routineRule";
+    }
+
     switch (e.target.value) {
       case "mon":
         routineRules[0].mon = !routineRules[0].mon;
-        if (routineRules[0].mon == true) {
-          document.getElementById(e.target.id).style.backgroundColor = "blue";
-        } else {
-          document.getElementById(e.target.id).style.backgroundColor =
-            "rgb(228, 228, 228)";
-        }
         break;
       case "tue":
         routineRules[0].tue = !routineRules[0].tue;
-        if (routineRules[0].tue == true) {
-          document.getElementById(e.target.id).style.backgroundColor = "blue";
-        } else {
-          document.getElementById(e.target.id).style.backgroundColor =
-            "rgb(228, 228, 228)";
-        }
         break;
       case "wed":
         routineRules[0].wed = !routineRules[0].wed;
-        if (routineRules[0].wed == true) {
-          document.getElementById(e.target.id).style.backgroundColor = "blue";
-        } else {
-          document.getElementById(e.target.id).style.backgroundColor =
-            "rgb(228, 228, 228)";
-        }
         break;
       case "thu":
         routineRules[0].thu = !routineRules[0].thu;
-        if (routineRules[0].thu == true) {
-          document.getElementById(e.target.id).style.backgroundColor = "blue";
-        } else {
-          document.getElementById(e.target.id).style.backgroundColor =
-            "rgb(228, 228, 228)";
-        }
         break;
       case "fri":
         routineRules[0].fri = !routineRules[0].fri;
-        if (routineRules[0].fri == true) {
-          document.getElementById(e.target.id).style.backgroundColor = "blue";
-        } else {
-          document.getElementById(e.target.id).style.backgroundColor =
-            "rgb(228, 228, 228)";
-        }
         break;
       case "sat":
         routineRules[0].sat = !routineRules[0].sat;
-        if (routineRules[0].sat == true) {
-          document.getElementById(e.target.id).style.backgroundColor = "blue";
-        } else {
-          document.getElementById(e.target.id).style.backgroundColor =
-            "rgb(228, 228, 228)";
-        }
         break;
       case "sun":
         routineRules[0].sun = !routineRules[0].sun;
-        if (routineRules[0].sun == true) {
-          document.getElementById(e.target.id).style.backgroundColor = "blue";
-        } else {
-          document.getElementById(e.target.id).style.backgroundColor =
-            "rgb(228, 228, 228)";
-        }
         break;
 
       default:

@@ -31,8 +31,9 @@ const Home = () => {
         },
       })
       .then((response) => {
-        //console.log(response.data);
+        console.log(response.data);
         setRoutineData(response.data.result.data.myContentsList);
+        setName(response.data.result.data.title);
       })
       .catch((error) => {
         console.log(error);
@@ -50,8 +51,28 @@ const Home = () => {
           })
       );
   }, []);
-  console.log(routineData);
-  //여기까지가 연동실험
+
+  const onChangeName = (e) => {
+    setName(e.target.value);
+    axios
+      .put(
+        "http://localhost:8080/myRoutine/post",
+        {
+          title: name,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="Home">
@@ -76,11 +97,7 @@ const Home = () => {
         onClick={() => navigate("/new")}
       />
 
-      <input
-        className="routine_name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
+      <input className="routine_name" value={name} onChange={onChangeName} />
 
       <div className="routinSection">
         {routineData.map((it) => (
