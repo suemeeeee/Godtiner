@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MySearchAlarm from "../Components/MySearchAlarm";
 import "./Home.css";
@@ -12,7 +12,6 @@ import {
   IoIosCalendar,
   IoMdArrowBack,
 } from "react-icons/io";
-import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
 import axios from "axios";
 
 const Home = () => {
@@ -23,9 +22,12 @@ const Home = () => {
   //구글링결과 useState를 이용해야 한다고 한다..
   const [routineData, setRoutineData] = useState([]);
 
+  const today = new Date();
+
+  console.log(today.getDay());
   useEffect(() => {
     axios
-      .get("http://localhost:8080/myRoutine/post", {
+      .get(`http://localhost:8080/myRoutine/post/${today.getDay()}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -37,19 +39,18 @@ const Home = () => {
       })
       .catch((error) => {
         console.log(error);
-      })
-      .then(
-        axios
-          .get("http://localhost:8080/myRoutine/post", {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          })
-          .then((response) => {
-            //console.log(response.data.result.data.myContentsList);
-            setRoutineData(response.data.result.data.myContentsList);
-          })
-      );
+      });
+    // .then(
+    //   axios
+    //     .get(`http://localhost:8080/myRoutine/post`, {
+    //       headers: {
+    //         Authorization: `Bearer ${localStorage.getItem("token")}`,
+    //       },
+    //     })
+    //     .then((response) => {
+    //       setRoutineData(response.data.result.data.myContentsList);
+    //     })
+    // );
   }, []);
 
   const onChangeName = (e) => {

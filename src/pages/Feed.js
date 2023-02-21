@@ -15,6 +15,8 @@ const Feed = () => {
   const [selectedTagList, setSelectedTagList] = useState([]);
   const [sortState, setSortState] = useState("");
 
+  const [currentPage, setCurrentPage] = useState("0");
+
   const [likeSortedRoutineList, setLikeSortedRoutineList] = useState([]);
   const [pickSortedRoutineList, setPickSortedRoutineList] = useState([]);
 
@@ -25,8 +27,11 @@ const Feed = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/feed?sort=regdate,DESC")
+      .get(
+        `http://localhost:8080/feed?sort=regdate,DESC&currentPageNum=${currentPage}`
+      )
       .then((Response) => {
+        console.log(Response);
         setTagList(Response.data.result.data.tagInfoList);
         setAllRoutines(Response.data.result.data.simpleLectureDtoList);
       })
@@ -42,7 +47,7 @@ const Feed = () => {
     });
     document.getElementById("pick").style.display = "none";
     document.getElementById("like").style.display = "none";
-  }, []);
+  }, [currentPage]);
 
   const onClickTagBtn = (e) => {
     const tagName = e.target.value;
@@ -94,6 +99,10 @@ const Feed = () => {
     document.getElementById("all").style.display = "none";
     document.getElementById("pick").style.display = "none";
     document.getElementById("like").style.display = "none";
+  };
+
+  const onClickPageBtn = (e) => {
+    setCurrentPage(e.target.value);
   };
 
   return (
@@ -260,6 +269,23 @@ const Feed = () => {
         ))}
       </div>
 
+      <div className="pageNumDiv">
+        <button value={"1"} onClick={onClickPageBtn}>
+          1
+        </button>
+        <button value={"2"} onClick={onClickPageBtn}>
+          2
+        </button>
+        <button value={"3"} onClick={onClickPageBtn}>
+          3
+        </button>
+        <button value={"4"} onClick={onClickPageBtn}>
+          4
+        </button>
+        <button value={"5"} onClick={onClickPageBtn}>
+          5
+        </button>
+      </div>
       <MoveTab />
     </div>
   );

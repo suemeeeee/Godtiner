@@ -92,3 +92,8 @@
   font-size: 40px;
   margin: 0;
 }
+
+.pageNumDiv {
+  text-align: center;
+  padding-bottom: 30%;
+}
