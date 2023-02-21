@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import feedDummyData from "../DummyData/feedDummyData.json";
 import "./Feed.css";
 import MoveTab from "../Components/MoveTab";
 import MySearchAlram from "../Components/MySearchAlarm";
@@ -27,9 +26,7 @@ const Feed = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `http://localhost:8080/feed?sort=regdate,DESC&currentPageNum=${currentPage}`
-      )
+      .get(`http://localhost:8080/feed?page=${currentPage}&sort=regdate,DESC`)
       .then((Response) => {
         console.log(Response);
         setTagList(Response.data.result.data.tagInfoList);
@@ -39,12 +36,20 @@ const Feed = () => {
         console.log(Error);
       });
 
-    axios.get("/feed?sort=likecnt,DESC").then((response) => {
-      setLikeSortedRoutineList(response.data.result.data.simpleLectureDtoList);
-    });
-    axios.get("/feed?sort=pickcnt,DESC").then((response) => {
-      setPickSortedRoutineList(response.data.result.data.simpleLectureDtoList);
-    });
+    axios
+      .get(`http://localhost:8080/feed?page=${currentPage}&sort=likecnt,DESC`)
+      .then((response) => {
+        setLikeSortedRoutineList(
+          response.data.result.data.simpleLectureDtoList
+        );
+      });
+    axios
+      .get(`/feed?page=${currentPage}&sort=pickcnt,DESC`)
+      .then((response) => {
+        setPickSortedRoutineList(
+          response.data.result.data.simpleLectureDtoList
+        );
+      });
     document.getElementById("pick").style.display = "none";
     document.getElementById("like").style.display = "none";
   }, [currentPage]);
@@ -72,7 +77,7 @@ const Feed = () => {
     if (sortState === "like") {
       axios
         .get(
-          `http://localhost:8080/feed?page=0&sort=likecnt,DESC&tagName=${tagName}`
+          `http://localhost:8080/feed?page=${currentPage}&sort=likecnt,DESC&tagName=${tagName}`
         )
         .then((Response) => {
           console.log(Response);
@@ -85,7 +90,7 @@ const Feed = () => {
     if (sortState === "pick") {
       axios
         .get(
-          `http://localhost:8080/feed?page=0&sort=pickcnt,DESC&tagName=${tagName}`
+          `http://localhost:8080/feed?page=${currentPage}&sort=pickcnt,DESC&tagName=${tagName}`
         )
         .then((Response) => {
           console.log(Response);
@@ -145,7 +150,7 @@ const Feed = () => {
       </div>
       <hr size="10px" width="90%" />
       <p className="toggle_icon" onClick={() => toggleMenu()}>
-        ^
+        ▼
       </p>
       <div
         className={isOpen ? "show_tagList_fd" : "hide_tagList_fd"}
@@ -270,19 +275,20 @@ const Feed = () => {
       </div>
 
       <div className="pageNumDiv">
-        <button value={"1"} onClick={onClickPageBtn}>
+        for()
+        <button value={"0"} onClick={onClickPageBtn}>
           1
         </button>
-        <button value={"2"} onClick={onClickPageBtn}>
+        <button value={"1"} onClick={onClickPageBtn}>
           2
         </button>
-        <button value={"3"} onClick={onClickPageBtn}>
+        <button value={"2"} onClick={onClickPageBtn}>
           3
         </button>
-        <button value={"4"} onClick={onClickPageBtn}>
+        <button value={"3"} onClick={onClickPageBtn}>
           4
         </button>
-        <button value={"5"} onClick={onClickPageBtn}>
+        <button value={"4"} onClick={onClickPageBtn}>
           5
         </button>
       </div>

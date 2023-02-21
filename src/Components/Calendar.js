@@ -34,7 +34,7 @@ const Calendar = () => {
       <div className="calendarHeader">
         {format(startDate, "yyyy년 MM월 ")}
         <button className="calendar_btn" onClick={handleClick}>
-          달력
+          📅
         </button>
       </div>
       {isOpen && (
