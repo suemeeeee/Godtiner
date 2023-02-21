@@ -1,4 +1,4 @@
-//마이페이지에서 공유한 루틴 편집을 눌렀을 때, 나오는 창
+//마이페이지에서 공유한 루틴 편집을 눌렀을 때, 나오는 페이지
 
 import axios from "axios";
 import { useEffect, useState } from "react";
