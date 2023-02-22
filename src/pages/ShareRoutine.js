@@ -1,22 +1,16 @@
-import React, { useContext, useState, useRef, useEffect } from "react";
-import { RoutineStateContext, ShareStateContext } from "../App";
-import Avatar from "react-avatar-edit";
-import feedDummyData from "../DummyData/feedDummyData.json";
+import React, { useState, useRef, useEffect } from "react";
 import UserDummyData from "../DummyData/UserDummyData.json";
-import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
 
 import "./ShareRoutine.css";
 
 import MyUpper from "../Components/MyUpper";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { LensTwoTone } from "@mui/icons-material";
 
 const ShareRoutine = () => {
   const navigate = useNavigate();
 
   //백엔드로 넘겨 줄 변수들 (항상 상단에!)
-  const [myRoutineId, setMyRoutineId] = useState(0);
   const [checkedRoutineId, setCheckedRoutineId] = useState([]);
   const [checkedTagList, setCheckedTagList] = useState([]);
   const [title, setTitle] = useState("");
@@ -26,26 +20,14 @@ const ShareRoutine = () => {
   const [myRoutine, setMyRoutine] = useState([]);
   const [tagList, setTagList] = useState([]);
 
-  //myRoutineId얻어오기 위한 axios 코드d
+  //공유 페이지 구성 api axios코드
   useEffect(() => {
     axios
-      .get("http://localhost:8080/myRoutine/post", {
+      .get("http://localhost:8080/myRoutine/share", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
-      .then((response) => {
-        setMyRoutineId(response.data.result.data.id);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
-  //공유 페이지 구성 api axios코드
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8080/myRoutine/share/${myRoutineId}`)
       .then((response) => {
         console.log(response);
         setMyRoutine(response.data.result.data.sharedContentsSimples);
@@ -54,20 +36,7 @@ const ShareRoutine = () => {
       .catch((error) => {
         console.log(error);
       });
-
-    axios
-      .get("http://localhost:8080/myRoutine/post", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-      .then((response) => {
-        setMyRoutineId(response.data.result.data.id);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [myRoutineId]);
+  }, []);
 
   //const [tag, setTag] = useState([]);
   //const [content, setContent] = useState();
