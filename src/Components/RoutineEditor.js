@@ -1,31 +1,11 @@
 //상세루틴 편집하는 컴포넌트
 
 import { useEffect, useRef, useState } from "react";
-//import mui
-import Switch from "@mui/material/Switch";
 import { useNavigate, useParams } from "react-router-dom";
-
-import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
-
 import "./RoutineEditor.css";
 import axios from "axios";
 
 const RoutineEditor = ({ isEdit, originData }) => {
-  let r_id = 0;
-  if (parseInt(MyRoutineDummyData.MyRoutine.length) > 0) {
-    r_id =
-      parseInt(
-        MyRoutineDummyData.MyRoutine[MyRoutineDummyData.MyRoutine.length - 1].id
-      ) + 1;
-  } else {
-    r_id = 1;
-  }
-
-  // const r_id =
-  //   parseInt(
-  //     MyRoutineDummyData.MyRoutine[MyRoutineDummyData.MyRoutine.length - 1].id
-  //   ) + 1;
-
   //세부루틴 이름
   const [content, setContent] = useState("");
   //알림설정
@@ -66,7 +46,6 @@ const RoutineEditor = ({ isEdit, originData }) => {
   const { id } = useParams();
   console.log(id);
 
-  //백엔드 연동을 위한 함수
   //시작이나 끝나는 시간이 수정되었는지 판별하는 함수
   const isSameTime = (time, originTime) => {
     if (time === startTime) {
@@ -97,7 +76,6 @@ const RoutineEditor = ({ isEdit, originData }) => {
       return;
     }
     if (!isEdit) {
-      //백엔드 연동 시험
       axios
         .post(
           "http://localhost:8080/myRoutine/save",
@@ -121,21 +99,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
         .catch((error) => {
           console.log(error.response);
         });
-      //여기까지가 백엔드 연동시험
-
-      /* 더미데이터로 할 경우
-      let newData = {
-        id: r_id,
-        startTime,
-        endTime,
-        content,
-        routineRules,
-      };
-      newRoutine = [...MyRoutineDummyData.MyRoutine, newData];
-      MyRoutineDummyData.MyRoutine = newRoutine;
-      */
     } else {
-      //백엔드로 연동 시작
       isSameTime(startTime, originData.startTime);
       isSameTime(endTime, originData.endTime);
       axios
@@ -161,15 +125,11 @@ const RoutineEditor = ({ isEdit, originData }) => {
         .catch((error) => {
           console.log(error.response);
         });
-
-      //연동 끝
     }
-    //navigate("/home", { replace: true });
   };
 
   console.log(startTime, endTime);
   const onRemove = () => {
-    //백엔드 연동 실험
     if (window.confirm("루틴을 삭제하시겠습니까?")) {
       axios
         .delete(`http://localhost:8080/myRoutine/detail/${id}`, {
@@ -189,8 +149,6 @@ const RoutineEditor = ({ isEdit, originData }) => {
     } else {
       alert("취소되었습니다");
     }
-
-    //백엔드 연동 실험 끝
   };
 
   //월~일 요일 버튼 클릭 시 MyRoutineDummyData에 각각 요일 값 boolean 처리 함수

@@ -48,10 +48,13 @@
 }
 
 .AddRoutineButton {
-  margin-top: 93%;
+  /* margin-top: 93%;
   margin-left: 78%;
   width: 17%;
-  position: fixed;
+  position: fixed; */
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
 }
 @media (max-width: 500px) {
   .routine_name {
