@@ -40,10 +40,24 @@ const LikedTag = () => {
   };
 
   //태그 버튼 클릭 시 실행할 함수. (보내줄 데이터 셋 tagIdList에 그 버튼 id 추가해 줌)
+  // const onClickTagBtn = (e) => {
+  //   const tagId = e.target.id;
+  //   setTagIdList([...tagIdList, tagId]);
+  //   console.log(tagIdList);
+
+  //   if (e.target.className === "btn_lt") {
+  //     e.target.className = "clickedTagBtn_lt";
+  //   } else {
+  //     e.target.className = "btn_lt";
+  //   }
+  // };
   const onClickTagBtn = (e) => {
-    const tagId = e.target.id;
-    setTagIdList([...tagIdList, tagId]);
-    console.log(tagIdList);
+    const tagId = parseInt(e.target.id);
+    if (tagIdList.includes(parseInt(tagId))) {
+      setTagIdList(tagIdList.filter((it) => parseInt(it) != parseInt(tagId)));
+    } else {
+      setTagIdList([...tagIdList, tagId]);
+    }
 
     if (e.target.className === "btn_lt") {
       e.target.className = "clickedTagBtn_lt";
@@ -51,6 +65,8 @@ const LikedTag = () => {
       e.target.className = "btn_lt";
     }
   };
+  console.log(tagIdList);
+
   return (
     <div className="LikedTag">
       <h1>
