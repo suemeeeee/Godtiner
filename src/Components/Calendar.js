@@ -7,14 +7,18 @@ import "react-datepicker/dist/react-datepicker.css"; // 이렇게 가져와야 �
 
 import "./Calendar.css";
 
-const Calendar = () => {
+const Calendar = (props) => {
   const [startDate, setStartDate] = useState(new Date());
-
   const [isOpen, setIsOpen] = useState(false);
+
+  const sendDay = (days) => {
+    props.pickDay(days);
+  };
 
   const handleChange = (e) => {
     setIsOpen(!isOpen);
     setStartDate(e);
+    sendDay(e.getDay());
   };
   const handleClick = (e) => {
     e.preventDefault();
@@ -46,6 +50,7 @@ const Calendar = () => {
           className="week_btn"
           onClick={() => {
             setStartDate(addDays(startDate, -3));
+            sendDay(addDays(startDate, -3).getDay());
           }}
         >
           {week[addDays(startDate, -3).getDay()]}
@@ -57,6 +62,7 @@ const Calendar = () => {
           className="week_btn"
           onClick={() => {
             setStartDate(addDays(startDate, -2));
+            sendDay(addDays(startDate, -2).getDay());
           }}
         >
           {week[addDays(startDate, -2).getDay()]}
@@ -67,6 +73,7 @@ const Calendar = () => {
           className="week_btn"
           onClick={() => {
             setStartDate(addDays(startDate, -1));
+            sendDay(addDays(startDate, -1).getDay());
           }}
         >
           {week[addDays(startDate, -1).getDay()]}
@@ -83,6 +90,7 @@ const Calendar = () => {
           className="week_btn"
           onClick={() => {
             setStartDate(addDays(startDate, 1));
+            sendDay(addDays(startDate, 1).getDay());
           }}
         >
           {week[addDays(startDate, 1).getDay()]}
@@ -92,7 +100,8 @@ const Calendar = () => {
         <button
           className="week_btn"
           onClick={() => {
-            setStartDate(addDays(startDate, -2));
+            setStartDate(addDays(startDate, 2));
+            sendDay(addDays(startDate, 2).getDay());
           }}
         >
           {week[addDays(startDate, 2).getDay()]}
@@ -103,6 +112,7 @@ const Calendar = () => {
           className="week_btn"
           onClick={() => {
             setStartDate(addDays(startDate, 3));
+            sendDay(addDays(startDate, 3).getDay());
           }}
         >
           {week[addDays(startDate, 3).getDay()]}

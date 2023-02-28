@@ -24,10 +24,13 @@ const Home = () => {
 
   const today = new Date();
 
-  console.log(today.getDay());
+  //console.log(today.getDay());
+
+  const [selectedDay, setSelectedDay] = useState(today.getDay());
+
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/myRoutine/post/${today.getDay()}`, {
+      .get(`http://localhost:8080/myRoutine/post/${selectedDay}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -51,7 +54,7 @@ const Home = () => {
     //       setRoutineData(response.data.result.data.myContentsList);
     //     })
     // );
-  }, []);
+  }, [selectedDay]);
 
   const onChangeName = (e) => {
     setName(e.target.value);
@@ -75,10 +78,14 @@ const Home = () => {
       });
   };
 
+  const pickDay = (theDay) => {
+    setSelectedDay(theDay);
+  };
+
   return (
     <div className="Home">
       <MySearchAlarm />
-      <Calendar />
+      <Calendar pickDay={pickDay} />
       <div className="ectBtn">
         <IoMdReorder className="SortButton" size="50" />
         <IoIosShare
