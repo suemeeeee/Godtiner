@@ -6,6 +6,7 @@ import axios from "axios";
 import "./Feed.css";
 import MoveTab from "../Components/MoveTab";
 import MySearchAlram from "../Components/MySearchAlarm";
+import { BrightnessAutoRounded } from "@material-ui/icons";
 
 const Feed = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const Feed = () => {
   const [selectedTagList, setSelectedTagList] = useState([]);
   const [sortState, setSortState] = useState("");
 
+  const [totalPageNum, setTotalPageNum] = useState(0);
   const [currentPage, setCurrentPage] = useState("0");
 
   const [likeSortedRoutineList, setLikeSortedRoutineList] = useState([]);
@@ -31,6 +33,9 @@ const Feed = () => {
         console.log(Response);
         setTagList(Response.data.result.data.tagInfoList);
         setAllRoutines(Response.data.result.data.simpleLectureDtoList);
+        setTotalPageNum(
+          Math.ceil(Response.data.result.data.totalElementCount / 6)
+        );
       })
       .catch((Error) => {
         console.log(Error);
@@ -108,6 +113,19 @@ const Feed = () => {
 
   const onClickPageBtn = (e) => {
     setCurrentPage(e.target.value);
+  };
+
+  const createPageBtn = () => {
+    console.log(totalPageNum);
+    const btnArr = [];
+    for (let i = 1; i <= totalPageNum; i++) {
+      btnArr.push(
+        <button value={`${i}`} onClick={onClickPageBtn}>
+          {i}
+        </button>
+      );
+    }
+    return btnArr;
   };
 
   return (
@@ -274,24 +292,7 @@ const Feed = () => {
         ))}
       </div>
 
-      <div className="pageNumDiv">
-        for()
-        <button value={"0"} onClick={onClickPageBtn}>
-          1
-        </button>
-        <button value={"1"} onClick={onClickPageBtn}>
-          2
-        </button>
-        <button value={"2"} onClick={onClickPageBtn}>
-          3
-        </button>
-        <button value={"3"} onClick={onClickPageBtn}>
-          4
-        </button>
-        <button value={"4"} onClick={onClickPageBtn}>
-          5
-        </button>
-      </div>
+      <div className="pageNumDiv">{createPageBtn()}</div>
       <MoveTab />
     </div>
   );
