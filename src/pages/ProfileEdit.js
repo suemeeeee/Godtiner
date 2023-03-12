@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import MyUpper from "../Components/MyUpper";
@@ -27,16 +27,40 @@ const ProfileEdit = () => {
 
   var frm = new FormData();
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/member", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        setNickname(res.data.nickname);
+        setProfileContent(res.data.introduction);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   //api 연동 코드
   const onSubmit = (e) => {
     axios
-      .put("http://localhost:8080/member", frm, {
-        headers: {
-          "Content-Type": "multipart/form-data",
+      .put(
+        "http://localhost:8080/member",
+        {
+          nickname: nickname,
+          introduction: profileContent,
         },
-      })
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
       .then((Response) => {
-        console.log(Response.data);
+        console.log(Response);
       })
       .catch((Error) => {
         console.log(Error);
@@ -44,7 +68,7 @@ const ProfileEdit = () => {
 
     navigate("/mypage", { replace: true });
   };
-
+  console.log(profileContent);
   return (
     <div>
       <MyUpper />
@@ -53,7 +77,8 @@ const ProfileEdit = () => {
           <p>닉네임</p>
           <input
             className="nicknameInput_pe"
-            onChange={onChangenickname}
+            value={nickname}
+            onChange={(e) => setNickname(e.target.value)}
           ></input>
         </div>
 
@@ -61,7 +86,8 @@ const ProfileEdit = () => {
           <p>자기소개</p>
           <input
             className="profileCommentInput_pe"
-            onChange={onChangeProfileContent}
+            value={profileContent}
+            onChange={(e) => setProfileContent(e.target.value)}
           ></input>
         </div>
 

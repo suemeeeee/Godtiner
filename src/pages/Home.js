@@ -13,6 +13,7 @@ import {
   IoMdArrowBack,
 } from "react-icons/io";
 import axios from "axios";
+import { ReactSortable } from "react-sortablejs";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -21,7 +22,8 @@ const Home = () => {
   //useEffect안에서 값을 정의하면 useEffect를 나오는 순간 값이 보존이 안됨..
   //구글링결과 useState를 이용해야 한다고 한다..
   const [routineData, setRoutineData] = useState([]);
-
+  const copy = routineData.slice();
+  console.log(copy);
   const today = new Date();
 
   //console.log(today.getDay());
@@ -55,6 +57,7 @@ const Home = () => {
     //     })
     // );
   }, [selectedDay]);
+  console.log(routineData);
 
   const onChangeName = (e) => {
     setName(e.target.value);
@@ -80,6 +83,10 @@ const Home = () => {
 
   const pickDay = (theDay) => {
     setSelectedDay(theDay);
+  };
+
+  const testOn = () => {
+    console.log("HI!");
   };
 
   return (
@@ -108,9 +115,15 @@ const Home = () => {
       <input className="routine_name" value={name} onChange={onChangeName} />
 
       <div className="routinSection">
-        {routineData.map((it) => (
-          <RoutineItem key={it.id} {...it} />
-        ))}
+        <ReactSortable
+          list={routineData}
+          setList={setRoutineData}
+          onChange={testOn}
+        >
+          {copy.map((it, idx) => (
+            <RoutineItem key={idx} {...it} />
+          ))}
+        </ReactSortable>
       </div>
       <MoveTab />
     </div>

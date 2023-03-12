@@ -28,7 +28,7 @@ const Mypage = () => {
       .then((res) => {
         console.log(res);
         setNickname(res.data.nickname);
-        //setIntro()
+        setIntro(res.data.introduction);
       })
       .catch((error) => {
         console.log(error);
@@ -74,7 +74,7 @@ const Mypage = () => {
       <div className="userInfoDiv_mp">
         <p className="userName_mp">{nickname}</p>
         <p className="userEmail_mp">{UserDummyData.User.UserEmail}</p>
-        <p className="content_mp">{UserDummyData.User.UserProfileContent}</p>
+        <p className="content_mp">{intro}</p>
       </div>
       <button
         className="profileEditBtn"
