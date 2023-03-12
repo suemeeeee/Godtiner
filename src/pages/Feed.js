@@ -7,6 +7,8 @@ import "./Feed.css";
 import MoveTab from "../Components/MoveTab";
 import MySearchAlram from "../Components/MySearchAlarm";
 
+import Paging from "../Components/Paging";
+
 const Feed = () => {
   const navigate = useNavigate();
   const [AllRoutines, setAllRoutines] = useState([]);
@@ -15,8 +17,10 @@ const Feed = () => {
   const [tagBtn, setTagBtn] = useState();
   const [sortState, setSortState] = useState("");
 
+  const [totalElementCount, setTotalElementCount] = useState();
+
   const [totalPageNum, setTotalPageNum] = useState(0);
-  const [currentPage, setCurrentPage] = useState("0");
+  const [currentPage, setCurrentPage] = useState(0);
 
   const [likeSortedRoutineList, setLikeSortedRoutineList] = useState([]);
   const [pickSortedRoutineList, setPickSortedRoutineList] = useState([]);
@@ -32,6 +36,12 @@ const Feed = () => {
     if (tagBtn === false) {
       document.getElementById("tagSearch").style.display = "none";
       document.getElementById("all").style.display = "block";
+      axios
+        .get(`http://localhost:8080/feed?sort=regdate,DESC`)
+        .then((Response) => {
+          console.log(Response);
+          setTotalElementCount(Response.data.result.data.totalElementCount);
+        });
     }
   }, [tagBtn]);
 
@@ -42,9 +52,8 @@ const Feed = () => {
         console.log(Response);
         setTagList(Response.data.result.data.tagInfoList);
         setAllRoutines(Response.data.result.data.simpleLectureDtoList);
-        setTotalPageNum(
-          Math.ceil(Response.data.result.data.totalElementCount / 6)
-        );
+        setTotalPageNum(Response.data.result.data.totalPageCount);
+        setTotalElementCount(Response.data.result.data.totalElementCount);
       })
       .catch((Error) => {
         console.log(Error);
@@ -56,6 +65,7 @@ const Feed = () => {
         setLikeSortedRoutineList(
           response.data.result.data.simpleLectureDtoList
         );
+        setTotalElementCount(Response.data.result.data.totalElementCount);
       });
 
     axios
@@ -64,6 +74,7 @@ const Feed = () => {
         setPickSortedRoutineList(
           response.data.result.data.simpleLectureDtoList
         );
+        setTotalElementCount(Response.data.result.data.totalElementCount);
       });
   }, [currentPage, sortState]);
 
@@ -88,9 +99,7 @@ const Feed = () => {
         .then((Response) => {
           console.log(Response);
           setSelectedTagList(Response.data.result.data.simpleLectureDtoList);
-          setTotalPageNum(
-            Math.ceil(Response.data.result.data.totalElementCount / 6)
-          );
+          setTotalElementCount(Response.data.result.data.totalElementCount);
         })
         .catch((Error) => {
           console.log(Error);
@@ -103,9 +112,7 @@ const Feed = () => {
         .then((Response) => {
           console.log(Response);
           setSelectedTagList(Response.data.result.data.simpleLectureDtoList);
-          setTotalPageNum(
-            Math.ceil(Response.data.result.data.totalElementCount / 6)
-          );
+          setTotalElementCount(Response.data.result.data.totalElementCount);
         })
         .catch((Error) => {
           console.log(Error);
@@ -117,9 +124,7 @@ const Feed = () => {
           .then((Response) => {
             console.log(Response);
             setSelectedTagList(Response.data.result.data.simpleLectureDtoList);
-            setTotalPageNum(
-              Math.ceil(Response.data.result.data.totalElementCount / 6)
-            );
+            setTotalElementCount(Response.data.result.data.totalElementCount);
           })
           .catch((Error) => {
             console.log(Error);
@@ -132,52 +137,93 @@ const Feed = () => {
     document.getElementById("like").style.display = "none";
   };
 
+  console.log(totalElementCount);
   const onClickPageBtn = (e) => {
+    console.log(e.target.value);
     setCurrentPage(e.target.value);
+    console.log(currentPage);
   };
 
   const createPageBtn = () => {
-    const btnArr = [];
-    for (let i = 1; i <= totalPageNum; i++) {
-      btnArr.push(
-        <button className="pageBtn" value={`${i - 1}`} onClick={onClickPageBtn}>
-          {i}
-        </button>
-      );
+    let firstNum = currentPage - (currentPage % 5) + 1;
+    let lastNum = currentPage - (currentPage % 5) + 5;
+
+    const onClick_lt_btn = () => {
+      if (currentPage > 0) {
+        setCurrentPage(currentPage - 1);
+      }
+    };
+
+    const onClick_gt_btn = () => {
+      if (currentPage + 1 < totalPageNum) {
+        setCurrentPage(currentPage + 1);
+      }
+      if (currentPage + 1 === lastNum) {
+      }
+    };
+
+    const btnArr = [<button onClick={onClick_lt_btn}>&lt;</button>];
+
+    if (totalPageNum > 5) {
+      for (let i = firstNum; i <= lastNum; i++) {
+        btnArr.push(
+          <button className="pageBtn" value={i - 1} onClick={onClickPageBtn}>
+            {i}
+          </button>
+        );
+      }
+    } else {
+      for (let i = 1; i <= totalPageNum; i++) {
+        btnArr.push(
+          <button className="pageBtn" value={i - 1} onClick={onClickPageBtn}>
+            {i}
+          </button>
+        );
+      }
     }
+    btnArr.push(<button onClick={onClick_gt_btn}>&gt;</button>);
     return btnArr;
   };
 
   const onClickSortBtn = (e) => {
     let sort = e.target.textContent;
+    setCurrentPage(0);
+    console.log(currentPage);
 
     if (sort === "좋아요순") {
       document.getElementById("like").style.display = "block";
       document.getElementById("pick").style.display = "none";
       document.getElementById("all").style.display = "none";
       document.getElementById("tagSearch").style.display = "none";
-
       setSortState("like");
     } else if (sort === "담기순") {
       document.getElementById("like").style.display = "none";
       document.getElementById("pick").style.display = "block";
       document.getElementById("all").style.display = "none";
       document.getElementById("tagSearch").style.display = "none";
-
       setSortState("pick");
     } else {
       document.getElementById("like").style.display = "none";
       document.getElementById("pick").style.display = "none";
       document.getElementById("all").style.display = "block";
       document.getElementById("tagSearch").style.display = "none";
-
       setSortState("recent");
     }
+  };
+
+  const handlePageChange = (e) => {
+    console.log(e);
+    setCurrentPage(e);
   };
 
   return (
     <div>
       <MySearchAlram />
+      <Paging
+        page={currentPage}
+        count={totalElementCount}
+        setPage={handlePageChange}
+      />
       <div className="menuTab_va">
         <p className="sortBtn_fd" onClick={onClickSortBtn}>
           최신순
@@ -185,20 +231,12 @@ const Feed = () => {
         <p className="sortBtn_fd" onClick={onClickSortBtn}>
           좋아요순
         </p>
-        <p
-          className="sortBtn_fd"
-          onClick={() => {
-            document.getElementById("like").style.display = "none";
-            document.getElementById("pick").style.display = "block";
-            document.getElementById("all").style.display = "none";
-            setSortState("pick");
-          }}
-        >
+        <p className="sortBtn_fd" onClick={onClickSortBtn}>
           담기순
         </p>
       </div>
       <hr size="10px" width="90%" />
-      <p className="toggle_icon" onClick={() => toggleMenu()}>
+      <p className="toggle_icon" onClick={toggleMenu}>
         ▼
       </p>
       <div
@@ -327,8 +365,7 @@ const Feed = () => {
           </div>
         ))}
       </div>
-
-      <div className="pageNumDiv">{createPageBtn()}</div>
+      {/* <div className="pageNumDiv">{createPageBtn()}</div> */}
       <MoveTab />
     </div>
   );
