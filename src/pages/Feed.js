@@ -112,6 +112,7 @@ const Feed = () => {
   };
 
   const onClickPageBtn = (e) => {
+    console.log(e.target.value);
     setCurrentPage(e.target.value);
   };
 
@@ -120,7 +121,7 @@ const Feed = () => {
     const btnArr = [];
     for (let i = 1; i <= totalPageNum; i++) {
       btnArr.push(
-        <button value={`${i}`} onClick={onClickPageBtn}>
+        <button className="pageBtn" value={`${i}`} onClick={onClickPageBtn}>
           {i}
         </button>
       );
