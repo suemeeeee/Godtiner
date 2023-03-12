@@ -4,13 +4,7 @@ import MyUpper from "../Components/MyUpper";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
 import "./Routine.css";
-import UserDummyData from "../DummyData/UserDummyData.json";
-import feedDummyData from "../DummyData/feedDummyData.json";
-import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
-import MoveTab from "../Components/MoveTab";
-import { resolveComponentProps } from "@mui/base";
 
 const Routine = () => {
   //내 루틴으로 가져오는 데 사용할 변수들(스크랩기능)
@@ -68,7 +62,6 @@ const Routine = () => {
 
   console.log("로드 시 찜 유무", isLiked);
   //좋아요 누르면 넘겨줄 함수 (false를 true로 바꾸고 꽉찬 하트로)
-
   const wishAddHandler = () => {
     if (!isLiked) {
       axios.post(
@@ -129,7 +122,6 @@ const Routine = () => {
         },
       })
       .then((response) => {
-        //console.log(response);
         if (window.confirm("내 루틴에 담겼습니다. 확인하시겠습니까?")) {
           navigate("/home", { replace: true });
         } else {
@@ -147,7 +139,6 @@ const Routine = () => {
       <div className="Routine">
         {/* <img
           className="RoutineImg"
-          src={require(`C:/api/image/${detailRoutine.detailThumbnail}`)}
           src={require(`C:/api/image/${it.feed_thumbnail}`)}
         ></img> */}
         <br />

@@ -6,13 +6,13 @@ import axios from "axios";
 import "./Feed.css";
 import MoveTab from "../Components/MoveTab";
 import MySearchAlram from "../Components/MySearchAlarm";
-import { BrightnessAutoRounded } from "@material-ui/icons";
 
 const Feed = () => {
   const navigate = useNavigate();
   const [AllRoutines, setAllRoutines] = useState([]);
   const [tagList, setTagList] = useState([]);
   const [selectedTagList, setSelectedTagList] = useState([]);
+  const [tagBtn, setTagBtn] = useState();
   const [sortState, setSortState] = useState("");
 
   const [totalPageNum, setTotalPageNum] = useState(0);
@@ -25,6 +25,15 @@ const Feed = () => {
   const toggleMenu = () => {
     setMenu((isOpen) => !isOpen); // on,off 개념 boolean
   };
+
+  useEffect(() => {
+    document.getElementById("pick").style.display = "none";
+    document.getElementById("like").style.display = "none";
+    if (tagBtn === false) {
+      document.getElementById("tagSearch").style.display = "none";
+      document.getElementById("all").style.display = "block";
+    }
+  }, [tagBtn]);
 
   useEffect(() => {
     axios
@@ -48,6 +57,7 @@ const Feed = () => {
           response.data.result.data.simpleLectureDtoList
         );
       });
+
     axios
       .get(`/feed?page=${currentPage}&sort=pickcnt,DESC`)
       .then((response) => {
@@ -55,29 +65,20 @@ const Feed = () => {
           response.data.result.data.simpleLectureDtoList
         );
       });
-    document.getElementById("pick").style.display = "none";
-    document.getElementById("like").style.display = "none";
-  }, [currentPage]);
+  }, [currentPage, sortState]);
 
   const onClickTagBtn = (e) => {
     const tagName = e.target.value;
+    if (tagBtn === true) {
+      setTagBtn(false);
+    } else {
+      setTagBtn(true);
+    }
 
     if (e.target.className === "TagButton_fd") {
       e.target.className = "clicked_fd";
     } else {
       e.target.className = "TagButton_fd";
-    }
-
-    if (sortState === "recent") {
-      axios
-        .get(`http://localhost:8080/feed?tagName=${tagName}`)
-        .then((Response) => {
-          console.log(Response);
-          setSelectedTagList(Response.data.result.data.simpleLectureDtoList);
-        })
-        .catch((Error) => {
-          console.log(Error);
-        });
     }
     if (sortState === "like") {
       axios
@@ -87,12 +88,14 @@ const Feed = () => {
         .then((Response) => {
           console.log(Response);
           setSelectedTagList(Response.data.result.data.simpleLectureDtoList);
+          setTotalPageNum(
+            Math.ceil(Response.data.result.data.totalElementCount / 6)
+          );
         })
         .catch((Error) => {
           console.log(Error);
         });
-    }
-    if (sortState === "pick") {
+    } else if (sortState === "pick") {
       axios
         .get(
           `http://localhost:8080/feed?page=${currentPage}&sort=pickcnt,DESC&tagName=${tagName}`
@@ -100,10 +103,28 @@ const Feed = () => {
         .then((Response) => {
           console.log(Response);
           setSelectedTagList(Response.data.result.data.simpleLectureDtoList);
+          setTotalPageNum(
+            Math.ceil(Response.data.result.data.totalElementCount / 6)
+          );
         })
         .catch((Error) => {
           console.log(Error);
         });
+    } else {
+      {
+        axios
+          .get(`http://localhost:8080/feed?tagName=${tagName}`)
+          .then((Response) => {
+            console.log(Response);
+            setSelectedTagList(Response.data.result.data.simpleLectureDtoList);
+            setTotalPageNum(
+              Math.ceil(Response.data.result.data.totalElementCount / 6)
+            );
+          })
+          .catch((Error) => {
+            console.log(Error);
+          });
+      }
     }
     document.getElementById("tagSearch").style.display = "block";
     document.getElementById("all").style.display = "none";
@@ -112,16 +133,14 @@ const Feed = () => {
   };
 
   const onClickPageBtn = (e) => {
-    console.log(e.target.value);
     setCurrentPage(e.target.value);
   };
 
   const createPageBtn = () => {
-    console.log(totalPageNum);
     const btnArr = [];
     for (let i = 1; i <= totalPageNum; i++) {
       btnArr.push(
-        <button className="pageBtn" value={`${i}`} onClick={onClickPageBtn}>
+        <button className="pageBtn" value={`${i - 1}`} onClick={onClickPageBtn}>
           {i}
         </button>
       );
@@ -129,31 +148,42 @@ const Feed = () => {
     return btnArr;
   };
 
+  const onClickSortBtn = (e) => {
+    let sort = e.target.textContent;
+
+    if (sort === "좋아요순") {
+      document.getElementById("like").style.display = "block";
+      document.getElementById("pick").style.display = "none";
+      document.getElementById("all").style.display = "none";
+      document.getElementById("tagSearch").style.display = "none";
+
+      setSortState("like");
+    } else if (sort === "담기순") {
+      document.getElementById("like").style.display = "none";
+      document.getElementById("pick").style.display = "block";
+      document.getElementById("all").style.display = "none";
+      document.getElementById("tagSearch").style.display = "none";
+
+      setSortState("pick");
+    } else {
+      document.getElementById("like").style.display = "none";
+      document.getElementById("pick").style.display = "none";
+      document.getElementById("all").style.display = "block";
+      document.getElementById("tagSearch").style.display = "none";
+
+      setSortState("recent");
+    }
+  };
+
   return (
     <div>
       <MySearchAlram />
       <div className="menuTab_va">
-        <p
-          className="sortBtn_fd"
-          onClick={() => {
-            document.getElementById("like").style.display = "none";
-            document.getElementById("pick").style.display = "none";
-            document.getElementById("all").style.display = "block";
-            setSortState("recent");
-          }}
-        >
-          최신 순
+        <p className="sortBtn_fd" onClick={onClickSortBtn}>
+          최신순
         </p>
-        <p
-          className="sortBtn_fd"
-          onClick={() => {
-            document.getElementById("like").style.display = "block";
-            document.getElementById("pick").style.display = "none";
-            document.getElementById("all").style.display = "none";
-            setSortState("like");
-          }}
-        >
-          좋아요 순
+        <p className="sortBtn_fd" onClick={onClickSortBtn}>
+          좋아요순
         </p>
         <p
           className="sortBtn_fd"
@@ -164,7 +194,7 @@ const Feed = () => {
             setSortState("pick");
           }}
         >
-          담기 순
+          담기순
         </p>
       </div>
       <hr size="10px" width="90%" />
@@ -173,10 +203,15 @@ const Feed = () => {
       </p>
       <div
         className={isOpen ? "show_tagList_fd" : "hide_tagList_fd"}
-        onClick={onClickTagBtn}
+        // onClick={onClickTagBtn}
       >
         {tagList.map((it) => (
-          <button className="TagButton_fd" id={it.id} value={it.tagName}>
+          <button
+            className="TagButton_fd"
+            id={it.id}
+            value={it.tagName}
+            onClick={onClickTagBtn}
+          >
             {it.tagName}
           </button>
         ))}
