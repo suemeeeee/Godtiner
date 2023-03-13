@@ -7,21 +7,14 @@
 }
 
 * {
+  box-sizing: border-box;
   font-family: "Pretendard-Regular";
   font-weight: 200;
 }
 
 body {
-  width: 100%;
-  height: 100vh;
   margin: 0;
-}
-
-.App {
-}
-
-button {
-  border: 0;
+  padding: 0;
 }
 
 /* Home */

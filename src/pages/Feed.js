@@ -26,7 +26,12 @@ const Feed = () => {
   const [pickSortedRoutineList, setPickSortedRoutineList] = useState([]);
 
   const [isOpen, setMenu] = useState(false);
-  const toggleMenu = () => {
+  const toggleMenu = (e) => {
+    if (e.target.textContent === "▼") {
+      e.target.textContent = "▲";
+    } else {
+      e.target.textContent = "▼";
+    }
     setMenu((isOpen) => !isOpen); // on,off 개념 boolean
   };
 
@@ -35,7 +40,7 @@ const Feed = () => {
     document.getElementById("like").style.display = "none";
     if (tagBtn === false) {
       document.getElementById("tagSearch").style.display = "none";
-      document.getElementById("all").style.display = "block";
+      document.getElementById("all").style.display = "flex";
       axios
         .get(`http://localhost:8080/feed?sort=regdate,DESC`)
         .then((Response) => {
@@ -91,6 +96,7 @@ const Feed = () => {
     } else {
       e.target.className = "TagButton_fd";
     }
+
     if (sortState === "like") {
       axios
         .get(
@@ -131,58 +137,10 @@ const Feed = () => {
           });
       }
     }
-    document.getElementById("tagSearch").style.display = "block";
+    document.getElementById("tagSearch").style.display = "flex";
     document.getElementById("all").style.display = "none";
     document.getElementById("pick").style.display = "none";
     document.getElementById("like").style.display = "none";
-  };
-
-  console.log(totalElementCount);
-  const onClickPageBtn = (e) => {
-    console.log(e.target.value);
-    setCurrentPage(e.target.value);
-    console.log(currentPage);
-  };
-
-  const createPageBtn = () => {
-    let firstNum = currentPage - (currentPage % 5) + 1;
-    let lastNum = currentPage - (currentPage % 5) + 5;
-
-    const onClick_lt_btn = () => {
-      if (currentPage > 0) {
-        setCurrentPage(currentPage - 1);
-      }
-    };
-
-    const onClick_gt_btn = () => {
-      if (currentPage + 1 < totalPageNum) {
-        setCurrentPage(currentPage + 1);
-      }
-      if (currentPage + 1 === lastNum) {
-      }
-    };
-
-    const btnArr = [<button onClick={onClick_lt_btn}>&lt;</button>];
-
-    if (totalPageNum > 5) {
-      for (let i = firstNum; i <= lastNum; i++) {
-        btnArr.push(
-          <button className="pageBtn" value={i - 1} onClick={onClickPageBtn}>
-            {i}
-          </button>
-        );
-      }
-    } else {
-      for (let i = 1; i <= totalPageNum; i++) {
-        btnArr.push(
-          <button className="pageBtn" value={i - 1} onClick={onClickPageBtn}>
-            {i}
-          </button>
-        );
-      }
-    }
-    btnArr.push(<button onClick={onClick_gt_btn}>&gt;</button>);
-    return btnArr;
   };
 
   const onClickSortBtn = (e) => {
@@ -191,21 +149,21 @@ const Feed = () => {
     console.log(currentPage);
 
     if (sort === "좋아요순") {
-      document.getElementById("like").style.display = "block";
+      document.getElementById("like").style.display = "flex";
       document.getElementById("pick").style.display = "none";
       document.getElementById("all").style.display = "none";
       document.getElementById("tagSearch").style.display = "none";
       setSortState("like");
     } else if (sort === "담기순") {
       document.getElementById("like").style.display = "none";
-      document.getElementById("pick").style.display = "block";
+      document.getElementById("pick").style.display = "flex";
       document.getElementById("all").style.display = "none";
       document.getElementById("tagSearch").style.display = "none";
       setSortState("pick");
     } else {
       document.getElementById("like").style.display = "none";
       document.getElementById("pick").style.display = "none";
-      document.getElementById("all").style.display = "block";
+      document.getElementById("all").style.display = "flex";
       document.getElementById("tagSearch").style.display = "none";
       setSortState("recent");
     }
@@ -217,32 +175,23 @@ const Feed = () => {
   };
 
   return (
-    <div>
+    <div className="feed--div">
       <MySearchAlram />
-      <Paging
-        page={currentPage}
-        count={totalElementCount}
-        setPage={handlePageChange}
-      />
       <div className="menuTab_va">
-        <p className="sortBtn_fd" onClick={onClickSortBtn}>
+        <button className="sortBtn_fd" onClick={onClickSortBtn}>
           최신순
-        </p>
-        <p className="sortBtn_fd" onClick={onClickSortBtn}>
+        </button>
+        <button className="sortBtn_fd" onClick={onClickSortBtn}>
           좋아요순
-        </p>
-        <p className="sortBtn_fd" onClick={onClickSortBtn}>
+        </button>
+        <button className="sortBtn_fd" onClick={onClickSortBtn}>
           담기순
-        </p>
+        </button>
       </div>
-      <hr size="10px" width="90%" />
-      <p className="toggle_icon" onClick={toggleMenu}>
+      <button className="toggle_icon" onClick={toggleMenu}>
         ▼
-      </p>
-      <div
-        className={isOpen ? "show_tagList_fd" : "hide_tagList_fd"}
-        // onClick={onClickTagBtn}
-      >
+      </button>
+      <div className={isOpen ? "show_tagList_fd" : "hide_tagList_fd"}>
         {tagList.map((it) => (
           <button
             className="TagButton_fd"
@@ -296,7 +245,6 @@ const Feed = () => {
               className="feedImg"
               src={require(`C:/api/image/${it.feed_thumbnail}`)}
             ></img>
-            <br />
             <span className="feedTitle">{it.title}</span>
             <div className="feedTag">
               {it.routineTagList.map((tag) => (
@@ -323,8 +271,7 @@ const Feed = () => {
               className="feedImg"
               src={require(`C:/api/image/${it.feed_thumbnail}`)}
             ></img>
-            <br />
-            <text className="feedTitle">{it.title}</text>
+            <h1 className="feedTitle">{it.title}</h1>
             <div className="feedTag">
               {it.routineTagList.map((tag) => (
                 <a>#{tag.tag.tagName} </a>
@@ -350,7 +297,6 @@ const Feed = () => {
               className="feedImg"
               src={require(`C:/api/image/${it.feed_thumbnail}`)}
             ></img>
-            <br />
             <text className="feedTitle">{it.title}</text>
             <div className="feedTag">
               {it.routineTagList.map((tag) => (
@@ -365,7 +311,12 @@ const Feed = () => {
           </div>
         ))}
       </div>
-      {/* <div className="pageNumDiv">{createPageBtn()}</div> */}
+      <Paging
+        className="paging"
+        page={currentPage}
+        count={totalElementCount}
+        setPage={handlePageChange}
+      />
       <MoveTab />
     </div>
   );
