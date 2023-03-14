@@ -34,7 +34,7 @@ const Calendar = (props) => {
   }
 
   return (
-    <div>
+    <div className="calendar">
       <div className="calendarHeader">
         {format(startDate, "yyyy년 MM월 ")}
         <button className="calendar_btn" onClick={handleClick}>
@@ -47,7 +47,6 @@ const Calendar = (props) => {
 
       <div className="week_btn_div">
         <button
-          className="week_btn"
           onClick={() => {
             setStartDate(addDays(startDate, -3));
             sendDay(addDays(startDate, -3).getDay());
@@ -59,7 +58,6 @@ const Calendar = (props) => {
           <br />
         </button>
         <button
-          className="week_btn"
           onClick={() => {
             setStartDate(addDays(startDate, -2));
             sendDay(addDays(startDate, -2).getDay());
@@ -70,7 +68,6 @@ const Calendar = (props) => {
           {format(addDays(startDate, -2), "dd")}
         </button>
         <button
-          className="week_btn"
           onClick={() => {
             setStartDate(addDays(startDate, -1));
             sendDay(addDays(startDate, -1).getDay());
@@ -87,7 +84,6 @@ const Calendar = (props) => {
         </button>
         {/* 선택 날짜 */}
         <button
-          className="week_btn"
           onClick={() => {
             setStartDate(addDays(startDate, 1));
             sendDay(addDays(startDate, 1).getDay());
@@ -98,7 +94,6 @@ const Calendar = (props) => {
           {format(addDays(startDate, 1), "dd")}
         </button>
         <button
-          className="week_btn"
           onClick={() => {
             setStartDate(addDays(startDate, 2));
             sendDay(addDays(startDate, 2).getDay());
@@ -109,7 +104,6 @@ const Calendar = (props) => {
           {format(addDays(startDate, 2), "dd")}
         </button>
         <button
-          className="week_btn"
           onClick={() => {
             setStartDate(addDays(startDate, 3));
             sendDay(addDays(startDate, 3).getDay());

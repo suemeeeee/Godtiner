@@ -1,4 +1,4 @@
-.calendarHeader {
+/* .calendarHeader {
   margin-top: 5%;
   margin-bottom: 3%;
   padding-left: 5%;
@@ -65,4 +65,51 @@
   .selectedDay_btn {
     font-size: 15px;
   }
+} */
+
+.calendar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.calendarHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 0.5rem;
+
+  height: 3.5rem;
+  font-size: 2rem;
+}
+
+.calendarHeader > .calendar_btn {
+  margin-left: 0.5rem;
+  border: none;
+  font-size: 1.5rem;
+  background-color: transparent;
+}
+
+.week_btn_div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.week_btn_div > button {
+  flex: 1 1 0;
+  height: 6rem;
+  margin: 0.5rem;
+
+  border: none;
+  border-radius: 20px;
+
+  font-size: 1rem;
+}
+
+.selectedDay_btn {
+  color: white;
+  background-color: rgb(49, 63, 255);
 }
