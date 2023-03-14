@@ -94,11 +94,9 @@ const Home = () => {
       <MySearchAlarm />
       <Calendar pickDay={pickDay} />
       <div className="ectBtn">
-        <IoMdReorder className="SortButton" size="50" />
+        {/* <IoMdReorder className="SortButton" size="50" /> */}
         <IoIosShare
           className="ShareRoutineButton"
-          size="50"
-          color=""
           onClick={() => navigate("/shareroutine")}
         />
       </div>

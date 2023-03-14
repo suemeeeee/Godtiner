@@ -72,20 +72,20 @@ const Mypage = () => {
         ref={fileInput}
       />
       <div className="userInfoDiv_mp">
-        <p className="userName_mp">{nickname}</p>
-        <p className="userEmail_mp">{UserDummyData.User.UserEmail}</p>
-        <p className="content_mp">{intro}</p>
+        <p id="nickName">{nickname}</p>
+        <p id="email">{UserDummyData.User.UserEmail}</p>
+        <p id="intro">{intro} 예시</p>
       </div>
-      <button
-        className="profileEditBtn"
-        onClick={() => {
-          navigate("/profileedit");
-        }}
-      >
-        프로필 편집
-      </button>
-      {/* <div className="alertEdit">알림 설정</div> */}
+
       <div className="editButtonsDiv">
+        <button
+          className="profileEditBtn"
+          onClick={() => {
+            navigate("/profileedit");
+          }}
+        >
+          프로필 편집
+        </button>
         <button
           className="editBtn"
           onClick={() => {
@@ -120,9 +120,8 @@ const Mypage = () => {
         >
           관심사 태그 변경
         </button>
+        <button className="logoutButton">로그아웃</button>
       </div>
-
-      <button className="logoutButton">로그아웃</button>
 
       <MoveTab />
     </div>

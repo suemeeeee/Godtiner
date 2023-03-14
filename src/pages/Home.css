@@ -17,11 +17,12 @@
 }
 
 .routinSection {
-  display: block;
-  width: 90%;
-  margin: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
   padding-bottom: 25%;
-  text-align: center;
 }
 
 .routine_name {
@@ -35,15 +36,20 @@
 }
 
 .ectBtn {
-  margin-left: 80%;
-  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+
+  margin-top: 1rem;
 }
 .SortButton {
   width: 40%;
   color: rgb(74, 74, 74);
 }
 .ShareRoutineButton {
-  width: 40%;
+  flex: 0.2 0.2 0;
+  height: 2rem;
+
   color: rgb(74, 74, 74);
 }
 
