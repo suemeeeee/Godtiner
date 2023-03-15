@@ -54,10 +54,10 @@ const ShareRoutine = () => {
 
   const onChangeTag = (e) => {
     //클릭 시 생상 변경 코드
-    if (e.target.className === "TagButton_sr") {
-      e.target.className = "clicked_sr";
+    if (e.target.classList.contains("clicked_sr")) {
+      e.target.classList.remove("clicked_sr");
     } else {
-      e.target.className = "TagButton_sr";
+      e.target.classList.add("clicked_sr");
     }
 
     //checkedTagList에 해당 태그의 id와 tagname값 객체로 추가
@@ -168,89 +168,84 @@ const ShareRoutine = () => {
   // );
 
   return (
-    <div>
+    <div className="ShareRoutine">
       <MyUpper text={"루틴 공유하기"} />
-      <div className="ShareRoutine">
-        <div className="thumbnailDiv_sr">
-          <img
-            className="thumbnail_sr"
-            src={thumbnail}
-            size={100}
-            onClick={() => {
-              fileInput.current.click();
-            }}
-          />
+      <div className="thumbnailDiv_sr">
+        <img
+          className="thumbnail_sr"
+          src={thumbnail}
+          size={100}
+          onClick={() => {
+            fileInput.current.click();
+          }}
+        />
+        <input
+          type="file"
+          style={{ display: "none" }}
+          accept="image/jpg,impge/png,image/jpeg"
+          name="profile_img"
+          onChange={onChangeImg}
+          ref={fileInput}
+        />
+      </div>
+      <div className="RoutineTitle_sr">
+        <h3 className="text_sr">루틴 이름</h3>
+        <input className="RoutineTitleInput_sr" onChange={onChangeTitle} />
+
+        <h3 className="text_sr">루틴 소개글</h3>
+        <textarea
+          className="IntroTextArea_sr"
+          placeholder="이 루틴은 어떤 루틴인가요?"
+          onChange={onChangeIntro}
+        />
+      </div>
+      <div className="TagButtonDiv_sr">
+        {tagList.map((it) => (
+          <button
+            id={it.id}
+            value={it.tagName}
+            className="TagButton_sr"
+            onClick={onChangeTag}
+          >
+            {it.tagName}
+          </button>
+        ))}
+      </div>
+      <div className="detailRoutine">
+        <h3>공개 루틴 상세 설정</h3>
+        <div className="select--all">
           <input
-            type="file"
-            style={{ display: "none" }}
-            accept="image/jpg,impge/png,image/jpeg"
-            name="profile_img"
-            onChange={onChangeImg}
-            ref={fileInput}
+            type="checkbox"
+            onChange={(e) => onCheckedAll(e.target.checked)}
+            checked={checkedRoutineId.length == myRoutine.length ? true : false}
           />
+          &nbsp; 전체선택
         </div>
-        <div className="RoutineTitle_sr">
-          <h3 className="text_sr">루틴 이름</h3>
-          <input className="RoutineTitleInput_sr" onChange={onChangeTitle} />
-        </div>
-        <div>
-          <h3 className="text_sr">루틴 소개글</h3>
-          <textarea
-            className="IntroTextArea_sr"
-            placeholder="이 루틴은 어떤 루틴인가요?"
-            onChange={onChangeIntro}
-          />
-        </div>
-        <div className="TagButtonDiv_sr">
-          {tagList.map((it) => (
-            <button
-              id={it.id}
-              value={it.tagName}
-              className="TagButton_sr"
-              onClick={onChangeTag}
-            >
-              {it.tagName}
-            </button>
+        <div className="routineBody">
+          {myRoutine.map((it) => (
+            <div className="RoutineDetail">
+              <input
+                className="checkbox_rt"
+                type="checkbox"
+                value={it.id}
+                onChange={(e) =>
+                  onCheckedElement(e.target.checked, e.target.value)
+                }
+                checked={
+                  checkedRoutineId.includes(parseInt(it.id)) ? true : false
+                }
+              />
+              <span className="RoutineTime_rt">
+                <span>{it.startTime}</span>-<span>{it.endTime}</span>
+              </span>
+              <span className="RoutineContent_rt">{it.content}</span>
+            </div>
           ))}
         </div>
-        <div>
-          <h3 className="text_sr">공개 루틴 상세 설정</h3>
-          <div className="checkAll_div">
-            <input
-              type="checkbox"
-              onChange={(e) => onCheckedAll(e.target.checked)}
-              checked={
-                checkedRoutineId.length == myRoutine.length ? true : false
-              }
-            />
-            전체선택
-          </div>
-          <div className="routineBody">
-            {myRoutine.map((it) => (
-              <div className="RoutineDetail">
-                <input
-                  className="checkbox_rt"
-                  type="checkbox"
-                  value={it.id}
-                  onChange={(e) =>
-                    onCheckedElement(e.target.checked, e.target.value)
-                  }
-                  checked={
-                    checkedRoutineId.includes(parseInt(it.id)) ? true : false
-                  }
-                />
-                <span className="RoutineTime_rt">
-                  <span>{it.startTime}</span>-<span>{it.endTime}</span>
-                </span>
-                <span className="RoutineContent_rt">{it.content}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <button className="ShareButton_sr" onClick={onPush}>
-          공유하기
-        </button>
       </div>
+      <button className="ShareButton_sr" onClick={onPush}>
+        공유하기
+      </button>
     </div>
   );
 };

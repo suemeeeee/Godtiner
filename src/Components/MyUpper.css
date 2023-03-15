@@ -1,20 +1,24 @@
+.MyUpper_div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 0.5rem;
+}
+
 .backButton {
-  width: 9%;
-  background-color: white;
-  border: 0;
+  height: 3rem;
+  margin-left: 1rem;
+  border: none;
+  background-color: transparent;
 }
 
 .MyUpper_img {
   width: 100%;
+  height: 2rem;
 }
 
-.MyUpper_div {
-  padding-left: 3%;
-}
-
-.pageDescript {
-  display: inline-block;
-  width: fit-content;
-  font-size: 20px;
-  margin-left: 3%;
+.MyUpper_div > p {
+  margin-left: 1rem;
+  font-size: 1rem;
 }

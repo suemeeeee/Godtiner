@@ -7,7 +7,7 @@ const MyUpper = ({ text }) => {
       <button className="backButton" onClick={() => navigate(-1)}>
         <img className="MyUpper_img" src="../img/arrow.png" alt="arrow" />
       </button>
-      <p className="pageDescript">{text}</p>
+      <p>{text}</p>
     </div>
   );
 };
