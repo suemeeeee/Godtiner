@@ -16,6 +16,8 @@
 .editBtn_sre {
   width: 15%;
   height: 5vh;
+
+  border: none;
   border-radius: 5px;
   margin-left: 40px;
   background-color: #0066ff;
@@ -63,6 +65,11 @@
 .feedTitle_sre {
   font-size: 110%;
   margin: 0;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
 }
 
 .deleteBtn_sre {

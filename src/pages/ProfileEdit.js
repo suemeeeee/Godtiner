@@ -70,13 +70,12 @@ const ProfileEdit = () => {
   };
   console.log(profileContent);
   return (
-    <div>
+    <div className="ProfileEdit">
       <MyUpper />
-      <div className="ProfileEdit">
+      <div className="profile--edit--body">
         <div className="Edit_div_pe">
           <p>닉네임</p>
           <input
-            className="nicknameInput_pe"
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
           ></input>
@@ -85,17 +84,14 @@ const ProfileEdit = () => {
         <div className="Edit_div_pe">
           <p>자기소개</p>
           <input
-            className="profileCommentInput_pe"
             value={profileContent}
             onChange={(e) => setProfileContent(e.target.value)}
           ></input>
         </div>
-
-        <button className="saveBtn_pe" onClick={onSubmit}>
-          저장하기
-        </button>
       </div>
-      {/* <MoveTab /> */}
+      <button className="saveBtn_pe" onClick={onSubmit}>
+        저장하기
+      </button>
     </div>
   );
 };
