@@ -45,10 +45,10 @@ const Notification = () => {
   return (
     <div>
       <MyUpper text={"알림"} />
-      <div>
+      <div className="notification--div">
         {notificationsArray.map((it) => (
           <div className="notification" onClick={onClickMission}>
-            <p className="title_nt">{it.title}</p>
+            <p className="title_nt">🎉{it.title}🎉</p>
             <p className="created_nt">{it.created}</p>
           </div>
         ))}

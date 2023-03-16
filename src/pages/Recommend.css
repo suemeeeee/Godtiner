@@ -1,24 +1,47 @@
-.span_rm {
-  font-size: 30px;
-  margin-left: 2%;
-  margin-right: 58%;
+.Recommend {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.span_rm_text {
-  font-size: 30px;
-  cursor: pointer;
-}
-
-.Recommend_txt {
-  margin-left: 3%;
-  font-size: 25px;
-}
-
-.feedImg {
-  object-fit: cover;
+.Recommend h1 {
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
 }
 
 .RecommendElement {
   width: 100%;
-  padding-bottom: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin-top: 0.5rem;
+}
+
+.firstRecommend {
+  display: flex;
+  flex-direction: column;
+}
+
+.secondRecommend {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 1rem;
+}
+
+.routineItems--div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  margin-top: 1rem;
+}
+
+.itemRecommend {
+  margin-top: 1rem;
+
+  padding-bottom: 7rem;
 }

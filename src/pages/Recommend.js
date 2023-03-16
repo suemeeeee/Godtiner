@@ -35,10 +35,6 @@ const Recommend = () => {
       });
   }, []);
 
-  //  console.log("recommendList1", firstRecommend);
-  //  console.log("recommendList2", secondRecommend);
-  //  console.log("memberInterest", selectTag);
-
   console.log(firstTag);
   const navigate = useNavigate();
   const onClickViewAll = () => {
@@ -49,8 +45,8 @@ const Recommend = () => {
       <MySearchAlarm />
       <div className="RecommendElement">
         <div className="firstRecommend">
-          <h1 className="Recommend_txt">{`✨'${firstTag}' 관련 추천 루틴✨`}</h1>
-          <div>
+          <h1>{`✨'${firstTag}' 관련 추천 루틴✨`}</h1>
+          <div className="routineItems--div">
             {firstRecommend.map((it) => (
               <div
                 className="RoutineItem"
@@ -81,8 +77,8 @@ const Recommend = () => {
           </div>
         </div>
         <div className="secondRecommend">
-          <h1 className="Recommend_txt">{`✨'${secondTag}' 관련 추천 루틴✨`}</h1>
-          <div>
+          <h1>{`✨'${secondTag}' 관련 추천 루틴✨`}</h1>
+          <div className="routineItems--div">
             {secondRecommend.map((it) => (
               <div
                 className="RoutineItem"
@@ -113,34 +109,36 @@ const Recommend = () => {
           </div>
         </div>
         <div className="itemRecommend">
-          <h1 className="Recommend_txt">✨맞춤 추천✨</h1>
-          {itemRecommend.map((it) => (
-            <div
-              className="RoutineItem"
-              key={it.id}
-              onClick={() =>
-                navigate(`/routine/${it.id}`, {
-                  id: it.id,
-                })
-              }
-            >
-              <img
-                className="feedImg"
-                src={require(`C:/api/image/${it.feed_thumbnail}`)}
-              ></img>
-              <br />
-              <span className="feedTitle">{it.title}</span>
-              <div className="feedTag">
-                {}
-                {}
-              </div>
-              <div>
-                <div className="feedback">
-                  ❤{it.likecnt} 📥{it.pickcnt} 👀{it.hits}
+          <h1>✨맞춤 추천✨</h1>
+          <div className="routineItems--div">
+            {itemRecommend.map((it) => (
+              <div
+                className="RoutineItem"
+                key={it.id}
+                onClick={() =>
+                  navigate(`/routine/${it.id}`, {
+                    id: it.id,
+                  })
+                }
+              >
+                <img
+                  className="feedImg"
+                  src={require(`C:/api/image/${it.feed_thumbnail}`)}
+                ></img>
+                <br />
+                <span className="feedTitle">{it.title}</span>
+                <div className="feedTag">
+                  {}
+                  {}
+                </div>
+                <div>
+                  <div className="feedback">
+                    ❤{it.likecnt} 📥{it.pickcnt} 👀{it.hits}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
       <MoveTab />

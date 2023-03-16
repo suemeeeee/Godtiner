@@ -189,7 +189,6 @@ const RoutineEditor = ({ isEdit, originData }) => {
 
   return (
     <div className="RoutineEditor">
-      {/* <section className="routineSection"> */}
       <div className="RoutinName">
         <input
           className="NameBox"
@@ -199,30 +198,22 @@ const RoutineEditor = ({ isEdit, originData }) => {
         />
       </div>
 
-      {/* <div className="Notification">
-          <span className="textSpan_re">알림 설정</span>
-          <Switch
-            checked={onOff}
-            onChange={(e) => {
-              setOnOff(e.target.checked);
-            }}
-          />
-        </div> */}
-
       <div className="timeDay">
         <p className="text_re">시간 설정 </p>
-        <input
-          className="startTime"
-          type="time"
-          value={startTime}
-          onChange={(e) => setStartTime(e.target.value)}
-        />
-        <input
-          className="endTime"
-          type="time"
-          value={endTime}
-          onChange={(e) => setEndTime(e.target.value)}
-        />
+        <div className="time--edit">
+          <input
+            className="startTime"
+            type="time"
+            value={startTime}
+            onChange={(e) => setStartTime(e.target.value)}
+          />
+          <input
+            className="endTime"
+            type="time"
+            value={endTime}
+            onChange={(e) => setEndTime(e.target.value)}
+          />
+        </div>
       </div>
 
       <div className="routineRules_div">
@@ -287,10 +278,9 @@ const RoutineEditor = ({ isEdit, originData }) => {
         </div>
       </div>
 
-      <p className="removeText" onClick={onRemove}>
+      <button className="removeText" onClick={onRemove}>
         {isEdit ? "삭제하기" : " "}
-      </p>
-      {/* </section> */}
+      </button>
 
       <footer className="buttonDiv_re">
         <button className="SaveButton_re" onClick={handleSubmit}>

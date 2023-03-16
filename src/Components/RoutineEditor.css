@@ -1,5 +1,9 @@
 .RoutineEditor {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .RoutinName {
@@ -8,80 +12,66 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 5%;
-  margin-bottom: 10%;
+
+  margin-top: 3rem;
 }
 
 .NameBox {
-  width: 80%;
-  height: 5vh;
+  width: 90%;
+  height: 3rem;
 
   border: none;
   background-color: #ececec;
-  border-radius: 10px;
+  border-radius: 1rem;
 
   text-align: center;
-  font-size: 100%;
+  font-size: 1rem;
 }
 
 .timeDay {
-  width: 100%;
+  margin-top: 2rem;
+  width: 90%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .text_re {
-  font-size: 20px;
-  margin-left: 5%;
-  margin-right: 5%;
+  font-size: 1.5rem;
 }
 
-.startTime,
-.endTime {
-  border: none;
-  background-color: #ececec;
-  border-radius: 10px;
-
-  font-size: 100%;
-  text-align: center;
-
-  width: 30%;
-  height: 5vh;
-
-  margin: 0 2% 0 1%;
-}
-
-/* .submitRoutine_btn {
-  width: 100%;
-  height: 75px;
-  bottom: 0;
-  background-color: blue;
-  font-size: 25px;
-  color: white;
-  cursor: pointer;
-} */
-
-/* .routineSection {
-  font-size: 24px;
-} */
-
-.routineRules_div {
-  width: 100%;
-}
-
-/* .routineRule {
-  margin: 1%;
-  width: 10%;
-  height: 5vh;
-  border-radius: 15px;
-  font-size: 25px;
-  text-align: center;
-  background-color: rgb(228, 228, 228);
-} */
-
-.routineRulesBtn_div {
+.time--edit {
+  margin-top: 1rem;
   width: 100%;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.time--edit > input {
+  flex: 1 1 0;
+  margin: 0.5rem;
+
+  border: none;
+  background-color: #ececec;
+  border-radius: 1rem;
+
+  height: 3rem;
+}
+
+.routineRules_div {
+  margin-top: 2rem;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.routineRulesBtn_div {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 
@@ -89,36 +79,41 @@
 }
 
 .routineRule {
-  margin-right: 1.5%;
-  margin-left: 1.5%;
-  padding: 3%;
-  border-radius: 15px;
+  flex: 1 1 0;
+  margin: 0.2rem;
+  height: 3rem;
 
-  font-size: 20px;
+  font-size: 1rem;
 
   background-color: rgb(233, 233, 233);
+  border: none;
+  border-radius: 1rem;
 }
 
 .routineRule_active {
-  margin-right: 1.5%;
-  margin-left: 1.5%;
-  padding: 3%;
-  border-radius: 15px;
+  flex: 1 1 0;
+  margin: 0.2rem;
+  height: 3rem;
 
-  font-size: 20px;
+  font-size: 1rem;
 
-  background-color: #0066ff;
   color: white;
+  background-color: #0066ff;
+  border: none;
+  border-radius: 1rem;
 }
 
 .removeText {
-  width: 100%;
-  text-align: right;
-  color: red;
-  font-weight: bolder;
-  font-size: 20px;
+  margin-left: 18rem;
 
-  padding-right: 5%;
+  width: fit-content;
+  height: 2rem;
+  padding: 0 1rem;
+
+  border: none;
+  background-color: transparent;
+  color: red;
+  font-size: 1.4rem;
 }
 
 .buttonDiv_re {
@@ -129,10 +124,15 @@
 }
 
 .SaveButton_re {
-  width: 100%;
-  height: 8vh;
+  position: fixed;
+  bottom: 0;
 
-  background-color: #0066ff;
-  font-size: 25px;
+  width: 100%;
+  height: 4rem;
+
+  font-size: 1.5rem;
+
+  border: none;
+  background-color: rgb(90, 90, 255);
   color: white;
 }
