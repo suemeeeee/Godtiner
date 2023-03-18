@@ -82,7 +82,7 @@ const MySearchAlarm = ({ parentFunction }) => {
           <SearchIcon />
         </IconButton>
 
-        <IconButton onClick={onClickSearch}>
+        <IconButton>
           <Notifications onClick={() => navigate("/notification")} />
         </IconButton>
       </div>
