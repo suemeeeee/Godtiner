@@ -20,7 +20,7 @@
   border: none;
   border-radius: 5px;
   margin-left: 40px;
-  background-color: #0066ff;
+  background-color: rgb(0, 102, 255);
   color: white;
 }
 
@@ -37,11 +37,12 @@
   height: 5vh;
   border-radius: 5px;
   margin-left: 52%;
-  color: #0066ff;
+  color: rgb(0, 102, 255);
 }
 
 .LikedRoutineEditBody_sre {
   margin-top: 10%;
+  padding-bottom: 5rem;
 }
 .editBoxItem_sre {
   margin-left: 90%;
@@ -78,7 +79,13 @@
   position: fixed;
   bottom: 0;
 
-  background-color: #0066ff;
+  border: none;
+  background-color: rgb(0, 102, 255);
   font-size: 25px;
   color: white;
+}
+
+.cancleEditBtn_sre {
+  color: red;
+  border: none;
 }

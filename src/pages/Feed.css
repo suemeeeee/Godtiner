@@ -26,7 +26,7 @@
   border: none;
 
   color: white;
-  background-color: #0095f6;
+  background-color: rgb(0, 102, 255);
 }
 
 .toggle_icon {
@@ -35,7 +35,7 @@
   border: none;
 
   color: white;
-  background-color: #0095f6;
+  background-color: rgb(0, 102, 255);
 }
 
 .hide_tagList_fd {
@@ -76,7 +76,7 @@
   background-color: gray;
 
   color: white;
-  background-color: #0095f6;
+  background-color: rgb(0, 102, 255);
 }
 
 .sortedList_div {
@@ -133,4 +133,12 @@
 
 ul.pagination {
   margin-bottom: 7rem;
+}
+
+.feedTag > button {
+  padding: ;
+  height: 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: aqua;
 }

@@ -81,7 +81,7 @@
   padding-left: 0.5rem;
 
   height: 3.5rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .calendarHeader > .calendar_btn {
@@ -111,5 +111,5 @@
 
 .selectedDay_btn {
   color: white;
-  background-color: rgb(49, 63, 255);
+  background-color: rgb(0, 102, 255);
 }
