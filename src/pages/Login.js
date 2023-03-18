@@ -39,32 +39,25 @@ const Login = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="Login">
       <MyUpper />
-      <div className="Login">
-        <h2 className="welcome">
-          오늘도 힘차게 <br /> 달려봐요!
-        </h2>
 
-        <input
-          placeholder="이메일"
-          value={email}
-          className="loginId"
-          onChange={onChangeEmail}
-        />
+      <h2>
+        오늘도 힘차게 <br /> 달려봐요!
+      </h2>
 
-        <input
-          type="password"
-          placeholder="비밀번호"
-          value={password}
-          className="loginPw"
-          onChange={onChangePassword}
-        />
+      <input placeholder="이메일" value={email} onChange={onChangeEmail} />
 
-        <button type="button" className="loginButton" onClick={onSubmit}>
-          로그인
-        </button>
-      </div>
+      <input
+        type="password"
+        placeholder="비밀번호"
+        value={password}
+        onChange={onChangePassword}
+      />
+
+      <button type="button" className="loginButton" onClick={onSubmit}>
+        로그인
+      </button>
     </div>
   );
 };

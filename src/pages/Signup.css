@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
-
 body {
   animation: fadein 2s;
 }
@@ -13,74 +11,53 @@ body {
   }
 }
 
-.Signup h1 {
-  padding-top: 20%;
-  margin-top: 0;
-  margin-bottom: 20%;
-  margin-left: 5%;
-
-  font-size: 200%;
-  text-align: left;
+.Signup {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-/* @media (max-width: 500px) {
-  .Signup h2 {
-    font-size: 30px;
-  }
-} */
+.Signup > h1 {
+  display: flex;
+  align-items: center;
+  height: 16rem;
 
-/* .godtiner {
-  color: #0000ff;
-  font-size: 42px;
-  padding-right: 5px;
-} */
-
-.mainImg {
-  width: 100%;
+  margin-left: 1rem;
 }
 
 .btnAreaDiv_su {
-  text-align: center;
-  margin-top: 15%;
+  width: 100%;
+  height: 21rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.makeAccountBtn_su,
-.LoginBtn_su {
-  width: 80%;
-  height: 7vh;
+.btnAreaDiv_su > button {
+  width: 85%;
+  height: 3.5rem;
+  font-size: 1.1rem;
 
-  border-radius: 30px;
-
-  font-size: 130%;
-
+  border: none;
+  border-radius: 1rem;
   transition: 0.25s;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
-.makeAccountBtn_su {
-  background-color: #0095f6;
-  color: white;
-}
-
-.Signup h4 {
-  margin-bottom: 0;
-  margin-top: 10%;
-}
-
-.LoginBtn_su {
-}
-
-.button_su:hover {
+.btnAreaDiv_su > button:hover {
   transform: scale(1.05);
 }
 
-/* .button_su-outline {
-  position: relative;
-  margin: auto;
-  border-radius: 15px;
-  font-family: "paybooc-Light", sans-serif;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.25s;
-} */
+.btnAreaDiv_su > h4 {
+  margin-top: 2rem;
+}
+
+.makeAccountBtn_su {
+  background-color: rgb(215, 215, 215);
+}
+
+.LoginBtn_su {
+  margin-top: 0.5rem;
+  color: white;
+  background-color: rgb(90, 90, 255);
+}
