@@ -85,6 +85,7 @@ const Feed = () => {
 
   const onClickTagBtn = (e) => {
     const tagName = e.target.value;
+    console.log(sortState, tagName);
     if (tagBtn === true) {
       setTagBtn(false);
     } else {
@@ -170,7 +171,6 @@ const Feed = () => {
   };
 
   const handlePageChange = (e) => {
-    console.log(e);
     setCurrentPage(e);
   };
 
