@@ -53,7 +53,7 @@ const Recommend = () => {
                 key={it.id}
                 onClick={() =>
                   navigate(`/routine/${it.id}`, {
-                    id: it.id,
+                    state: { imageUrl: `${it.detail_thumbnail}` },
                   })
                 }
               >
@@ -85,7 +85,7 @@ const Recommend = () => {
                 key={it.id}
                 onClick={() =>
                   navigate(`/routine/${it.id}`, {
-                    id: it.id,
+                    state: { imageUrl: `${it.detail_thumbnail}` },
                   })
                 }
               >
@@ -117,7 +117,7 @@ const Recommend = () => {
                 key={it.id}
                 onClick={() =>
                   navigate(`/routine/${it.id}`, {
-                    id: it.id,
+                    state: { imageUrl: `${it.detail_thumbnail}` },
                   })
                 }
               >

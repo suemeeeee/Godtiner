@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
-import { ko } from "date-fns/esm/locale";
 import format from "date-fns/format";
-import Form from "react-bootstrap/Form";
-import "react-datepicker/dist/react-datepicker.css"; // 이렇게 가져와야 기본 디자인이 설정된다
+import "react-datepicker/dist/react-datepicker.css";
 
 import "./Calendar.css";
 
@@ -41,10 +39,11 @@ const Calendar = (props) => {
           📅
         </button>
       </div>
-      {isOpen && (
-        <DatePicker selected={startDate} onChange={handleChange} inline />
-      )}
-
+      <div className="calendar--div">
+        {isOpen && (
+          <DatePicker selected={startDate} onChange={handleChange} inline />
+        )}
+      </div>
       <div className="week_btn_div">
         <button
           onClick={() => {

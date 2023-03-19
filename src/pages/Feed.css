@@ -135,10 +135,21 @@ ul.pagination {
   margin-bottom: 7rem;
 }
 
-.feedTag > button {
-  padding: ;
+.feedTag {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.feedTag--btn {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.8rem;
+  margin: 0.5rem;
   height: 1.2rem;
   border: none;
   border-radius: 0.5rem;
-  background-color: aqua;
+  color: white;
+  background-color: rgb(0, 102, 255);
 }

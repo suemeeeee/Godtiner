@@ -57,6 +57,7 @@ const Feed = () => {
         console.log(Response);
         setTagList(Response.data.result.data.tagInfoList);
         setAllRoutines(Response.data.result.data.simpleLectureDtoList);
+        console.log(AllRoutines);
         setTotalPageNum(Response.data.result.data.totalPageCount);
         setTotalElementCount(Response.data.result.data.totalElementCount);
       })
@@ -211,7 +212,7 @@ const Feed = () => {
             key={it.id}
             onClick={() =>
               navigate(`/routine/${it.id}`, {
-                id: it.id,
+                state: { imageUrl: `${it.detail_thumbnail}` },
               })
             }
           >
@@ -223,7 +224,7 @@ const Feed = () => {
             <span className="feedTitle">{it.title}</span>
             <div className="feedTag">
               {it.routineTagList.map((tag) => (
-                <button>#{tag.tag.tagName}</button>
+                <button className="feedTag--btn">#{tag.tag.tagName}</button>
               ))}
             </div>
             <div>
@@ -239,7 +240,11 @@ const Feed = () => {
           <div
             className="RoutineItem"
             key={it.id}
-            onClick={() => navigate(`/routine/${it.id}`)}
+            onClick={() =>
+              navigate(`/routine/${it.id}`, {
+                state: { imageUrl: `${it.detail_thumbnail}` },
+              })
+            }
           >
             <img
               className="feedImg"
@@ -248,7 +253,7 @@ const Feed = () => {
             <span className="feedTitle">{it.title}</span>
             <div className="feedTag">
               {it.routineTagList.map((tag) => (
-                <a>#{tag.tag.tagName} </a>
+                <button className="feedTag--btn">#{tag.tag.tagName} </button>
               ))}
             </div>
             <div>
@@ -265,7 +270,11 @@ const Feed = () => {
           <div
             className="RoutineItem"
             key={it.id}
-            onClick={() => navigate(`/routine/${it.id}`)}
+            onClick={() =>
+              navigate(`/routine/${it.id}`, {
+                state: { imageUrl: `${it.detail_thumbnail}` },
+              })
+            }
           >
             <img
               className="feedImg"
@@ -274,7 +283,7 @@ const Feed = () => {
             <h1 className="feedTitle">{it.title}</h1>
             <div className="feedTag">
               {it.routineTagList.map((tag) => (
-                <a>#{tag.tag.tagName} </a>
+                <button className="feedTag--btn">#{tag.tag.tagName} </button>
               ))}
             </div>
             <div>
@@ -291,7 +300,11 @@ const Feed = () => {
           <div
             className="RoutineItem"
             key={it.id}
-            onClick={() => navigate(`/routine/${it.id}`)}
+            onClick={() =>
+              navigate(`/routine/${it.id}`, {
+                state: { imageUrl: `${it.detail_thumbnail}` },
+              })
+            }
           >
             <img
               className="feedImg"
@@ -300,7 +313,7 @@ const Feed = () => {
             <text className="feedTitle">{it.title}</text>
             <div className="feedTag">
               {it.routineTagList.map((tag) => (
-                <a>#{tag.tag.tagName} </a>
+                <button className="feedTag--btn">#{tag.tag.tagName} </button>
               ))}
             </div>
             <div>

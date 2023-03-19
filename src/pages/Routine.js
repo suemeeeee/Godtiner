@@ -30,6 +30,11 @@ const Routine = () => {
 
   const auth = `Bearer ${localStorage.getItem("token")}`;
 
+  const location = useLocation();
+  const detailKey = { ...location.state };
+
+  console.log(detailKey);
+
   useEffect(() => {
     axios
       .get(`http://localhost:8080/feed/${params}`, {
@@ -40,10 +45,11 @@ const Routine = () => {
       .then((Response) => {
         console.log(Response);
         setPostRoutineId(Response.data.result.data.id);
-        setDetailRoutine(Response.data.result.data);
+
         setSharedContents(Response.data.result.data.sharedContentsList);
         setNickName(Response.data.result.data.member.nickname);
         setRecommendedRoutine(Response.data.result.data.contentsBasedRecommend);
+
         if (Response.data.result.data.liked) {
           setButtonText("❤️");
           setIsLiked(true);
@@ -57,11 +63,6 @@ const Routine = () => {
       });
   }, [params]);
 
-  console.log("detailRoutin : ", detailRoutine);
-  console.log("내가 고른 루틴들 아이디 : ", selectRoutine);
-  console.log("공유할 콘텐츠 리스트 전부 : ", sharedContents);
-
-  console.log("로드 시 찜 유무", isLiked);
   //좋아요 누르면 넘겨줄 함수 (false를 true로 바꾸고 꽉찬 하트로)
   const wishAddHandler = () => {
     if (!isLiked) {
@@ -74,7 +75,7 @@ const Routine = () => {
           },
         }
       );
-      setButtonText("❤️");
+      setButtonText("💙");
       setIsLiked(true);
     } else {
       axios.delete(`http://localhost:8080/sharedRoutine/${params}/liked`, {
@@ -86,8 +87,6 @@ const Routine = () => {
       setIsLiked(false);
     }
   };
-
-  console.log(isLiked);
 
   //체크박스로 루틴을 골라보자(개별ver.)
   const onRoutineCheckedElement = (checked, value) => {
@@ -139,10 +138,10 @@ const Routine = () => {
       <MyUpper text={"루틴 상세페이지"} />
 
       <div className="Routine">
-        {/* <img
+        <img
           className="RoutineImg"
-          src={require(`C:/api/image/${it.detailThumbnail}`)}
-        ></img> */}
+          src={require(`C:/api/image/${detailKey.imageUrl}`)}
+        ></img>
 
         <br />
         <h1 className="RoutineTitle">{detailRoutine.title}</h1>
@@ -198,14 +197,18 @@ const Routine = () => {
               <div
                 className="RoutineItem"
                 key={it.id}
-                onClick={() => navigate(`/routine/${it.id}`)}
+                onClick={() =>
+                  navigate(`/routine/${it.id}`, {
+                    state: { imageUrl: `${it.detail_thumbnail}` },
+                  })
+                }
               >
                 <img
                   className="feedImg"
                   src={require(`C:/api/image/${it.feed_thumbnail}`)}
                 ></img>
                 <br />
-                <text className="feedTitle">{it.title}</text>
+                <p className="feedTitle">{it.title}</p>
                 <div className="feedTag">
                   {it.routineTagList.map((tag) => (
                     <a>#{tag.tag.tagName} </a>

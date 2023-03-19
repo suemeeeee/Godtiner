@@ -113,3 +113,9 @@
   color: white;
   background-color: rgb(0, 102, 255);
 }
+
+.calendar--div > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

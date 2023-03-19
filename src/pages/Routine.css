@@ -34,6 +34,7 @@
 }
 
 .routineBody {
+  margin-top: 1rem;
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -84,6 +85,7 @@
 
 .routine--info > p {
   margin-top: 1rem;
+  margin-left: 0.5rem;
   font-size: 1.2rem;
 }
 
@@ -124,4 +126,12 @@
 .home--btn {
   display: flex;
   flex-direction: row;
+}
+
+.RoutineImg {
+  margin-top: 1rem;
+  width: 90%;
+  height: 13rem;
+  border-radius: 1rem;
+  object-fit: cover;
 }
