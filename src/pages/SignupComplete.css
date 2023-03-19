@@ -1,7 +1,7 @@
 .SignupComplete h1 {
   width: 100%;
   height: 30%;
-  padding-top: 65%;
+  padding-top: 20rem;
   margin: 0;
   font-size: 200%;
   text-align: center;
@@ -13,6 +13,7 @@
   margin-top: 20%;
   margin-left: 10%;
 
+  border: none;
   border-radius: 40px;
   background-color: #0095f6;
   color: white;
@@ -20,7 +21,6 @@
   font-size: 120%;
 
   transition: 0.25s;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
 .loginButton_sc:hover {
