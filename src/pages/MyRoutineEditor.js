@@ -25,6 +25,7 @@ const MyRoutineEditor = () => {
       })
       .then((response) => {
         setAllRoutine(response.data.result.data.sharedContentsSimples);
+        console.log(response.data.result.data);
       })
       .catch((error) => {
         console.log(error);

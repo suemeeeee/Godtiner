@@ -24,6 +24,7 @@ const Home = () => {
   const [routineData, setRoutineData] = useState([]);
   const copy = routineData.slice();
   console.log(copy);
+  console.log("my home routine :", routineData);
   const today = new Date();
 
   //console.log(today.getDay());

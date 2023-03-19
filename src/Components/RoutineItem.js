@@ -1,12 +1,8 @@
 import "./RoutineItem.css";
 import { useNavigate } from "react-router-dom";
-import MyRoutineDummyData from "../DummyData/MyRoutineDummyData.json";
-import { isClickableInput } from "@testing-library/user-event/dist/utils";
-import { useState } from "react";
-import UserDummyData from "../DummyData/UserDummyData.json";
 import axios from "axios";
 
-const RoutineItem = ({ id, content, startTime, endTime, isclear }) => {
+const RoutineItem = ({ id, content, startTime, endTime, myRules }) => {
   // home화면에서 세부 루틴들을 보여줌
 
   if (startTime === null && endTime === null) {
@@ -26,9 +22,12 @@ const RoutineItem = ({ id, content, startTime, endTime, isclear }) => {
         console.log(error);
       });
   };
+  console.log(myRules);
 
   const onClickContent = () => {
-    navigate(`/myroutineeditor/${id}`);
+    navigate(`/myroutineeditor/${id}`, {
+      state: { myRules: myRules },
+    });
     console.log(id);
   };
 

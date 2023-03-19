@@ -1,7 +1,7 @@
 //상세루틴 편집하는 컴포넌트
 
 import { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import "./RoutineEditor.css";
 import axios from "axios";
 
@@ -13,6 +13,8 @@ const RoutineEditor = ({ isEdit, originData }) => {
   const [startTime, setStartTime] = useState("");
   //끝나는 시간
   const [endTime, setEndTime] = useState("");
+
+  const location = useLocation();
 
   let routineRules = [
     {
@@ -26,7 +28,13 @@ const RoutineEditor = ({ isEdit, originData }) => {
     },
   ];
 
-  console.log(routineRules);
+  if (isEdit) {
+    const myMyRules = location.state.myRules;
+    console.log(myMyRules);
+    routineRules = myMyRules;
+  }
+
+  console.log("routineRules", routineRules);
 
   const contentRef = useRef();
   const navigate = useNavigate();
