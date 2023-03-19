@@ -57,6 +57,14 @@ const RoutineEditor = ({ isEdit, originData }) => {
   };
 
   useEffect(() => {
+    for (let key in routineRules[0]) {
+      const ruleValue = routineRules[0][key];
+      if (ruleValue === true) {
+        let ruleBtn = document.getElementById(`${key}Btn`);
+        ruleBtn.classList = "routineRule_active";
+      }
+    }
+
     if (isEdit) {
       setStartTime(originData.startTime);
       setEndTime(originData.endTime);
@@ -123,7 +131,6 @@ const RoutineEditor = ({ isEdit, originData }) => {
     }
   };
 
-  console.log(startTime, endTime);
   const onRemove = () => {
     if (window.confirm("루틴을 삭제하시겠습니까?")) {
       axios
