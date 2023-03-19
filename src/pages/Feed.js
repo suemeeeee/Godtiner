@@ -150,7 +150,7 @@ const Feed = () => {
     setCurrentPage(0);
     console.log(currentPage);
 
-    if (sort === "좋아요순") {
+    if (sort === "찜하기순") {
       document.getElementById("like").style.display = "flex";
       document.getElementById("pick").style.display = "none";
       document.getElementById("all").style.display = "none";
@@ -183,7 +183,7 @@ const Feed = () => {
           최신순
         </button>
         <button className="sortBtn_fd" onClick={onClickSortBtn}>
-          좋아요순
+          찜하기순
         </button>
         <button className="sortBtn_fd" onClick={onClickSortBtn}>
           담기순
@@ -310,7 +310,7 @@ const Feed = () => {
               className="feedImg"
               src={require(`C:/api/image/${it.feed_thumbnail}`)}
             ></img>
-            <text className="feedTitle">{it.title}</text>
+            <p className="feedTitle">{it.title}</p>
             <div className="feedTag">
               {it.routineTagList.map((tag) => (
                 <button className="feedTag--btn">#{tag.tag.tagName} </button>

@@ -17,30 +17,32 @@ const SearchPage = () => {
     <div>
       <MySearchAlarm parentFunction={parentFunction} />
       <div className="SearchPageDiv">
-        {searchedData.map((it) => (
-          <div
-            className="RoutineItem"
-            key={it.id}
-            onClick={() => navigate(`/routine/${it.id}`)}
-          >
-            <img
-              className="feedImg"
-              src={require(`C:/api/image/${it.feed_thumbnail}`)}
-            ></img>
-            <br />
-            <text className="feedTitle">{it.title}</text>
-            <div className="feedTag">
-              {it.routineTagList.map((tag) => (
-                <a>#{tag.tag.tagName} </a>
-              ))}
-            </div>
-            <div>
-              <div className="feedback">
-                ❤{it.likecnt} 📥{it.pickcnt} 👀{it.hits}
+        <div className="searchedRoutines--div">
+          {searchedData.map((it) => (
+            <div
+              className="RoutineItem"
+              key={it.id}
+              onClick={() => navigate(`/routine/${it.id}`)}
+            >
+              <img
+                className="feedImg"
+                src={require(`C:/api/image/${it.feed_thumbnail}`)}
+              ></img>
+              <br />
+              <text className="feedTitle">{it.title}</text>
+              <div className="feedTag">
+                {it.routineTagList.map((tag) => (
+                  <button className="feedTag--btn">#{tag.tag.tagName} </button>
+                ))}
+              </div>
+              <div>
+                <div className="feedback">
+                  ❤{it.likecnt} 📥{it.pickcnt} 👀{it.hits}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
       <MoveTab />
     </div>

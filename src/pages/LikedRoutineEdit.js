@@ -81,6 +81,7 @@ const LikedRoutineEdit = () => {
       });
   };
 
+  console.log(likedRoutine);
   return (
     <div>
       <MyUpper text={"찜한 루틴 편집"} />
@@ -117,7 +118,15 @@ const LikedRoutineEdit = () => {
 
       <div className="LikedRoutineEditBody_sre">
         {likedRoutine.map((it) => (
-          <div className="RoutineItem_sre" key={it.likedId}>
+          <div
+            className="RoutineItem_sre"
+            key={it.likedId}
+            onClick={() =>
+              navigate(`/routine/${it.sharedId}`, {
+                state: { imageUrl: `${it.detail_thumbnail}` },
+              })
+            }
+          >
             {isEdit && (
               <input
                 type="checkbox"

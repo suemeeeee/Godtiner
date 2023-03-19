@@ -45,7 +45,7 @@ const Routine = () => {
       .then((Response) => {
         console.log(Response);
         setPostRoutineId(Response.data.result.data.id);
-
+        setDetailRoutine(Response.data.result.data);
         setSharedContents(Response.data.result.data.sharedContentsList);
         setNickName(Response.data.result.data.member.nickname);
         setRecommendedRoutine(Response.data.result.data.contentsBasedRecommend);
@@ -133,6 +133,7 @@ const Routine = () => {
       });
   };
 
+  console.log(detailRoutine);
   return (
     <div>
       <MyUpper text={"루틴 상세페이지"} />

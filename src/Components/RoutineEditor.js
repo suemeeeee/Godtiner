@@ -8,22 +8,11 @@ import axios from "axios";
 const RoutineEditor = ({ isEdit, originData }) => {
   //세부루틴 이름
   const [content, setContent] = useState("");
-  //알림설정
-  const [onOff, setOnOff] = useState(false);
+
   //시작시간
   const [startTime, setStartTime] = useState("");
   //끝나는 시간
   const [endTime, setEndTime] = useState("");
-
-  // const [routineRules, setRoutineRules] = useState({
-  //   mon: false,
-  //   tue: false,
-  //   wed: false,
-  //   thu: false,
-  //   fri: false,
-  //   sat: false,
-  //   sun: false,
-  // });
 
   let routineRules = [
     {
@@ -69,8 +58,6 @@ const RoutineEditor = ({ isEdit, originData }) => {
   }, [isEdit, originData]);
 
   const handleSubmit = () => {
-    let newRoutine = [];
-
     if (content.length < 1) {
       contentRef.current.focus();
       return;
@@ -151,7 +138,6 @@ const RoutineEditor = ({ isEdit, originData }) => {
     }
   };
 
-  //월~일 요일 버튼 클릭 시 MyRoutineDummyData에 각각 요일 값 boolean 처리 함수
   const onClickRoutineRule = (e) => {
     if (e.target.className === "routineRule") {
       e.target.className = "routineRule_active";
@@ -199,7 +185,7 @@ const RoutineEditor = ({ isEdit, originData }) => {
       </div>
 
       <div className="timeDay">
-        <p className="text_re">시간 설정 </p>
+        <p className="text_re">시간 설정</p>
         <div className="time--edit">
           <input
             className="startTime"
@@ -290,4 +276,5 @@ const RoutineEditor = ({ isEdit, originData }) => {
     </div>
   );
 };
+
 export default RoutineEditor;

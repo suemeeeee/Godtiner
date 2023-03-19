@@ -6,11 +6,13 @@
 
 .LikedTag p {
   width: 95%;
+  margin-top: 1rem;
   margin-left: 5%;
 }
 
 .teglistDiv_lt {
   width: 90%;
+  margin-top: 4rem;
   margin-left: 5%;
   margin-right: 5%;
   padding-bottom: 10%;
