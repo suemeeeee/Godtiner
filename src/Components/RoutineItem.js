@@ -11,7 +11,7 @@ const RoutineItem = ({ id, content, startTime, endTime, myRules }) => {
   }
   const navigate = useNavigate();
 
-  //체크박스 누르면 루틴 클리어 되면서 지워지는 함수
+  // 체크박스 누르면 루틴 클리어 되면서 지워지는 함수
   const routineClear = (e) => {
     axios
       .put(`http://localhost:8080/myRoutine/clear/${id}`)

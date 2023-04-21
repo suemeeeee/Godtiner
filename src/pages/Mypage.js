@@ -1,11 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import MyUpper from "../Components/MyUpper";
-import Avatar from "react-avatar-edit";
 import "./Mypage.css";
-
 import MoveTab from "../Components/MoveTab";
-
 import UserDummyData from "../DummyData/UserDummyData.json";
 import axios from "axios";
 
@@ -26,7 +22,6 @@ const Mypage = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         setNickname(res.data.nickname);
         setIntro(res.data.introduction);
       })

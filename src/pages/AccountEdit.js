@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import MyUpper from "../Components/MyUpper";
@@ -10,7 +10,6 @@ const AccountEdit = () => {
   const [email, setEmail] = useState();
   const UserData = UserDummyData.User;
 
-  //페이징 처리할 때 유저의 id 추가해야 하나?
   useEffect(() => {
     axios
       .get(`/member/${id}`)

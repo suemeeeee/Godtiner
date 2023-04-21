@@ -1,5 +1,3 @@
-//상세루틴 편집하는 컴포넌트
-
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import "./RoutineEditor.css";
@@ -8,7 +6,6 @@ import axios from "axios";
 const RoutineEditor = ({ isEdit, originData }) => {
   //세부루틴 이름
   const [content, setContent] = useState("");
-
   //시작시간
   const [startTime, setStartTime] = useState("");
   //끝나는 시간
@@ -132,25 +129,22 @@ const RoutineEditor = ({ isEdit, originData }) => {
   };
 
   const onRemove = () => {
-    if (window.confirm("루틴을 삭제하시겠습니까?")) {
-      axios
-        .delete(`http://localhost:8080/myRoutine/detail/${id}`, {
-          headers: {
-            "Content-Type": "application/json;charset=utf-8",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
-      alert("삭제완료");
-      navigate("/home", { replace: true });
-    } else {
-      alert("취소되었습니다");
-    }
+    axios
+      .delete(`http://localhost:8080/myRoutine/detail/${id}`, {
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+
+    alert("삭제 완료");
+    navigate("/home", { replace: true });
   };
 
   const onClickRoutineRule = (e) => {

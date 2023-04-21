@@ -5,29 +5,17 @@ import "./Home.css";
 import Calendar from "../Components/Calendar";
 import MoveTab from "../Components/MoveTab";
 import RoutineItem from "../Components/RoutineItem";
-import {
-  IoIosAddCircle,
-  IoIosShare,
-  IoMdReorder,
-  IoIosCalendar,
-  IoMdArrowBack,
-} from "react-icons/io";
+import { IoIosAddCircle, IoIosShare } from "react-icons/io";
 import axios from "axios";
 import { ReactSortable } from "react-sortablejs";
 
 const Home = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("내 루틴");
-  //백엔드시험을 위해 설치함
-  //useEffect안에서 값을 정의하면 useEffect를 나오는 순간 값이 보존이 안됨..
-  //구글링결과 useState를 이용해야 한다고 한다..
   const [routineData, setRoutineData] = useState([]);
   const copy = routineData.slice();
-  console.log(copy);
-  console.log("my home routine :", routineData);
-  const today = new Date();
 
-  //console.log(today.getDay());
+  const today = new Date();
 
   const [selectedDay, setSelectedDay] = useState(today.getDay());
 
@@ -46,17 +34,6 @@ const Home = () => {
       .catch((error) => {
         console.log(error);
       });
-    // .then(
-    //   axios
-    //     .get(`http://localhost:8080/myRoutine/post`, {
-    //       headers: {
-    //         Authorization: `Bearer ${localStorage.getItem("token")}`,
-    //       },
-    //     })
-    //     .then((response) => {
-    //       setRoutineData(response.data.result.data.myContentsList);
-    //     })
-    // );
   }, [selectedDay]);
   console.log(routineData);
 
@@ -95,7 +72,6 @@ const Home = () => {
       <MySearchAlarm />
       <Calendar pickDay={pickDay} />
       <div className="ectBtn">
-        {/* <IoMdReorder className="SortButton" size="50" /> */}
         <IoIosShare
           className="ShareRoutineButton"
           onClick={() => navigate("/shareroutine")}

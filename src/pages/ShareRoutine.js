@@ -10,7 +10,7 @@ import axios from "axios";
 const ShareRoutine = () => {
   const navigate = useNavigate();
 
-  //백엔드로 넘겨 줄 변수들 (항상 상단에!)
+  //백엔드로 넘겨 줄 변수들
   const [checkedRoutineId, setCheckedRoutineId] = useState([]);
   const [checkedTagList, setCheckedTagList] = useState([]);
   const [title, setTitle] = useState("");
@@ -38,11 +38,7 @@ const ShareRoutine = () => {
       });
   }, []);
 
-  //const [tag, setTag] = useState([]);
-  //const [content, setContent] = useState();
   const [RoutineImg, setRoutineImg] = useState();
-  //체크선택 시, 내용이 들어갈 것
-  //const [checkedList, setCheckedList] = useState([]);
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -102,10 +98,6 @@ const ShareRoutine = () => {
     setRoutineImg(e.target.files[0]);
   };
 
-  // const onChangeContent = (e) => {
-  //   setContent(e.target.value);
-  // };
-
   // 공유하기 버튼을 누를 시 실행 백엔드 연동 axios 코드
   const onPush = () => {
     const frm = new FormData();
@@ -134,7 +126,6 @@ const ShareRoutine = () => {
       .catch((error) => {
         console.log(error.response);
       });
-    // navigate("/home", { replace: true });
   };
 
   //개별체크
@@ -158,14 +149,6 @@ const ShareRoutine = () => {
       setCheckedRoutineId([]);
     }
   };
-
-  // console.log(
-  //   title,
-  //   intro,
-  //   checkedRoutineId,
-  //   checkedTagList,
-  //   state.selectedFiles
-  // );
 
   return (
     <div className="ShareRoutine">

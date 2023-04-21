@@ -25,7 +25,6 @@ const MyRoutineEditor = () => {
       })
       .then((response) => {
         setAllRoutine(response.data.result.data.sharedContentsSimples);
-        console.log(response.data.result.data);
       })
       .catch((error) => {
         console.log(error);
@@ -40,12 +39,10 @@ const MyRoutineEditor = () => {
       if (targetRoutine) {
         setOriginData(targetRoutine);
       } else {
-        console.log(id);
         navigate("/home", { replace: true });
       }
     }
   }, [id, allRoutine]);
-  console.log(originData);
 
   return (
     <div>

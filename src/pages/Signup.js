@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./Signup.css";
 import { useNavigate } from "react-router-dom";
-import LoginGoogle from "../Components/LoginGoogle";
 import Axios from "axios";
 
 function Signup() {

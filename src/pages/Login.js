@@ -24,11 +24,8 @@ const Login = () => {
         email: email,
       })
       .then((response) => {
-        console.log(response);
-        //백엔드랑 연동 시험
         localStorage.clear();
         localStorage.setItem("token", response.data);
-        //여기까지가 시험
         window.location.href = "http://localhost:3000/home";
       })
       .catch((error) => {

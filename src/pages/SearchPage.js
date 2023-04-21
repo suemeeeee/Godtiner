@@ -22,7 +22,9 @@ const SearchPage = () => {
             <div
               className="RoutineItem"
               key={it.id}
-              onClick={() => navigate(`/routine/${it.id}`)}
+              onClick={() => navigate(`/routine/${it.id}`, {
+                state: { imageUrl: `${it.detail_thumbnail}` },
+              })}
             >
               <img
                 className="feedImg"

@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
 import MyUpper from "../Components/MyUpper";
-import MoveTab from "../Components/MoveTab";
 import { useNavigate } from "react-router-dom";
-
-import UserDummyData from "../DummyData/UserDummyData.json";
 import "./ProfileEdit.css";
-import { Password } from "@mui/icons-material";
 
 const ProfileEdit = () => {
   const navigate = useNavigate();
   const [nickname, setNickname] = useState("");
-  //가입 시에 받은 nickname 넣도록! 일단 암거나
+
   const [profileContent, setProfileContent] = useState("");
 
   const onChangenickname = (e) => {
@@ -35,7 +30,6 @@ const ProfileEdit = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         setNickname(res.data.nickname);
         setProfileContent(res.data.introduction);
       })

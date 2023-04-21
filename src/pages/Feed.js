@@ -224,7 +224,9 @@ const Feed = () => {
             <span className="feedTitle">{it.title}</span>
             <div className="feedTag">
               {it.routineTagList.map((tag) => (
-                <button className="feedTag--btn">#{tag.tag.tagName}</button>
+                <button className="feedTag--btn">
+                  <p>#{tag.tag.tagName}</p>
+                </button>
               ))}
             </div>
             <div>

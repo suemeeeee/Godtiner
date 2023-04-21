@@ -1,4 +1,3 @@
-import axios from "axios";
 import MyUpper from "../Components/MyUpper";
 
 const ChangeTag = () => {

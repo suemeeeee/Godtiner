@@ -122,11 +122,7 @@ const Routine = () => {
         },
       })
       .then((response) => {
-        if (window.confirm("내 루틴에 담겼습니다. 확인하시겠습니까?")) {
-          navigate("/home", { replace: true });
-        } else {
-          navigate("/feed", { replace: true });
-        }
+        navigate("/home", { replace: true });
       })
       .catch((error) => {
         console.log(error.response);
@@ -212,7 +208,7 @@ const Routine = () => {
                 <p className="feedTitle">{it.title}</p>
                 <div className="feedTag">
                   {it.routineTagList.map((tag) => (
-                    <a>#{tag.tag.tagName} </a>
+                    <button className="feedTag--btn">#{tag.tag.tagName}</button>
                   ))}
                 </div>
                 <div>

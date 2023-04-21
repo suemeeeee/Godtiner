@@ -8,23 +8,6 @@ const Notification = () => {
 
   const [notificationsArray, setNotificationsArray] = useState([]);
 
-  const [dummynoti, setdummynoti] = useState([
-    {
-      checked: true,
-      created: "2022-12-12T00:33",
-      id: 2,
-      notificationType: "MISSION_CLEAR",
-      title: "루틴 2회 달성",
-    },
-    {
-      checked: true,
-      created: "2022-12-11T22:06",
-      id: 1,
-      notificationType: "MISSION_CLEAR",
-      title: "루틴 1회 달성",
-    },
-  ]);
-
   useEffect(() => {
     axios
       .get("/notifications", {
@@ -40,7 +23,6 @@ const Notification = () => {
   const onClickMission = () => {
     navigate("/mission");
   };
-  console.log(notificationsArray);
 
   return (
     <div>
